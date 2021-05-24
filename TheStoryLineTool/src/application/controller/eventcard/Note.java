@@ -1,4 +1,4 @@
-package app.con.eventcard;
+package application.controller.eventcard;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -8,5 +8,5 @@ package app.con.eventcard;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class Event {
+public class Note {
 }
