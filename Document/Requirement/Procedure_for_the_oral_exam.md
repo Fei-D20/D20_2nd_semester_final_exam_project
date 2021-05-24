@@ -1,0 +1,1 @@
+> The project is presented by the project group in the oral exam, the duration of which is max. 30 minutes. This is followed by an individual examination, lasting 30 minutes including grade evaluation, of each member of the group.
