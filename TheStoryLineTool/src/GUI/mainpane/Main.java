@@ -1,20 +1,17 @@
 package GUI.mainpane;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 
 /**
@@ -29,28 +26,39 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
 
-        // This is the menu bar and quick start bar
-        Button button_File = new Button("File( this side will pull down list but not button )");
-        Button button_Edit = new Button("Edit");
-        Button button_help = new Button("Help");
-        HBox hBox_MenuBar = new HBox(button_File,button_Edit,button_help);
+        // This is the menu bar with the list of menu
+        Menu file = new Menu("File");
+        Menu edit = new Menu("Edit");
+        Menu view = new Menu("View");
+        Menu help = new Menu("Help");
+        MenuBar menuBar_Menu = new MenuBar(file,edit,view,help);
 
+        MenuItem menuItem_New = new MenuItem("New");
+        MenuItem menuItem_Delete = new MenuItem("Delete");
+        file.getItems().addAll(menuItem_New,menuItem_Delete);
+
+        // here is the quick start icon
         Button button_New = new Button("New( it will be icon )");
         Button button_Delete = new Button("Delete( it will be icon )");
         HBox hBox_QuickStart = new HBox(button_New, button_Delete);
 
-        VBox vBoxControlArea = new VBox(hBox_MenuBar,hBox_QuickStart);
+        // here add the menubar and quickstart on a vbox and set the gap of each of them
+        VBox vBoxControlArea = new VBox(menuBar_Menu,hBox_QuickStart);
         vBoxControlArea.setSpacing(3);
 
+        // add the vbox of control area on the anchorPane for let it fit with the scene
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.getChildren().add(vBoxControlArea);
         anchorPane.setPrefHeight(60);
+        anchorPane.setStyle("-fx-background-color: lightgray;");
         AnchorPane.setTopAnchor(vBoxControlArea,0.0);
         AnchorPane.setLeftAnchor(vBoxControlArea,0.0);
-        AnchorPane.setRightAnchor(vBoxControlArea,10.0);
+        AnchorPane.setRightAnchor(vBoxControlArea,0.0);
         AnchorPane.setBottomAnchor(vBoxControlArea,0.0);
 
-        anchorPane.setStyle("-fx-background-color: lightgray;");
+        // before here is all for the top side of borderPane
+
+
 
         /* This is the mean edit area for relationship. and after the user click one event card
          * then it will change to the single event card edit.
@@ -59,9 +67,14 @@ public class Main extends Application {
 
         Canvas canvas_TimeLineArea = new Canvas();
 
+        // set the tow canvas on the vbox
         VBox vBoxEditArea = new VBox(canvas_RelationArea,canvas_TimeLineArea);
         vBoxEditArea.setPrefHeight(800);
         vBoxEditArea.setPrefWidth(800);
+
+        // before here is all for the middle of borderPane
+
+
 
         TreeView<String> stringTreeView_EventCardTree = new TreeView<>();
         stringTreeView_EventCardTree.setPrefHeight(800);
@@ -69,25 +82,39 @@ public class Main extends Application {
         stringTreeView_EventCardTree.setTooltip(new Tooltip("event card tree"));
         stringTreeView_EventCardTree.setOpacity(0.5);
 
+        // before here is all for the left side of borderPane
+
+
         TilePane tilePane_EventCardList = new TilePane();
         tilePane_EventCardList.setPrefHeight(800);
         tilePane_EventCardList.setPrefWidth(200);
-        tilePane_EventCardList.getChildren().add(new Label("event card list"));
         tilePane_EventCardList.setStyle("-fx-background-color: lightgray");
 
-        // 划分布局为四个部分
+        Label lable_eventCardList = new Label("Event Card List");
+        lable_eventCardList.setPrefSize(200,50);
+        lable_eventCardList.setStyle("-fx-background-color: lightgray;" +
+                "-fx-font-weight: bold;" +
+                "-fx-font-size: 16");
+        VBox vBox_EventCardList = new VBox(lable_eventCardList, tilePane_EventCardList);
+        VBox.setMargin(lable_eventCardList,new Insets(0,0,1,0));
+
+        // before here is all for the right side of borderPane
+
+
+
+        // So now we can set the four part on the borderPane
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(anchorPane);
         borderPane.setCenter(vBoxEditArea);
         borderPane.setLeft(stringTreeView_EventCardTree);
-        borderPane.setRight(tilePane_EventCardList);
+        borderPane.setRight(vBox_EventCardList);
         borderPane.setStyle("-fx-background-color: gray");
 
         BorderPane.setMargin(anchorPane,new Insets(1));
         BorderPane.setMargin(stringTreeView_EventCardTree,new Insets(1));
-        BorderPane.setMargin(tilePane_EventCardList,new Insets(1));
+        BorderPane.setMargin(vBox_EventCardList,new Insets(1));
 
-        // 锚点布局设置 : 这是为了做出窗口阶梯的效果
+        // this is behind of borderpane for set the margin for the scene
         AnchorPane root = new AnchorPane();
         root.getChildren().add(borderPane);
         root.setPadding(new Insets(5));
@@ -97,13 +124,33 @@ public class Main extends Application {
         AnchorPane.setRightAnchor(borderPane,0.0);
 
 
-        // 基本的舞台设置
+        // basic scene and primaryStage
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("The Story Line Tool");
         primaryStage.setHeight(768);
         primaryStage.setWidth(1366);
         primaryStage.show();
+
+        // after primaryStage showing on, we can set the menubar following the scene size
+        menuBar_Menu.setPrefWidth(anchorPane.getWidth());
+        anchorPane.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                menuBar_Menu.setPrefWidth(newValue.doubleValue());
+            }
+        });
+
+
+        menuItem_New.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Node_EventCard node_eventCard = new Node_EventCard();
+                Node eventCard = node_eventCard.getEventCard();
+                tilePane_EventCardList.getChildren().add(eventCard);
+
+            }
+        });
     }
 
     public static void main(String[] args) {
