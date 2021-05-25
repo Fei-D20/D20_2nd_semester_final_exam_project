@@ -1,4 +1,4 @@
-package GUI.mainpane;
+package GUI.MainPane;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -16,9 +16,10 @@ import javafx.scene.layout.VBox;
  */
 public class AnchorPane_EventCardList {
 
-    TilePane tilePane_EventCardList = new TilePane();
+    public TilePane tilePane_EventCardList;
 
     public AnchorPane getEventCardList(){
+        tilePane_EventCardList = new TilePane();
 
         tilePane_EventCardList.setPrefHeight(800);
         tilePane_EventCardList.setPrefWidth(200);

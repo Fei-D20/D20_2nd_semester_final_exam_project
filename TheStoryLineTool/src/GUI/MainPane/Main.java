@@ -1,5 +1,7 @@
-package GUI.mainpane;
+package GUI.MainPane;
 
+import GUI.Node.Node_EventCard;
+import application.controller.Controller_addEventCard;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -8,8 +10,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -42,28 +42,6 @@ public class Main extends Application {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 anchorPane_root.anchorPane_menuBar.menuBar_Menu.setPrefWidth(newValue.doubleValue());
-            }
-        });
-
-
-        anchorPane_root.anchorPane_menuBar.menuItem_New.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Node_EventCard node_eventCard = new Node_EventCard();
-                Node eventCard = node_eventCard.getEventCard();
-                anchorPane_root.anchorPane_eventCardList.tilePane_EventCardList.getChildren().add(eventCard);
-                TilePane.setMargin(eventCard,new Insets(1));
-
-            }
-        });
-        anchorPane_root.anchorPane_menuBar.button_New.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Node_EventCard node_eventCard = new Node_EventCard();
-                Node eventCard = node_eventCard.getEventCard();
-                anchorPane_root.anchorPane_eventCardList.tilePane_EventCardList.getChildren().add(eventCard);
-                TilePane.setMargin(eventCard,new Insets(1));
-
             }
         });
     }

@@ -1,12 +1,8 @@
-package GUI.mainpane;
+package GUI.Node;
 
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.junit.Test;
-
-import java.lang.annotation.Target;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan

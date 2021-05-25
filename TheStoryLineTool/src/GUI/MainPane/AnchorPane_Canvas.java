@@ -1,4 +1,4 @@
-package GUI.mainpane;
+package GUI.MainPane;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.AnchorPane;

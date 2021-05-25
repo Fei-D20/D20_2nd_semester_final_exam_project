@@ -1,5 +1,8 @@
-package GUI.mainpane;
+package GUI.MainPane;
 
+import application.controller.Controller_addEventCard;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -19,10 +22,10 @@ public class AnchorPane_Root {
     AnchorPane_EventCardList anchorPane_eventCardList = new AnchorPane_EventCardList();
 
     public AnchorPane getRoot(){
-        AnchorPane menuBar = anchorPane_menuBar.getMenuBar();
         AnchorPane canvas = anchorPane_canvas.getCanvas();
         AnchorPane eventTree = anchorPane_eventTree.getEventTree();
         AnchorPane eventCardList = anchorPane_eventCardList.getEventCardList();
+        AnchorPane menuBar = anchorPane_menuBar.getMenuBar(anchorPane_eventCardList);
 
 
         // So now we can set the four part on the borderPane
