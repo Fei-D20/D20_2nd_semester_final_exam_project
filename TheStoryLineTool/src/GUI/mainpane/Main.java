@@ -30,11 +30,21 @@ public class Main extends Application {
     public void start(Stage primaryStage){
 
         // This is the menu bar and quick start bar
-        VBox vBoxControlArea = new VBox();
+        Button button_File = new Button("File");
+        Button button_Edit = new Button("Edit");
+        Button button_help = new Button("Help");
+        HBox hBox_MenuBar = new HBox(button_File,button_Edit,button_help);
+
+        Button button_New = new Button("New");
+        Button button_Delete = new Button("Delete");
+        HBox hBox_QuickStart = new HBox(button_New, button_Delete);
+
+        VBox vBoxControlArea = new VBox(hBox_MenuBar,hBox_QuickStart);
+        vBoxControlArea.setSpacing(3);
 
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.getChildren().add(vBoxControlArea);
-        anchorPane.setPrefHeight(100);
+        anchorPane.setPrefHeight(60);
         AnchorPane.setTopAnchor(vBoxControlArea,0.0);
         AnchorPane.setLeftAnchor(vBoxControlArea,0.0);
         AnchorPane.setRightAnchor(vBoxControlArea,10.0);
