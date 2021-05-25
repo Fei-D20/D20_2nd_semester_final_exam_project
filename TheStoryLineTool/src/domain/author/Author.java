@@ -2,6 +2,8 @@ package domain.author;
 
 import com.sun.org.apache.xpath.internal.operations.String;
 
+import java.util.Objects;
+
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
  * @ create 2021-05-24-09.39
@@ -48,5 +50,26 @@ public class Author implements IF_User {
         this.password = password;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return Objects.equals(name, author.name) && Objects.equals(userID, author.userID) && Objects.equals(password, author.password);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, userID, password);
+    }
+
+
+    @Override
+    public java.lang.String toString() {
+        return "Author{" +
+                "name=" + name +
+                ", userID=" + userID +
+                ", password=" + password +
+                '}';
+    }
 }

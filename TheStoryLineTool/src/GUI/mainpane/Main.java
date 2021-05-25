@@ -30,13 +30,13 @@ public class Main extends Application {
     public void start(Stage primaryStage){
 
         // This is the menu bar and quick start bar
-        Button button_File = new Button("File");
+        Button button_File = new Button("File( this side will pull down list but not button )");
         Button button_Edit = new Button("Edit");
         Button button_help = new Button("Help");
         HBox hBox_MenuBar = new HBox(button_File,button_Edit,button_help);
 
-        Button button_New = new Button("New");
-        Button button_Delete = new Button("Delete");
+        Button button_New = new Button("New( it will be icon )");
+        Button button_Delete = new Button("Delete( it will be icon )");
         HBox hBox_QuickStart = new HBox(button_New, button_Delete);
 
         VBox vBoxControlArea = new VBox(hBox_MenuBar,hBox_QuickStart);
@@ -57,7 +57,6 @@ public class Main extends Application {
          */
         Canvas canvas_RelationArea = new Canvas();
 
-
         Canvas canvas_TimeLineArea = new Canvas();
 
         VBox vBoxEditArea = new VBox(canvas_RelationArea,canvas_TimeLineArea);
@@ -73,25 +72,25 @@ public class Main extends Application {
         TilePane tilePane_EventCardList = new TilePane();
         tilePane_EventCardList.setPrefHeight(800);
         tilePane_EventCardList.setPrefWidth(200);
-        tilePane_EventCardList.getChildren().add(new Label("eventcardlist"));
+        tilePane_EventCardList.getChildren().add(new Label("event card list"));
         tilePane_EventCardList.setStyle("-fx-background-color: lightgray");
 
+        // 划分布局为四个部分
         BorderPane borderPane = new BorderPane();
-
         borderPane.setTop(anchorPane);
         borderPane.setCenter(vBoxEditArea);
         borderPane.setLeft(stringTreeView_EventCardTree);
         borderPane.setRight(tilePane_EventCardList);
         borderPane.setStyle("-fx-background-color: gray");
 
-        BorderPane.setMargin(anchorPane,new Insets(2.5));
-        BorderPane.setMargin(stringTreeView_EventCardTree,new Insets(2.5));
-        BorderPane.setMargin(tilePane_EventCardList,new Insets(2.5));
+        BorderPane.setMargin(anchorPane,new Insets(1));
+        BorderPane.setMargin(stringTreeView_EventCardTree,new Insets(1));
+        BorderPane.setMargin(tilePane_EventCardList,new Insets(1));
 
-        // 锚点布局设置
+        // 锚点布局设置 : 这是为了做出窗口阶梯的效果
         AnchorPane root = new AnchorPane();
         root.getChildren().add(borderPane);
-        root.setPadding(new Insets(10));
+        root.setPadding(new Insets(5));
         AnchorPane.setTopAnchor(borderPane,0.0);
         AnchorPane.setLeftAnchor(borderPane,0.0);
         AnchorPane.setBottomAnchor(borderPane,0.0);
