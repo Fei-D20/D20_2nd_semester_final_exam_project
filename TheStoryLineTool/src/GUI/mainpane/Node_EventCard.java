@@ -38,8 +38,7 @@ public class Node_EventCard {
                 "-fx-text-fill: darkblue;");
 
         vBox.getChildren().addAll(textField_Event,textField_note,textField_comment);
-        vBox.setStyle("-fx-background-color: yellow;" +
-                "-fx-text-fill: darkblue;");
+
         return vBox;
     }
 }

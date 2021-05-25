@@ -148,6 +148,17 @@ public class Main extends Application {
                 Node_EventCard node_eventCard = new Node_EventCard();
                 Node eventCard = node_eventCard.getEventCard();
                 tilePane_EventCardList.getChildren().add(eventCard);
+                TilePane.setMargin(eventCard,new Insets(1));
+
+            }
+        });
+        button_New.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Node_EventCard node_eventCard = new Node_EventCard();
+                Node eventCard = node_eventCard.getEventCard();
+                tilePane_EventCardList.getChildren().add(eventCard);
+                TilePane.setMargin(eventCard,new Insets(1));
 
             }
         });
