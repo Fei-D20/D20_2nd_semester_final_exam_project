@@ -5,9 +5,9 @@
 > ## Author idea generation tool/ Story line tool.
 >
 > ​	Many authors begin new work by collecting 
-> ==small notes, which are written on Post-its or event-cards==. 
-> ==On each event-card, individual words are noted==, 
-> just so that the author can remember the given event. The notes on the event-cards are saved and will eventually 
+> ==small notes, which are written on Post-its or doEvent-cards==. 
+> ==On each doEvent-card, individual words are noted==, 
+> just so that the author can remember the given doEvent. The notes on the doEvent-cards are saved and will eventually 
 > ==be used later in a story==.
 >
 > ​	When the author 
@@ -16,10 +16,10 @@
 > ==lead in his pile of notes and find the notes of events that fit the story.== 
 > The author will 
 > ==lay the events in extension of each other like a tile walk and give the direction of the story==. 
-> ==Pulling in a new event can give a changed direction of the story==. 
-> ==A pile of post-it or event-cards can be used for multiple ideas, as many writers take multiple approaches to a novel.==
+> ==Pulling in a new doEvent can give a changed direction of the story==. 
+> ==A pile of post-it or doEvent-cards can be used for multiple ideas, as many writers take multiple approaches to a novel.==
 > 
-> <u>When the author begin to write a novel, he or she will pick up the event cards and draw them up on a timeline</u> 
+> <u>When the author begin to write a novel, he or she will pick up the doEvent cards and draw them up on a timeline</u> 
 >
 > see figure 1.
 >
@@ -28,8 +28,8 @@
 > Andrej's good example : https://youtu.be/xeIWy3ES9wg?t=60
 >
 > There are 
-> ==several levels of event cards== 
-> so that one event card can be under another card. This means that there can be a hierarchy in each chapter. The user must be able to set once all the event cards are placed. The program should offer a number of options. 
+> ==several levels of doEvent cards== 
+> so that one doEvent card can be under another card. This means that there can be a hierarchy in each chapter. The user must be able to set once all the doEvent cards are placed. The program should offer a number of options. 
 > ==1==. save the story for later editing 
 > ==2==. print the events chronologically 
 > ==3==. Export to a text with all events chronologically and in level.

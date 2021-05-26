@@ -1,4 +1,4 @@
-package GUI.MainPane;
+package GUI.EventTree;
 
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
@@ -21,7 +21,8 @@ public class AnP_EventTree {
         stringTreeView_EventCardTree.setPrefWidth(200);
         stringTreeView_EventCardTree.setOpacity(0.5);
         stringTreeView_EventCardTree.setStyle("-fx-text-fill: blue;" +
-                "-fx-font-size: 16;" );
+                "-fx-font-size: 16;" +
+                "-fx-font-weight: bold" );
         TreeItem<String> root = new TreeItem<String>("root");
 
         TreeItem<String> event = new TreeItem<String>("Event");

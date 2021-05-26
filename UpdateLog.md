@@ -6,7 +6,7 @@
 create the repository and readme.md , updatelog.md also LICENSE file should let everyone modify the all repository. 
 
 ***14-05-2021 00:00*** **Fei**  
-make report.docx and make a simple structure base on our training project. and I leave some comment to notice 
+make report.docx and make a simple structure base on our training project. and I leave some domComment to notice 
 what contain in the sections. 
 
 ***17-05-2021 10:00*** **Fei**  

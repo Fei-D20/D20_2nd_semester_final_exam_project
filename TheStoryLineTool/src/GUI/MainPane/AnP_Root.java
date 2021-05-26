@@ -1,5 +1,6 @@
 package GUI.MainPane;
 
+import GUI.EventTree.AnP_EventTree;
 import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
