@@ -32,7 +32,6 @@ public class Node_EventCard {
         delete.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Object[] objects = anchorPane_eventCardList.tilePane_EventCardList.getChildren().
             }
         });
 
