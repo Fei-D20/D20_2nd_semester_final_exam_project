@@ -2,6 +2,14 @@ package application.controller;
 
 import GUI.MainPane.AnchorPane_EventCardList;
 import GUI.Node.Node_EventCard;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
+import javafx.event.EventHandler;
+import javafx.event.EventTarget;
+import javafx.event.EventType;
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -12,9 +20,17 @@ import GUI.Node.Node_EventCard;
  * @ Version 0.1
  */
 public class Controller_SelectedEventCard {
-    public Node_EventCard SelectedEventCard(AnchorPane_EventCardList anchorPane_eventCardList){
-        // here we should use selected model to get the selected node
-        return null;
+    public ChangeListener<Boolean> SelectedEventCard(AnchorPane_EventCardList anchorPane_eventCardList){
+        ChangeListener<Boolean> changeListener = new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                System.out.println(newValue);
+            }
+        };
+
+        return changeListener;
 
     }
+
+
 }
