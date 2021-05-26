@@ -1,6 +1,6 @@
 package GUI.Node;
 
-import GUI.MainPane.AnchorPane_EventCardList;
+import GUI.MainPane.AnP_EventCardList;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
  */
 public class Node_EventCard {
 
-    public Node getEventCard(AnchorPane_EventCardList anchorPane_eventCardList){
+    public Node getEventCard(AnP_EventCardList anP_eventCardList){
         VBox vBox = new VBox();
 
         Button delete = new Button("X");

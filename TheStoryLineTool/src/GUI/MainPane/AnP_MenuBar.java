@@ -1,6 +1,6 @@
 package GUI.MainPane;
 
-import application.controller.Controller_addEventCard;
+import application.controller.eventcard.Controller_addEventCard;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class AnchorPane_MenuBar {
+public class AnP_MenuBar {
     MenuBar menuBar_Menu = new MenuBar();
     MenuItem menuItem_New = new MenuItem("New");
 
@@ -26,7 +26,7 @@ public class AnchorPane_MenuBar {
     Button button_New = new Button("New( it will be icon )");
     Button button_Delete = new Button("Delete( it will be icon )");
 
-    public AnchorPane getMenuBar(AnchorPane_EventCardList anchorPane_eventCardList){
+    public AnchorPane getMenuBar(){
 
         // This is the menu bar with the list of menu
         Menu file = new Menu("File");
@@ -34,8 +34,8 @@ public class AnchorPane_MenuBar {
         Menu view = new Menu("View");
         Menu help = new Menu("Help");
         menuBar_Menu.getMenus().addAll(file,edit,view,help);
-        menuItem_New.setOnAction(new Controller_addEventCard().addEventCard(anchorPane_eventCardList));
-        button_New.setOnAction(new Controller_addEventCard().addEventCard(anchorPane_eventCardList));
+//        menuItem_New.setOnAction(new Controller_addEventCard().addEventCard(anP_eventCardList));
+//        button_New.setOnAction(new Controller_addEventCard().addEventCard(anP_eventCardList));
 
 
 

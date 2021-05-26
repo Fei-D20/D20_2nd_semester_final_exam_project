@@ -1,6 +1,6 @@
-package application.controller;
+package application.controller.eventcard;
 
-import GUI.MainPane.AnchorPane_EventCardList;
+import GUI.MainPane.AnP_EventCardList;
 import GUI.Node.Node_EventCard;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,14 +17,14 @@ import javafx.scene.layout.TilePane;
  * @ Version 0.1
  */
 public class Controller_addEventCard {
-    public EventHandler<ActionEvent> addEventCard(AnchorPane_EventCardList anchorPane_eventCardList){
+    public EventHandler<ActionEvent> addEventCard(AnP_EventCardList anP_eventCardList){
         EventHandler<ActionEvent> actionEventEventHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 Node_EventCard node_eventCard = new Node_EventCard();
-                Node eventCard = node_eventCard.getEventCard(anchorPane_eventCardList);
+                Node eventCard = node_eventCard.getEventCard(anP_eventCardList);
 
-                anchorPane_eventCardList.tilePane_EventCardList.getChildren().add(eventCard);
+                anP_eventCardList.tilePane_EventCardList.getChildren().add(eventCard);
                 TilePane.setMargin(eventCard,new Insets(1));
             }
         };

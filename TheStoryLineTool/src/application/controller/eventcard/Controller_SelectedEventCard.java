@@ -1,15 +1,8 @@
-package application.controller;
+package application.controller.eventcard;
 
-import GUI.MainPane.AnchorPane_EventCardList;
-import GUI.Node.Node_EventCard;
+import GUI.MainPane.AnP_EventCardList;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
-import javafx.event.EventHandler;
-import javafx.event.EventTarget;
-import javafx.event.EventType;
-import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -20,7 +13,7 @@ import javafx.scene.input.MouseEvent;
  * @ Version 0.1
  */
 public class Controller_SelectedEventCard {
-    public ChangeListener<Boolean> SelectedEventCard(AnchorPane_EventCardList anchorPane_eventCardList){
+    public ChangeListener<Boolean> SelectedEventCard(AnP_EventCardList anP_eventCardList){
         ChangeListener<Boolean> changeListener = new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {

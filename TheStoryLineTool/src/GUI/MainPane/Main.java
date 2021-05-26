@@ -1,14 +1,8 @@
 package GUI.MainPane;
 
-import GUI.Node.Node_EventCard;
-import application.controller.Controller_addEventCard;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -25,8 +19,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
-        AnchorPane_Root anchorPane_root = new AnchorPane_Root();
-        AnchorPane root = anchorPane_root.getRoot();
+        AnP_Root _rootAnP = new AnP_Root();
+        AnchorPane root = _rootAnP.getRoot();
 
         // basic scene and primaryStage
         Scene scene = new Scene(root);
@@ -37,11 +31,11 @@ public class Main extends Application {
         primaryStage.show();
 
         // after primaryStage showing on, we can set the menubar following the scene size
-        anchorPane_root.anchorPane_menuBar.menuBar_Menu.setPrefWidth(root.getWidth());
+        _rootAnP.anP_menuBar.menuBar_Menu.setPrefWidth(root.getWidth());
         root.widthProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                anchorPane_root.anchorPane_menuBar.menuBar_Menu.setPrefWidth(newValue.doubleValue());
+                _rootAnP.anP_menuBar.menuBar_Menu.setPrefWidth(newValue.doubleValue());
             }
         });
     }

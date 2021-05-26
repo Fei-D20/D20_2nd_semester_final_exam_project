@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class AnchorPane_EventCardList {
+public class AnP_EventCardList {
 
     public TilePane tilePane_EventCardList;
 

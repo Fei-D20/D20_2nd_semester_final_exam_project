@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class AnchorPane_Canvas {
+public class AnP_Canvas {
     /* This is the mean edit area for relationship. and after the user click one event card
      * then it will change to the single event card edit.
      */
