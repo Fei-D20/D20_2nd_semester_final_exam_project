@@ -53,10 +53,11 @@ public class Func_EventCard{
 //        List<String> read = Func_IO.read("file/eventCard/eventCard/list.property", "EventID");
 
         ObservableList<String> observableList = null;
-        String listUrl = "src/file/eventCard/eventCard/list.property";
+        String listUrl = "src/file/eventCard/eventCard/-219404838.property";
         ArrayList<String> eventCardList = new ArrayList<>();
+        BufferedReader bufferedReader = null;
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(listUrl)));
+            bufferedReader = new BufferedReader(new FileReader(new File(listUrl)));
             String data;
             while ((data = bufferedReader.readLine()) != null){
                 eventCardList.add(data);
@@ -68,7 +69,11 @@ public class Func_EventCard{
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-
+            try {
+                if(bufferedReader != null) bufferedReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return observableList;
