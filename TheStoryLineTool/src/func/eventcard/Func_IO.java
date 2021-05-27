@@ -55,4 +55,22 @@ public class Func_IO {
             }
         }
     }
+
+    public static void write(String url, String string,boolean append)  {
+
+        BufferedWriter bufferedWriter = null;
+        try {
+            bufferedWriter = new BufferedWriter(new FileWriter(new File(url),append));
+
+            bufferedWriter.write(string);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                bufferedWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

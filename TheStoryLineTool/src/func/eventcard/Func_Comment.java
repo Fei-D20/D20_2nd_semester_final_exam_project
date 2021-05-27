@@ -14,7 +14,8 @@ public class Func_Comment {
     public void write(String commentUrl,int eventID,String authorOfComment,String commentText){
         String text = "EventID=" + eventID + "\n" +
                 "Author=" + authorOfComment + "\n" +
-                "Comment=" + commentText;
+                "Comment=" + commentText +
+                "url=" + commentUrl;
         Func_IO.write(commentUrl, text);
     }
 

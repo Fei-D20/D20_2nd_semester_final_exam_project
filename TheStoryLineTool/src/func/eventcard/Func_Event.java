@@ -17,7 +17,8 @@ public class Func_Event {
                 "Event=" + event + "\n" +
                 "Role=" + role + "\n" +
                 "EventTime=" + eventTime + "\n" +
-                "Chapter=" + chapter;
+                "Chapter=" + chapter +
+                "url=" + eventUrl;
         Func_IO.write(eventUrl, text);
     }
 

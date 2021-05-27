@@ -23,6 +23,7 @@ public class AnP_EventTree {
         stringTreeView_EventCardTree.setStyle("-fx-text-fill: blue;" +
                 "-fx-font-size: 16;" +
                 "-fx-font-weight: bold" );
+
         TreeItem<String> root = new TreeItem<String>("root");
 
         TreeItem<String> event = new TreeItem<String>("Event");

@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class Func_Note {
     public void write(String noteUrl,int eventID,String noteText){
         String text = "EventID=" + eventID + "\n" +
-                "Note=" + noteText;
+                "Note=" + noteText +
+                "url=" + noteUrl;
         Func_IO.write(noteUrl,text);
     }
 
