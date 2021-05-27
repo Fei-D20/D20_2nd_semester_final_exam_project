@@ -1,9 +1,12 @@
 package GUI.MainPane;
 
 import GUI.EventTree.AnP_EventTree;
+import GUI.EventTree.Anp_ListView;
 import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+
+import javax.swing.*;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -16,13 +19,14 @@ import javafx.scene.layout.BorderPane;
 public class AnP_Root {
     AnP_MenuBar anP_menuBar = new AnP_MenuBar();
     AnP_Canvas anP_canvas = new AnP_Canvas();
-    AnP_EventTree anP_eventTree = new AnP_EventTree();
+//    AnP_EventTree anP_eventTree = new AnP_EventTree();
 //    AnP_EventCardList anP_eventCardList = new AnP_EventCardList();
+    Anp_ListView anp_listView = new Anp_ListView();
     AnP_EventCardEditPane anP_eventCardEditPane = new AnP_EventCardEditPane();
 
     public AnchorPane getRoot(){
         AnchorPane canvas = anP_canvas.getCanvas();
-        AnchorPane eventTree = anP_eventTree.getEventTree();
+        AnchorPane listView = anp_listView.getListView();
         AnchorPane eventCardEditPane = anP_eventCardEditPane.getEventCardEditPane();
         AnchorPane menuBar = anP_menuBar.getMenuBar();
 //        AnchorPane eventCardList = anP_eventCardList.getEventCardList();
@@ -32,12 +36,12 @@ public class AnP_Root {
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menuBar);
         borderPane.setCenter(canvas);
-        borderPane.setLeft(eventTree);
+        borderPane.setLeft(listView);
         borderPane.setRight(eventCardEditPane);
         borderPane.setStyle("-fx-background-color: gray");
 
         BorderPane.setMargin(menuBar,new Insets(1));
-        BorderPane.setMargin(eventTree,new Insets(1));
+        BorderPane.setMargin(listView,new Insets(1));
         BorderPane.setMargin(eventCardEditPane,new Insets(1));
 
         // this is behind of borderpane for set the margin for the scene

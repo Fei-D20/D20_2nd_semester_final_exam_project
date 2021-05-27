@@ -1,10 +1,14 @@
 package func.eventcard;
 
 import domain.eventcard.Dom_EventCard;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.net.URL;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -48,9 +52,28 @@ public class Func_EventCard{
         Func_IO.write(listUrl,listText,true);
     }
 
-    public ArrayList<String> getEventCardList()  {
-        ArrayList<String> eventCardIDList = Func_IO.read("file/eventCard/eventCard/list.property", "EventID=");
-        return eventCardIDList;
+    public ObservableList<String> getEventCardList()  {
+//        List<String> read = Func_IO.read("file/eventCard/eventCard/list.property", "EventID");
+
+        String listUrl = "file/eventCard/eventCard/list.property";
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(listUrl)));
+        String data;
+        ArrayList<String> eventCardList = new ArrayList<>();
+        while ((data = bufferedReader.readLine()) != -1){
+            eventCardList.add(data);
+        }
+
+        for (String s : eventCardList) {
+              = () s;
+            Dom_EventCard dom_eventCard = new Dom_EventCard(s);
+            
+        }
+        dom_eventCard.getEventID()
+
+
+        ObservableList<String> observableList = FXCollections.observableList();
+
+        return observableList;
     }
 
 
@@ -61,11 +84,6 @@ public class Func_EventCard{
 
     @Test
     public void test9(){
-        Func_EventCard func_eventCard = new Func_EventCard();
-        ArrayList<String> eventCardList = func_eventCard.getEventCardList();
-        for (String s : eventCardList) {
-            System.out.println(s);
-        }
     }
 
     @Test
