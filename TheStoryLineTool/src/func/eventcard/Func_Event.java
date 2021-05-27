@@ -1,5 +1,8 @@
 package func.eventcard;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
  * @ create 2021-05-26-21.47
@@ -9,4 +12,17 @@ package func.eventcard;
  * @ Version 0.1
  */
 public class Func_Event {
+    public void write(String eventUrl, int eventNumber, String event, String role, Date eventTime,int chapter){
+        String text = "EventNumber=" + eventNumber + "\n" +
+                "Event=" + event + "\n" +
+                "Role=" + role + "\n" +
+                "EventTime=" + eventTime + "\n" +
+                "Chapter=" + chapter;
+        Func_IO.write(eventUrl, text);
+    }
+
+    public ArrayList<String> read(String eventUrl){
+        ArrayList<String> eventText = Func_IO.read(eventUrl);
+        return eventText;
+    }
 }

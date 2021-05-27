@@ -15,13 +15,11 @@ public class Dom_Comment {
     private int eventID;
     private String authorOfComment;
     private Date timeOfComment;
+    private String commentUrl;
 
     public Dom_Comment(int eventID) {
         this.eventID = eventID;
-    }
-
-    public int getEventID() {
-        return eventID;
+        this.commentUrl = "src/file/eventCard/eventCardComment/" + this.eventID + ".property";
     }
 
     public String getAuthorOfComment() {
@@ -39,6 +37,7 @@ public class Dom_Comment {
     public void setTimeOfComment(Date timeOfComment) {
         this.timeOfComment = timeOfComment;
     }
+
 
     @Override
     public String toString() {

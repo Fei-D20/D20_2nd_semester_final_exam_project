@@ -1,7 +1,11 @@
 package func.eventcard;
 
+import org.omg.PortableServer.POA;
+
+import java.util.ArrayList;
+import java.util.Properties;
+
 import java.io.*;
-import java.net.URL;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -12,27 +16,30 @@ import java.net.URL;
  * @ Version 0.1
  */
 public class Func_IO {
-    public String input(String url){
-        BufferedReader bufferedReader = null;
+    public static ArrayList<String> read(String url,String ... strings){
         try {
-            bufferedReader = new BufferedReader(new FileReader(new File(url)));
-            String data;
-            while((data = bufferedReader.readLine()) != null){
-                return data;
+            InputStream resourceAsStream = Func_IO.class.getClassLoader().getResourceAsStream(url);
+            Properties properties = new Properties();
+            properties.load(resourceAsStream);
+
+            ArrayList<String> propertyList = new ArrayList<>();
+
+            for (String string : strings) {
+                if (properties.containsKey(string)) {
+                    String property = properties.getProperty(string);
+                    propertyList.add(property);
+                }
             }
+            return propertyList;
+
+
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                bufferedReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         return null;
     }
 
-    public void output(String url,String string)  {
+    public static void write(String url, String string)  {
         BufferedWriter bufferedWriter = null;
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(new File(url)));
@@ -47,7 +54,5 @@ public class Func_IO {
                 e.printStackTrace();
             }
         }
-
-
     }
 }

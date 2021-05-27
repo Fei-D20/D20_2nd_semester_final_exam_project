@@ -4,6 +4,7 @@ import domain.eventcard.Dom_EventCard;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -17,30 +18,72 @@ import java.util.Date;
 public class Func_EventCard{
     public Dom_EventCard createEventCard(String authorOfCard, Date timeOfCard){
         Dom_EventCard dom_eventCard = new Dom_EventCard(authorOfCard,timeOfCard);
-        int eventID = dom_eventCard.getEventID();
-        String url = "src/file/eventcard/eventcardinfo/" + eventID + ".txt"; // 这里可以把文件地址 放到 dom event 里面, 让它更新
-        Func_IO func_io = new Func_IO();
-        func_io.output(url,"test string");
-
+        write(dom_eventCard.getEventCardUrl(),
+                dom_eventCard.getEventID(),
+                dom_eventCard.getAuthorOfCard(),
+                dom_eventCard.getTimeOfCard());
         return dom_eventCard;
     }
 
+//    public Dom_EventCard getEventCard(int eventID){
+//
+//    }
+
+    public void write(String eventCardUrl,int eventID,String authorOfCard,Date timeOfCard){
+         String eventCardText =
+                 "EventID=" + eventID + "\n" +
+                 "Author=" + authorOfCard + "\n" +
+                 "Time=" + timeOfCard;
+        Func_IO.write(eventCardUrl,eventCardText);
+    }
+
+
+    public ArrayList<String> read(String eventCardUrl,String ... strings){
+        ArrayList<String> eventText = Func_IO.read(eventCardUrl, strings);
+        return eventText;
+    }
+
+
     @Test
     public void test(){
+        //1. create an event card :
         Func_EventCard func_eventCard = new Func_EventCard();
-        Dom_EventCard fei = func_eventCard.createEventCard("Fei", new Date());
-        // test to get the unify eventCard
-        System.out.println("eventcard: " + fei.toString());
-        System.out.println("eventcardID : " + fei.getEventID());
-        // if change the author
-        fei.setAuthorOfCard("Fei2");
-        System.out.println("change name eventcard : " + fei.getEventID());
+        Dom_EventCard fei_gu = func_eventCard.createEventCard("Fei Gu", new Date());
+        System.out.println(fei_gu);
+    }
 
-        // create the different eventcard
-        Dom_EventCard fei1 = func_eventCard.createEventCard("fei", new Date());
-        System.out.println("fei1 new eventcard: " + fei1.getEventID());
-
+    @Test
+    public void test2(){
+        //2. create the .property file and insert info
+        Func_EventCard func_eventCard = new Func_EventCard();
+        String s = "src/file/eventCard/eventCard/1211819962.property";
+        func_eventCard.write(s,1211819962,"Tommy:)",new Date());
 
     }
+
+
+    @Test
+    public void test3(){
+        Func_EventCard func_eventCard = new Func_EventCard();
+        String s = "file/eventCard/eventCard/-135163226.property";
+        ArrayList<String> read = func_eventCard.read(s,"EventID", "Author", "Time");
+        for (int i = 0; i < read.size(); i++) {
+            System.out.println(read.get(i));
+        }
+
+    }
+
+    @Test
+    public void test4(){
+        Func_EventCard func_eventCard = new Func_EventCard();
+        String s = "file/eventCard/eventCard/-135163226.property";
+        ArrayList<String> read = func_eventCard.read(s,"Author","Time");
+        for (int i = 0; i < read.size(); i++) {
+            System.out.println(read.get(i));
+        }
+
+    }
+
+
 
 }

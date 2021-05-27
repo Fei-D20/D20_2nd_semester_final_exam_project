@@ -15,6 +15,7 @@ public class Dom_EventCard  {
     private int eventID;
     private String authorOfCard;
     private Date timeOfCard;
+    private String eventCardUrl;
 
     public Dom_Event dom_event = new Dom_Event(this.eventID);
     public Dom_Note dom_note = new Dom_Note(this.eventID);
@@ -27,6 +28,7 @@ public class Dom_EventCard  {
         this.authorOfCard = authorOfCard;
         this.timeOfCard = timeOfCard;
         this.eventID = this.hashCode();
+        this.eventCardUrl  = "src/file/eventCard/eventCard/" + this.eventID + ".property";
     }
 
     public int getEventID() {
@@ -52,6 +54,11 @@ public class Dom_EventCard  {
     public void setTimeOfCard(Date timeOfCard) {
         this.timeOfCard = timeOfCard;
     }
+
+    public String getEventCardUrl() {
+        return eventCardUrl;
+    }
+
 
 
     @Override

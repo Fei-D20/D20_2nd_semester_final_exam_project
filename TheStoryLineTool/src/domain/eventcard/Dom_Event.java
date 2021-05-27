@@ -18,9 +18,11 @@ public class Dom_Event {
     private String role;
     private Date eventTime;
     private int Chapter;
+    private String eventUrl;
 
     public Dom_Event(int eventID) {
         this.eventID = eventID;
+        this.eventUrl  = "src/file/eventCard/event/" + this.eventID + ".property";
     }
 
     public int getEventID() {

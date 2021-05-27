@@ -1,7 +1,5 @@
 package domain.eventcard;
 
-import java.util.Objects;
-
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
  * @ create 2021-05-26-20.26
@@ -12,23 +10,22 @@ import java.util.Objects;
  */
 public class Dom_Note {
     private int eventID;
-    private StringBuffer noteText;
+    private String noteText;
+    private String noteUrl ;
 
     public Dom_Note(int eventID) {
         this.eventID = eventID;
+        noteUrl = "src/file/eventCard/eventCardNote/" + this.eventID + ".property";
     }
 
-    public int getEventID() {
-        return eventID;
-    }
-
-    public StringBuffer getNoteText() {
+    public String getNoteText() {
         return noteText;
     }
 
-    public void setNoteText(StringBuffer noteText) {
+    public void setNoteText(String  noteText) {
         this.noteText = noteText;
     }
+
 
     @Override
     public String toString() {
