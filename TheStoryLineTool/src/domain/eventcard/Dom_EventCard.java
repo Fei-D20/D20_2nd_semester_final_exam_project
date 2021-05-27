@@ -21,18 +21,12 @@ public class Dom_EventCard  {
     public Dom_Note dom_note = new Dom_Note(this.eventID);
     public Dom_Comment dom_comment = new Dom_Comment(this.eventID);
 
-    public Dom_EventCard() {
-    }
-
-    public Dom_EventCard(int eventID) {
-        this.eventID = eventID;
-    }
 
     public Dom_EventCard(String authorOfCard, Date timeOfCard) {
         this.authorOfCard = authorOfCard;
         this.timeOfCard = timeOfCard;
         this.eventID = this.hashCode();
-        this.eventCardUrl  = "src/file/eventCard/eventCard/" + this.eventID + ".property";
+        this.eventCardUrl  = "file/eventCard/eventCard/" + this.eventID + ".property";
     }
 
     public int getEventID() {

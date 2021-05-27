@@ -42,7 +42,7 @@ public class Func_IO {
     public static void write(String url, String string)  {
         BufferedWriter bufferedWriter = null;
         try {
-            bufferedWriter = new BufferedWriter(new FileWriter(new File(url)));
+            bufferedWriter = new BufferedWriter(new FileWriter(new File("src/" + url)));
 
             bufferedWriter.write(string);
         } catch (IOException e) {
@@ -61,6 +61,7 @@ public class Func_IO {
         BufferedWriter bufferedWriter = null;
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(new File(url),append));
+            // here use the content root path??
 
             bufferedWriter.write(string);
         } catch (IOException e) {

@@ -5,7 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -24,7 +27,7 @@ public class Func_EventCard{
                 dom_eventCard.getEventID(),
                 dom_eventCard.getAuthorOfCard(),
                 dom_eventCard.getTimeOfCard());
-        addToEventCardList(dom_eventCard.getEventID());
+        addToEventCardList(dom_eventCard.getEventCardUrl());
         return dom_eventCard;
     }
 
@@ -43,25 +46,32 @@ public class Func_EventCard{
         return eventText;
     }
 
-    public void addToEventCardList(int eventID){
-        String listText = "EventID=" + eventID + "\n";
+    public void addToEventCardList(String eventUrl){
+        String listText = eventUrl + "\n";
         String listUrl = "src/file/eventCard/eventCard/list.property";
         Func_IO.write(listUrl,listText,true);
     }
 
     public ObservableList<String> getEventCardList()  {
-//        List<String> read = Func_IO.read("file/eventCard/eventCard/list.property", "EventID");
 
         ObservableList<String> observableList = null;
-        String listUrl = "src/file/eventCard/eventCard/-219404838.property";
-        ArrayList<String> eventCardList = new ArrayList<>();
+
+        String listUrl = "TheStoryLineTool/src/file/eventCard/eventCard/list.property";
+        // here should use the path from repository!!!
         BufferedReader bufferedReader = null;
+
+        ArrayList<String> eventCardList = new ArrayList<>();
+
         try {
             bufferedReader = new BufferedReader(new FileReader(new File(listUrl)));
             String data;
             while ((data = bufferedReader.readLine()) != null){
-                eventCardList.add(data);
                 System.out.println(data);
+                ArrayList<String> eventID = read(data, "EventID");
+                for (String eventIDs : eventID) {
+
+                eventCardList.add(eventIDs);
+                }
             }
 
 
@@ -74,61 +84,21 @@ public class Func_EventCard{
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
 
         return observableList;
     }
 
 
-
-
-    /******************  Test  ******************/
+    /*************** Test ********************/
 
 
     @Test
-    public void test9(){
-    }
-
-    @Test
-    public void test(){
-        //1. create an event card :
+    public void test1CreateeventCard(){
         Func_EventCard func_eventCard = new Func_EventCard();
-        Dom_EventCard fei_gu = func_eventCard.createEventCard("Fei Gu", new Date());
-        System.out.println(fei_gu);
+        func_eventCard.createEventCard("fei", new Date());
     }
-
-    @Test
-    public void test2(){
-        //2. create the .property file and insert info
-        Func_EventCard func_eventCard = new Func_EventCard();
-        String s = "src/file/eventCard/eventCard/1211819962.property";
-        func_eventCard.write(s,1211819962,"Tommy:)",new Date());
-
-    }
-
-
-    @Test
-    public void test3(){
-        Func_EventCard func_eventCard = new Func_EventCard();
-        String s = "file/eventCard/eventCard/-135163226.property";
-        ArrayList<String> read = func_eventCard.read(s,"EventID", "Author", "Time");
-        for (int i = 0; i < read.size(); i++) {
-            System.out.println(read.get(i));
-        }
-
-    }
-
-    @Test
-    public void test5(){
-        Func_EventCard func_eventCard = new Func_EventCard();
-        String s = "file/eventCard/eventCard/-135163226.property";
-        ArrayList<String> read = func_eventCard.read(s,"Author","Time");
-        for (int i = 0; i < read.size(); i++) {
-            System.out.println(read.get(i));
-        }
-
-    }
-
 
 
 }
