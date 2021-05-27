@@ -1,6 +1,4 @@
-package func.eventcard;
-
-import org.omg.PortableServer.POA;
+package func.eventCard;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -49,7 +47,9 @@ public class Func_IO {
             e.printStackTrace();
         } finally {
             try {
-                bufferedWriter.close();
+                if(bufferedWriter != null) {
+                    bufferedWriter.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -60,7 +60,7 @@ public class Func_IO {
 
         BufferedWriter bufferedWriter = null;
         try {
-            bufferedWriter = new BufferedWriter(new FileWriter(new File(url),append));
+            bufferedWriter = new BufferedWriter(new FileWriter(new File("src/" + url),append));
             // here use the content root path??
 
             bufferedWriter.write(string);
@@ -68,7 +68,9 @@ public class Func_IO {
             e.printStackTrace();
         } finally {
             try {
-                bufferedWriter.close();
+                if(bufferedWriter != null) {
+                    bufferedWriter.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

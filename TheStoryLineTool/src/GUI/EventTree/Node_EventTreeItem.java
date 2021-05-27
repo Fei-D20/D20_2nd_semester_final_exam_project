@@ -1,9 +1,5 @@
 package GUI.EventTree;
 
-import func.eventcard.Func_EventCard;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TreeItem;
-
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
  * @ create 2021-05-27-12.13

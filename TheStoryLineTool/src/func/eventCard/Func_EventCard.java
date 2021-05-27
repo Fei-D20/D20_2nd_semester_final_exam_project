@@ -1,4 +1,4 @@
-package func.eventcard;
+package func.eventCard;
 
 import domain.eventcard.Dom_EventCard;
 import javafx.collections.FXCollections;
@@ -23,6 +23,8 @@ import java.util.Date;
 public class Func_EventCard{
     public Dom_EventCard createEventCard(String authorOfCard, Date timeOfCard){
         Dom_EventCard dom_eventCard = new Dom_EventCard(authorOfCard,timeOfCard);
+        File file = new File(dom_eventCard.getEventCardUrl());
+        System.out.println(file.getAbsolutePath());
         write(dom_eventCard.getEventCardUrl(),
                 dom_eventCard.getEventID(),
                 dom_eventCard.getAuthorOfCard(),
@@ -37,6 +39,7 @@ public class Func_EventCard{
                  "Author=" + authorOfCard + "\n" +
                  "Time=" + timeOfCard +
                  "url=" + eventCardUrl;
+
         Func_IO.write(eventCardUrl,eventCardText);
     }
 
@@ -48,7 +51,8 @@ public class Func_EventCard{
 
     public void addToEventCardList(String eventUrl){
         String listText = eventUrl + "\n";
-        String listUrl = "src/file/eventCard/eventCard/list.property";
+        String listUrl = "func/eventCard/file/list.property";
+
         Func_IO.write(listUrl,listText,true);
     }
 
@@ -56,7 +60,7 @@ public class Func_EventCard{
 
         ObservableList<String> observableList = null;
 
-        String listUrl = "TheStoryLineTool/src/file/eventCard/eventCard/list.property";
+        String listUrl = "TheStoryLineTool/src/func/eventCard/file/list.property";
         // here should use the path from repository!!!
         BufferedReader bufferedReader = null;
 
@@ -95,7 +99,7 @@ public class Func_EventCard{
 
 
     @Test
-    public void test1CreateeventCard(){
+    public void test1CreateeventCard() throws IOException {
         Func_EventCard func_eventCard = new Func_EventCard();
         func_eventCard.createEventCard("fei", new Date());
     }

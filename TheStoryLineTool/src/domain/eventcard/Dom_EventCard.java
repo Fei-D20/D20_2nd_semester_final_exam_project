@@ -26,7 +26,7 @@ public class Dom_EventCard  {
         this.authorOfCard = authorOfCard;
         this.timeOfCard = timeOfCard;
         this.eventID = this.hashCode();
-        this.eventCardUrl  = "file/eventCard/eventCard/" + this.eventID + ".property";
+        this.eventCardUrl  = "func/eventCard/file/" + this.eventID + ".property";
     }
 
     public int getEventID() {
