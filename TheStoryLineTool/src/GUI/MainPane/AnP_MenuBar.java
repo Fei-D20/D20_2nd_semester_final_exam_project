@@ -21,10 +21,9 @@ import javafx.scene.layout.VBox;
 public class AnP_MenuBar {
     MenuBar menuBar_Menu = new MenuBar();
     MenuItem menuItem_New = new MenuItem("New");
-
     MenuItem menuItem_Delete = new MenuItem("Delete");
-    Button button_New = new Button("New( it will be icon )");
-    Button button_Delete = new Button("Delete( it will be icon )");
+    Button button_New = new Button("+");
+    Button button_Delete = new Button("-");
 
     public AnchorPane getMenuBar(){
 
@@ -34,10 +33,6 @@ public class AnP_MenuBar {
         Menu view = new Menu("View");
         Menu help = new Menu("Help");
         menuBar_Menu.getMenus().addAll(file,edit,view,help);
-//        menuItem_New.setOnAction(new Controller_addEventCard().addEventCard(anP_eventCardList));
-//        button_New.setOnAction(new Controller_addEventCard().addEventCard(anP_eventCardList));
-
-
 
         file.getItems().addAll(menuItem_New,menuItem_Delete);
 

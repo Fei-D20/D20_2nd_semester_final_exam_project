@@ -23,8 +23,6 @@ public class AnP_Canvas {
     public AnchorPane getCanvas(){
         // set the tow canvas on the vbox
         VBox vBoxEditArea = new VBox(canvas_RelationArea,canvas_TimeLineArea);
-        vBoxEditArea.setPrefHeight(800);
-        vBoxEditArea.setPrefWidth(800);
 
         AnchorPane anchorPane = new AnchorPane(vBoxEditArea);
         // before here is all for the middle of borderPane

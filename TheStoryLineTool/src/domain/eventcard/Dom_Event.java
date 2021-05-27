@@ -13,71 +13,27 @@ import java.util.Objects;
  */
 public class Dom_Event {
     private int eventID;
-    private int eventNumber;
+    private String eventUrl;
+
     private String event;
     private String role;
-    private Date eventTime;
-    private int Chapter;
-    private String eventUrl;
+    private String time;
+    private int chapter;
 
     public Dom_Event(int eventID) {
         this.eventID = eventID;
         this.eventUrl  = "src/file/eventCard/event/" + this.eventID + ".property";
     }
 
-    public int getEventID() {
-        return eventID;
-    }
-
-    public int getEventNumber() {
-        return eventNumber;
-    }
-
-    public void setEventNumber(int eventNumber) {
-        this.eventNumber = eventNumber;
-    }
-
-    public String getEvent() {
-        return event;
-    }
-
-    public void setEvent(String event) {
-        this.event = event;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public Date getEventTime() {
-        return eventTime;
-    }
-
-    public void setEventTime(Date eventTime) {
-        this.eventTime = eventTime;
-    }
-
-    public int getChapter() {
-        return Chapter;
-    }
-
-    public void setChapter(int chapter) {
-        Chapter = chapter;
-    }
 
     @Override
     public String toString() {
         return "Dom_Event{" +
                 "eventID=" + eventID +
-                ", eventNumber=" + eventNumber +
                 ", event='" + event + '\'' +
                 ", role='" + role + '\'' +
-                ", eventTime=" + eventTime +
-                ", Chapter=" + Chapter +
+                ", eventTime=" + time +
+                ", Chapter=" + chapter +
                 '}';
     }
 }
