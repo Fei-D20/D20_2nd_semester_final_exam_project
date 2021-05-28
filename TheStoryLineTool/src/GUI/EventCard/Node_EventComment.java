@@ -27,7 +27,7 @@ public class Node_EventComment {
 
         TextArea ta_Comment = new TextArea();
 
-        ta_Comment.setPrefHeight(400);
+        ta_Comment.setPrefHeight(250);
         ta_Comment.setWrapText(true);
         ta_Comment.setEditable(false);
         ta_Comment.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -48,6 +48,8 @@ public class Node_EventComment {
                 }
             }
         });
+
+        ta_Comment.setPromptText("Please input in 2000 word");
 
 
         VBox vBox = new VBox(10);

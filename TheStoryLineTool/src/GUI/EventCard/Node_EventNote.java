@@ -23,7 +23,7 @@ public class Node_EventNote {
 
             TextArea ta_noteValue = new TextArea();
 
-            ta_noteValue.setPrefHeight(200);
+            ta_noteValue.setPrefHeight(250);
             ta_noteValue.setWrapText(true);
             ta_noteValue.setEditable(false);
             ta_noteValue.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -44,6 +44,8 @@ public class Node_EventNote {
                     }
                 }
             });
+
+            ta_noteValue.setPromptText("Please input in 2000 word");
 
 
             VBox vBox = new VBox(10);

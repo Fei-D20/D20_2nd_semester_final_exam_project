@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) {
         AnP_Root rootAnP = new AnP_Root();
         AnchorPane root = rootAnP.getRoot();
 
@@ -29,16 +29,8 @@ public class Main extends Application {
         primaryStage.setHeight(768);
         primaryStage.setWidth(1366);
         primaryStage.show();
-
-        // after primaryStage showing on, we can set the menubar following the scene size
-        rootAnP.anP_menuBar.menuBar_Menu.setPrefWidth(root.getWidth());
-        root.widthProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                rootAnP.anP_menuBar.menuBar_Menu.setPrefWidth(newValue.doubleValue());
-            }
-        });
     }
+
 
     public static void main(String[] args) {
         launch(args);

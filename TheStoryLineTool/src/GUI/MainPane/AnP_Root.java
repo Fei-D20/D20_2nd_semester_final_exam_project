@@ -1,7 +1,10 @@
 package GUI.MainPane;
 
 import GUI.EventCard.AnP_EventCard;
-import GUI.EventTree.Anp_ListView;
+import GUI.EventList.Anp_EventList;
+import GUI.EventMap.AnP_EventMap;
+import GUI.MenuBar.AnP_ControlBar;
+import GUI.TimeLine.Anp_TimeLine;
 import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -15,28 +18,33 @@ import javafx.scene.layout.BorderPane;
  * @ Version 0.1
  */
 public class AnP_Root {
-    AnP_MenuBar anP_menuBar = new AnP_MenuBar();
-    AnP_Canvas anP_canvas = new AnP_Canvas();
-    Anp_ListView anp_listView = new Anp_ListView();
 
 
     public AnchorPane getRoot(){
-        AnchorPane canvas = anP_canvas.getCanvas();
-        AnchorPane listView = anp_listView.getListView();
+
+
         AnchorPane anP_EventCard = new AnP_EventCard().showEventCard();
-        AnchorPane menuBar = anP_menuBar.getMenuBar();
+        AnchorPane anp_ControlBar = new AnP_ControlBar().showControlBar();
+        AnchorPane anP_EventList = new Anp_EventList().showListView();
+        AnchorPane anP_EventMap = new AnP_EventMap().showEventMap();
+        AnchorPane anP_TimeLine = new Anp_TimeLine().showTimeLine();
+
 
         // So now we can set the four part on the borderPane
         BorderPane borderPane = new BorderPane();
-        borderPane.setTop(menuBar);
-        borderPane.setCenter(canvas);
-        borderPane.setLeft(listView);
+
+        borderPane.setTop(anp_ControlBar);
+        borderPane.setCenter(anP_EventMap);
+        borderPane.setLeft(anP_EventList);
         borderPane.setRight(anP_EventCard);
+        borderPane.setBottom(anP_TimeLine);
         borderPane.setStyle("-fx-background-color: gray");
 
-        BorderPane.setMargin(menuBar,new Insets(1));
-        BorderPane.setMargin(listView,new Insets(1));
+        BorderPane.setMargin(anp_ControlBar,new Insets(1));
+        BorderPane.setMargin(anP_EventList,new Insets(1));
         BorderPane.setMargin(anP_EventCard,new Insets(1));
+        BorderPane.setMargin(anP_EventMap,new Insets(1));
+        BorderPane.setMargin(anP_TimeLine,new Insets(1));
 
         // this is behind of borderpane for set the margin for the scene
         AnchorPane root = new AnchorPane();
@@ -48,6 +56,6 @@ public class AnP_Root {
         AnchorPane.setRightAnchor(borderPane,0.0);
 
         return root;
-
     }
+
 }

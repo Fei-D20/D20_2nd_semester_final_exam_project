@@ -56,7 +56,7 @@ public class Func_EventCard{
         Func_IO.write(listUrl,listText,true);
     }
 
-    public ObservableList<String> getEventCardList()  {
+    public ObservableList<String> getEventList()  {
 
         ObservableList<String> observableList = null;
 

@@ -52,6 +52,8 @@ public class Node_Event {
             }
         });
 
+        textArea_eventValue.setPromptText("Please input in 120 word ");
+
 
         VBox vBox = new VBox(10);
         vBox.getChildren().addAll(lb_chapter,lb_role,lb_time,textArea_eventValue);

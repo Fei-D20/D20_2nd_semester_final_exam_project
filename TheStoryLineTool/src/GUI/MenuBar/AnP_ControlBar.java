@@ -1,6 +1,7 @@
-package GUI.MainPane;
+package GUI.MenuBar;
 
 import application.controller.eventcard.Controller_addEventCard;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -18,29 +19,15 @@ import javafx.scene.layout.VBox;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class AnP_MenuBar {
-    MenuBar menuBar_Menu = new MenuBar();
-    MenuItem menuItem_New = new MenuItem("New");
-    MenuItem menuItem_Delete = new MenuItem("Delete");
-    Button button_New = new Button("+");
-    Button button_Delete = new Button("-");
+public class AnP_ControlBar {
 
-    public AnchorPane getMenuBar(){
+    public AnchorPane showControlBar(){
+        Node node_MenuBar = new Node_MenuBar().showMenuBar();
+        Node node_QuickStart = new Node_QuickStart().showQuickStart();
 
-        // This is the menu bar with the list of menu
-        Menu file = new Menu("File");
-        Menu edit = new Menu("Edit");
-        Menu view = new Menu("View");
-        Menu help = new Menu("Help");
-        menuBar_Menu.getMenus().addAll(file,edit,view,help);
-
-        file.getItems().addAll(menuItem_New,menuItem_Delete);
-
-        // here is the quick start icon
-        HBox hBox_QuickStart = new HBox(button_New, button_Delete);
 
         // here add the menubar and quickstart on a vbox and set the gap of each of them
-        VBox vBoxControlArea = new VBox(menuBar_Menu,hBox_QuickStart);
+        VBox vBoxControlArea = new VBox(node_MenuBar,node_QuickStart);
         vBoxControlArea.setSpacing(3);
 
         // add the vbox of control area on the anchorPane for let it fit with the scene
