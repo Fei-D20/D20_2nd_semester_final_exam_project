@@ -78,7 +78,6 @@ public class Func_EventCard{
                 }
             }
 
-
             observableList = FXCollections.observableList(eventCardList);
         } catch (IOException e) {
             e.printStackTrace();
