@@ -18,19 +18,19 @@ public class AnP_EventCard {
 
     public AnchorPane showEventCard(){
         Node eventCardTitle = new Node_EventTitle().showEventCardTitle();
-
-
+        Node event = new Node_Event().showEvent();
 
         VBox vBox = new VBox();
         vBox.setPrefWidth(350);
-        vBox.getChildren().addAll(eventCardTitle);
-        vBox.setStyle("-fx-background-color: lightgray");
+        vBox.getChildren().addAll(eventCardTitle,event);
+        vBox.setStyle("-fx-background-color: darkgray");
 
         AnchorPane anchorPane = new AnchorPane(vBox);
         AnchorPane.setLeftAnchor(vBox,1.0);
         AnchorPane.setRightAnchor(vBox,1.0);
         AnchorPane.setTopAnchor(vBox,1.0);
         AnchorPane.setBottomAnchor(vBox,1.0);
+        anchorPane.setStyle("-fx-background-color: lightgray");
 
         return anchorPane;
     }

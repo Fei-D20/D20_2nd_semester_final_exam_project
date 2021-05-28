@@ -1,10 +1,12 @@
 package GUI.EventCard;
 
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
@@ -33,18 +35,13 @@ public class Node_EventTitle {
         tp_EventCard.getChildren().addAll(
                 lb_Author,lb_AuthorValue,lb_date,lb_dateValue,lb_eventNumber,lb_eventNumberValue
         );
-        tp_EventCard.setStyle("-fx-background-color: white");
+        tp_EventCard.setStyle("-fx-background-color: lightgray");
 
+        Label space = new Label("");
 
-        AnchorPane anchorPane = new AnchorPane(tp_EventCard);
-        AnchorPane.setLeftAnchor(tp_EventCard,1.0);
-        AnchorPane.setRightAnchor(tp_EventCard,1.0);
-        AnchorPane.setTopAnchor(tp_EventCard,1.0);
-        AnchorPane.setBottomAnchor(tp_EventCard,1.0);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(anchorPane);
-        vBox.setStyle("-fx-background-color: lightgray");
+        vBox.getChildren().addAll(tp_EventCard,space);
         return vBox;
 
     }
