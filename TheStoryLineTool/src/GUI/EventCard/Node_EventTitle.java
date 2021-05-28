@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import sun.font.Decoration;
 
 import java.util.Date;
 
@@ -24,6 +25,11 @@ import java.util.Date;
  */
 public class Node_EventTitle {
     public Node showEventCardTitle(){
+
+        Label lb_eventCard = new Label("Event Card : ");
+        lb_eventCard.setStyle("-fx-font-weight: bold;" +
+                "-fx-font-size: 16;");
+
         Label lb_eventNumber = new Label("Event Number : ");
         Label lb_eventNumberValue = new Label("/* the number");
         Label lb_Author = new Label("Author : ");
@@ -33,15 +39,20 @@ public class Node_EventTitle {
 
         TilePane tp_EventCard = new TilePane();
         tp_EventCard.getChildren().addAll(
-                lb_Author,lb_AuthorValue,lb_date,lb_dateValue,lb_eventNumber,lb_eventNumberValue
+                lb_Author,
+                lb_AuthorValue,
+                lb_date,
+                lb_dateValue,
+                lb_eventNumber,
+                lb_eventNumberValue
         );
         tp_EventCard.setStyle("-fx-background-color: lightgray");
-
-        Label space = new Label("");
+        tp_EventCard.setPrefTileHeight(20);
+        tp_EventCard.setPrefTileWidth(120);
 
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(tp_EventCard,space);
+        vBox.getChildren().addAll(lb_eventCard,tp_EventCard);
         return vBox;
 
     }
