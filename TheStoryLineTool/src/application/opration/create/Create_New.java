@@ -3,6 +3,7 @@ package application.opration.create;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 
 
 /**
@@ -20,7 +21,6 @@ public class Create_New implements EventHandler {
         if (event.getSource() instanceof Button) {
             Button source = (Button) event.getSource();
             System.out.println(source.getText());
-
             if(source.getText() == "+"){
                 System.out.println("create new event card");
             } else if( source.getText() == "-"){
