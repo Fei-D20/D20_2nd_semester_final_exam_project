@@ -1,14 +1,12 @@
 package GUI.EventCard;
 
-import com.sun.javafx.font.freetype.HBGlyphLayout;
+import application.opration.edit.Edit_InputLimit;
+import application.opration.mouse.Opr_Editable_DoubleClick;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
@@ -30,25 +28,14 @@ public class Node_EventComment {
         ta_Comment.setPrefHeight(250);
         ta_Comment.setWrapText(true);
         ta_Comment.setEditable(false);
-        ta_Comment.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if(event.getClickCount() == 2){
-                    ta_Comment.setEditable(true);
-                } else {
-                    ta_Comment.setEditable(false);
-                }
-            }
-        });
+        ta_Comment.setOnMouseClicked(new Opr_Editable_DoubleClick());
+        ta_Comment.textProperty().addListener(new Edit_InputLimit(2000,ta_Comment));
         ta_Comment.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(newValue.length() > 2000){
-                    ta_Comment.setText(oldValue);
-                }
+                System.out.println(newValue);
             }
         });
-
         ta_Comment.setPromptText("Please input in 2000 word");
 
 

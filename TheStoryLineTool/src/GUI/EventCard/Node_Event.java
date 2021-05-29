@@ -1,13 +1,10 @@
 package GUI.EventCard;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
+import application.opration.edit.Edit_InputLimit;
+import application.opration.mouse.Opr_Editable_DoubleClick;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
@@ -33,24 +30,8 @@ public class Node_Event {
         textArea_eventValue.setPrefHeight(30);
         textArea_eventValue.setWrapText(true);
         textArea_eventValue.setEditable(false);
-        textArea_eventValue.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if(event.getClickCount() == 2){
-                    textArea_eventValue.setEditable(true);
-                } else {
-                    textArea_eventValue.setEditable(false);
-                }
-            }
-        });
-        textArea_eventValue.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(newValue.length() > 120){
-                    textArea_eventValue.setText(oldValue);
-                }
-            }
-        });
+        textArea_eventValue.setOnMouseClicked(new Opr_Editable_DoubleClick());
+        textArea_eventValue.textProperty().addListener(new Edit_InputLimit(120,textArea_eventValue));
 
         textArea_eventValue.setPromptText("Please input in 120 word ");
 

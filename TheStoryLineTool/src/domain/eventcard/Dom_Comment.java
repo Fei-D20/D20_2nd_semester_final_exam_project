@@ -1,5 +1,9 @@
 package domain.eventcard;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
@@ -13,21 +17,42 @@ import java.util.Objects;
  */
 public class Dom_Comment {
     private int eventID;
-    private String authorOfComment;
+    private SimpleStringProperty authorOfComment;
     private Date timeOfComment;
-    private String commentUrl;
+    private SimpleStringProperty commentUrl;
+
+    public Dom_Comment() {
+    }
 
     public Dom_Comment(int eventID) {
         this.eventID = eventID;
-        this.commentUrl = "src/file/eventCard/eventCardComment/" + this.eventID + ".property";
+    }
+
+    public Dom_Comment(int eventID, String authorOfComment,String commentUrl) {
+        this.eventID = eventID;
+        this.authorOfComment.setValue(authorOfComment);
+        this.timeOfComment = new Date();
+        this.commentUrl.setValue(commentUrl);
+    }
+
+    public int getEventID() {
+        return eventID;
+    }
+
+    public void setEventID(int eventID) {
+        this.eventID = eventID;
     }
 
     public String getAuthorOfComment() {
+        return authorOfComment.get();
+    }
+
+    public SimpleStringProperty authorOfCommentProperty() {
         return authorOfComment;
     }
 
     public void setAuthorOfComment(String authorOfComment) {
-        this.authorOfComment = authorOfComment;
+        this.authorOfComment.set(authorOfComment);
     }
 
     public Date getTimeOfComment() {
@@ -38,13 +63,38 @@ public class Dom_Comment {
         this.timeOfComment = timeOfComment;
     }
 
+    public String getCommentUrl() {
+        return commentUrl.get();
+    }
+
+    public SimpleStringProperty commentUrlProperty() {
+        return commentUrl;
+    }
+
+    public void setCommentUrl(String commentUrl) {
+        this.commentUrl.set(commentUrl);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dom_Comment that = (Dom_Comment) o;
+        return Objects.equals(eventID, that.eventID) && Objects.equals(authorOfComment, that.authorOfComment) && Objects.equals(timeOfComment, that.timeOfComment) && Objects.equals(commentUrl, that.commentUrl);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(eventID, authorOfComment, timeOfComment, commentUrl);
+    }
 
     @Override
     public String toString() {
         return "Dom_Comment{" +
                 "eventID=" + eventID +
-                ", authorOfComment='" + authorOfComment + '\'' +
+                ", authorOfComment=" + authorOfComment +
                 ", timeOfComment=" + timeOfComment +
+                ", commentUrl=" + commentUrl +
                 '}';
     }
 }

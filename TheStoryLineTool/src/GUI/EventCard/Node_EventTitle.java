@@ -1,11 +1,13 @@
 package GUI.EventCard;
 
 
+import application.opration.mouse.Opr_Editable_DoubleClick;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -27,24 +29,33 @@ public class Node_EventTitle {
     public Node showEventCardTitle(){
 
         Label lb_eventCard = new Label("Event Card : ");
-        lb_eventCard.setStyle("-fx-font-weight: bold;" +
-                "-fx-font-size: 16;");
+        lb_eventCard.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;");
 
         Label lb_eventNumber = new Label("Event Number : ");
-        Label lb_eventNumberValue = new Label("/* the number");
+
+        TextField tf_EventNumber = new TextField("event number");
+        tf_EventNumber.setOnMouseClicked(new Opr_Editable_DoubleClick());
+        tf_EventNumber.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
+
         Label lb_Author = new Label("Author : ");
-        Label lb_AuthorValue = new Label(" /* name");
+        TextField tf_Author = new TextField("author");
+        tf_Author.setOnMouseClicked(new Opr_Editable_DoubleClick());
+        tf_Author.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
+
         Label lb_date = new Label("Date : ");
-        Label lb_dateValue = new Label(" /* write date");
+        TextField tf_date = new TextField("date");
+        tf_date.setOnMouseClicked(new Opr_Editable_DoubleClick());
+        tf_date.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
+
 
         TilePane tp_EventCard = new TilePane();
         tp_EventCard.getChildren().addAll(
                 lb_Author,
-                lb_AuthorValue,
+                tf_Author,
                 lb_date,
-                lb_dateValue,
+                tf_date,
                 lb_eventNumber,
-                lb_eventNumberValue
+                tf_EventNumber
         );
         tp_EventCard.setStyle("-fx-background-color: lightgray");
         tp_EventCard.setPrefTileHeight(20);

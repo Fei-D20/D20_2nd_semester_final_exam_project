@@ -1,12 +1,9 @@
 package GUI.EventCard;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
+import application.opration.edit.Edit_InputLimit;
+import application.opration.mouse.Opr_Editable_DoubleClick;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 /**
@@ -26,24 +23,8 @@ public class Node_EventNote {
             ta_noteValue.setPrefHeight(250);
             ta_noteValue.setWrapText(true);
             ta_noteValue.setEditable(false);
-            ta_noteValue.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    if(event.getClickCount() == 2){
-                        ta_noteValue.setEditable(true);
-                    } else {
-                        ta_noteValue.setEditable(false);
-                    }
-                }
-            });
-            ta_noteValue.textProperty().addListener(new ChangeListener<String>() {
-                @Override
-                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if(newValue.length() > 2000){
-                        ta_noteValue.setText(oldValue);
-                    }
-                }
-            });
+            ta_noteValue.setOnMouseClicked(new Opr_Editable_DoubleClick());
+            ta_noteValue.textProperty().addListener(new Edit_InputLimit(2000,ta_noteValue));
 
             ta_noteValue.setPromptText("Please input in 2000 word");
 

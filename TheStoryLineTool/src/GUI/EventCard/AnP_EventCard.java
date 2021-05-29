@@ -25,26 +25,25 @@ public class AnP_EventCard {
         Node node_eventComment = new Node_EventComment().showEventComment();
 
         Label lb_event = new Label("Event : ");
-        lb_event.setStyle("-fx-font-weight: bold;" +
-                "-fx-font-size: 16;");
+        lb_event.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;");
         lb_event.setPrefHeight(1);
         lb_event.setPadding(new Insets(1));
 
         Label lb_note = new Label("Note : ");
-        lb_note.setStyle("-fx-font-weight: bold;" +
-                "-fx-font-size: 16;");
+        lb_note.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;");
         lb_note.setPrefHeight(1);
         lb_note.setPadding(new Insets(1));
 
         Label lb_Comment = new Label("Comment : ");
-        lb_Comment.setStyle("-fx-font-weight: bold;" +
-                "-fx-font-size: 16;");
+        lb_Comment.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;");
         lb_Comment.setPrefHeight(1);
         lb_Comment.setPadding(new Insets(1));
 
 
         VBox vBox = new VBox();
+        vBox.setStyle("-fx-background-color: darkgray");
         vBox.setPrefWidth(500); // this is decide the event card weight
+
         vBox.getChildren().addAll(
                 node_eventCardTitle,
                 lb_event,
@@ -54,7 +53,6 @@ public class AnP_EventCard {
                 lb_Comment,
                 node_eventComment
         );
-        vBox.setStyle("-fx-background-color: darkgray");
 
         AnchorPane anchorPane = new AnchorPane(vBox);
         AnchorPane.setLeftAnchor(vBox,1.0);
