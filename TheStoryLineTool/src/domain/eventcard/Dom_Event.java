@@ -1,8 +1,5 @@
 package domain.eventcard;
 
-import java.util.Date;
-import java.util.Objects;
-
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
  * @ create 2021-05-26-20.18
@@ -13,27 +10,78 @@ import java.util.Objects;
  */
 public class Dom_Event {
     private int eventID;
-    private String eventUrl;
-
-    private String event;
+    private String eventName = "new Event";
+    private String eventDate;
+    private int chapterNo;
     private String role;
-    private String time;
-    private int chapter;
+    private String location;
+    private String eventDescribed;
+
+    public Dom_Event() {
+    }
 
     public Dom_Event(int eventID) {
         this.eventID = eventID;
-        this.eventUrl  = "src/file/eventCard/event/" + this.eventID + ".property";
     }
 
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public int getChapterNo() {
+        return chapterNo;
+    }
+
+    public void setChapterNo(int chapterNo) {
+        this.chapterNo = chapterNo;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getEventDescribed() {
+        return eventDescribed;
+    }
+
+    public void setEventDescribed(String eventDescribed) {
+        this.eventDescribed = eventDescribed;
+    }
 
     @Override
     public String toString() {
         return "Dom_Event{" +
                 "eventID=" + eventID +
-                ", event='" + event + '\'' +
+                ", eventName='" + eventName + '\'' +
+                ", eventDate='" + eventDate + '\'' +
+                ", chapterNo=" + chapterNo +
                 ", role='" + role + '\'' +
-                ", eventTime=" + time +
-                ", Chapter=" + chapter +
+                ", location='" + location + '\'' +
+                ", eventDescribed='" + eventDescribed + '\'' +
                 '}';
     }
 }

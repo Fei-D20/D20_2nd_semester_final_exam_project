@@ -1,10 +1,14 @@
 package GUI.EventList;
 
-import func.eventCard.Func_EventCard;
+import domain.eventcard.Dom_EventCard;
+import domain.story.Dom_EventList;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.cell.TextFieldListCell;
+import javafx.util.StringConverter;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -16,8 +20,11 @@ import javafx.scene.control.ListView;
  */
 public class Node_EventList {
     public Node showEventList(){
-        ObservableList<String> ObList_EventList = new Func_EventCard().getEventList();
-        ListView<String> lv_EventList = new ListView<>(ObList_EventList);
+        ObservableList<Dom_EventCard> dom_eventCards = FXCollections.observableArrayList(Dom_EventList.getInstance());
+        ListView<Dom_EventCard> lv_EventList = new ListView<Dom_EventCard>(dom_eventCards);
+        lv_EventList.setEditable(true);
+
+
         lv_EventList.setPlaceholder(new Label("Event Card List"));
         lv_EventList.setPrefHeight(700);
         lv_EventList.setPrefWidth(200);

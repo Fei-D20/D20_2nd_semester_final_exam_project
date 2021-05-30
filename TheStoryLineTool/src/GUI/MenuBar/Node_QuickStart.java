@@ -1,6 +1,5 @@
 package GUI.MenuBar;
 
-import func.Func_Test;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -19,10 +18,8 @@ public class Node_QuickStart {
         Button bu_New = new Button("+");
         bu_New.setPrefWidth(5.0);
         bu_New.setPrefHeight(5.0);
-        bu_New.setOnAction(new Func_Test());
 
         Button bu_Delete = new Button("-");
-        bu_Delete.setOnAction(new Func_Test());
 
 
         // here is the quick start icon

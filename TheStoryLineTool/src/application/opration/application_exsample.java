@@ -1,4 +1,4 @@
-package func;
+package application.opration;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class Func_Test implements EventHandler {
+public class application_exsample implements EventHandler {
     @Override
     public void handle(Event event) {
             if (event.getSource() instanceof Button) { // 保证事件源是 button 的实例

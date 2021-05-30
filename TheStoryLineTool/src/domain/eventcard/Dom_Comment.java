@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -17,9 +18,9 @@ import java.util.Objects;
  */
 public class Dom_Comment {
     private int eventID;
-    private SimpleStringProperty authorOfComment;
-    private Date timeOfComment;
-    private SimpleStringProperty commentUrl;
+    private String commentAuthor;
+    private LocalDateTime localDateTime;
+    private String commentText;
 
     public Dom_Comment() {
     }
@@ -28,51 +29,32 @@ public class Dom_Comment {
         this.eventID = eventID;
     }
 
-    public Dom_Comment(int eventID, String authorOfComment,String commentUrl) {
-        this.eventID = eventID;
-        this.authorOfComment.setValue(authorOfComment);
-        this.timeOfComment = new Date();
-        this.commentUrl.setValue(commentUrl);
-    }
-
     public int getEventID() {
         return eventID;
     }
 
-    public void setEventID(int eventID) {
-        this.eventID = eventID;
+    public String getCommentAuthor() {
+        return commentAuthor;
     }
 
-    public String getAuthorOfComment() {
-        return authorOfComment.get();
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
-    public SimpleStringProperty authorOfCommentProperty() {
-        return authorOfComment;
+    public String getCommentText() {
+        return commentText;
     }
 
-    public void setAuthorOfComment(String authorOfComment) {
-        this.authorOfComment.set(authorOfComment);
+    public void setCommentAuthor(String commentAuthor) {
+        this.commentAuthor = commentAuthor;
     }
 
-    public Date getTimeOfComment() {
-        return timeOfComment;
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
 
-    public void setTimeOfComment(Date timeOfComment) {
-        this.timeOfComment = timeOfComment;
-    }
-
-    public String getCommentUrl() {
-        return commentUrl.get();
-    }
-
-    public SimpleStringProperty commentUrlProperty() {
-        return commentUrl;
-    }
-
-    public void setCommentUrl(String commentUrl) {
-        this.commentUrl.set(commentUrl);
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
     }
 
     @Override
@@ -80,21 +62,21 @@ public class Dom_Comment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dom_Comment that = (Dom_Comment) o;
-        return Objects.equals(eventID, that.eventID) && Objects.equals(authorOfComment, that.authorOfComment) && Objects.equals(timeOfComment, that.timeOfComment) && Objects.equals(commentUrl, that.commentUrl);
+        return eventID == that.eventID && Objects.equals(commentAuthor, that.commentAuthor) && Objects.equals(localDateTime, that.localDateTime) && Objects.equals(commentText, that.commentText);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventID, authorOfComment, timeOfComment, commentUrl);
+        return Objects.hash(eventID, commentAuthor, localDateTime, commentText);
     }
 
     @Override
     public String toString() {
         return "Dom_Comment{" +
                 "eventID=" + eventID +
-                ", authorOfComment=" + authorOfComment +
-                ", timeOfComment=" + timeOfComment +
-                ", commentUrl=" + commentUrl +
+                ", commentAuthor='" + commentAuthor + '\'' +
+                ", localDateTime=" + localDateTime +
+                ", commentText='" + commentText + '\'' +
                 '}';
     }
 }
