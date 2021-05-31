@@ -11,25 +11,25 @@ import java.util.Objects;
  * @ Version 0.1
  */
 public class Dom_Author {
-    private String authorName;
-    private int authorID;
+    private String userName;
+    private int authorID; // maybe on the gui is not necessary but database is useful
     private String password;
 
     public Dom_Author() {
     }
 
-    public Dom_Author(String authorName, String password) {
-        this.authorName = authorName;
+    public Dom_Author(String userName, String password) {
+        this.userName = userName;
         this.password = password;
         this.authorID = hashCode();
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getAuthorID() {
@@ -53,18 +53,18 @@ public class Dom_Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dom_Author that = (Dom_Author) o;
-        return authorID == that.authorID && Objects.equals(authorName, that.authorName) && Objects.equals(password, that.password);
+        return authorID == that.authorID && Objects.equals(userName, that.userName) && Objects.equals(password, that.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(authorName, authorID, password);
+        return Objects.hash(userName, authorID, password);
     }
 
     @Override
     public String toString() {
         return "Dom_Author{" +
-                "authorName='" + authorName + '\'' +
+                "authorName='" + userName + '\'' +
                 ", authorID=" + authorID +
                 ", password='" + password + '\'' +
                 '}';

@@ -208,7 +208,7 @@ public class main_OnePage extends Application {
         ta_EventValue.setEditable(false);
         ta_EventValue.setOnMouseClicked(new Opr_Editable_DoubleClick());
         ta_EventValue.textProperty().addListener(new Edit_InputLimit(120,ta_EventValue));
-        ta_EventValue.setPromptText("Please input in 120 word ");
+        ta_EventValue.setPromptText("Quick note :  max 120 words ");
 
         VBox vb_Event = new VBox(10);
         vb_Event.getChildren().addAll(lb_EventChapter,lb_EventRole,lb_EventTime,ta_EventValue);
@@ -227,7 +227,7 @@ public class main_OnePage extends Application {
         ta_NoteValue.setEditable(false);
         ta_NoteValue.setOnMouseClicked(new Opr_Editable_DoubleClick());
         ta_NoteValue.textProperty().addListener(new Edit_InputLimit(2000,ta_NoteValue));
-        ta_NoteValue.setPromptText("Please input in 2000 word");
+        ta_NoteValue.setPromptText("event description : max 2000 words ");
 
         VBox vb_Note = new VBox(10);
         vb_Note.getChildren().addAll(lb_Note,ta_NoteValue);
@@ -247,7 +247,7 @@ public class main_OnePage extends Application {
         ta_CommentValue.setWrapText(true);
         ta_CommentValue.setEditable(false);
         ta_CommentValue.setOnMouseClicked(new Opr_Editable_DoubleClick());
-        ta_CommentValue.setPromptText("Please input in 2000 word");
+        ta_CommentValue.setPromptText("event comment : max 2000 word");
         ta_CommentValue.textProperty().addListener(new Edit_InputLimit(2000,ta_CommentValue));
         ta_CommentValue.textProperty().addListener(new ChangeListener<String>() {
             @Override

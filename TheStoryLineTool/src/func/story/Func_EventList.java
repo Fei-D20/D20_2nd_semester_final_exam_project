@@ -20,6 +20,7 @@ public class Func_EventList {
      * @param eventCard the item of the event list. which is from instance an event card
      */
     public void setEvent(Dom_EventCard eventCard){
+//        data base part
         Dom_EventList.getInstance().add(eventCard);
     }
 
