@@ -13,15 +13,15 @@ import java.util.Objects;
 public class Dom_Author {
     private String authorName;
     private int authorID;
-    private int password;
+    private String password;
 
     public Dom_Author() {
     }
 
-    public Dom_Author(String authorName, int authorID, int password) {
+    public Dom_Author(String authorName, String password) {
         this.authorName = authorName;
-        this.authorID = authorID;
         this.password = password;
+        this.authorID = hashCode();
     }
 
     public String getAuthorName() {
@@ -40,11 +40,11 @@ public class Dom_Author {
         this.authorID = authorID;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -52,8 +52,8 @@ public class Dom_Author {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Dom_Author author = (Dom_Author) o;
-        return authorID == author.authorID && password == author.password && Objects.equals(authorName, author.authorName);
+        Dom_Author that = (Dom_Author) o;
+        return authorID == that.authorID && Objects.equals(authorName, that.authorName) && Objects.equals(password, that.password);
     }
 
     @Override
@@ -62,11 +62,11 @@ public class Dom_Author {
     }
 
     @Override
-    public java.lang.String toString() {
-        return "Author{" +
-                "authorName=" + authorName +
+    public String toString() {
+        return "Dom_Author{" +
+                "authorName='" + authorName + '\'' +
                 ", authorID=" + authorID +
-                ", password=" + password +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

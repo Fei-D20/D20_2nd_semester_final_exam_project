@@ -43,13 +43,13 @@ public class Anp_EventList {
 
         Node node_EventList = new Node_EventList().showEventList();
         ListView lv_EventList = (ListView) node_EventList;
+        Object value = lv_EventList.getSelectionModel().selectedItemProperty().getValue();
 
         ButtonBar buttonBar = new ButtonBar();
         Button button = new Button("add");
         buttonBar.getButtons().add(button);
-
         // *
-        Dom_Author fei = new Dom_Author("fei" , 001, 123);
+        Dom_Author fei = new Dom_Author("fei" , "123");
         // *
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override

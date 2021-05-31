@@ -15,6 +15,7 @@ import java.util.Objects;
 public class Dom_EventCard  {
     private int eventID;
     private int authorID;
+    private String eventName;
 
     private LocalDateTime editDate;
     public Dom_Event dom_event;
@@ -32,6 +33,7 @@ public class Dom_EventCard  {
         this.authorID = authorID;
         this.editDate = LocalDateTime.now();
         this.eventID = hashCode();
+        this.eventName = "New Event";
         this.dom_event = new Dom_Event(this.eventID);
         this.dom_note = new Dom_Note(this.eventID);
         this.dom_comment = new Dom_Comment(this.eventID);
@@ -45,6 +47,14 @@ public class Dom_EventCard  {
 
     public int getAuthorID() {
         return authorID;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
     public LocalDateTime getEditDate() {
@@ -74,20 +84,21 @@ public class Dom_EventCard  {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dom_EventCard that = (Dom_EventCard) o;
-        return eventID == that.eventID && authorID == that.authorID && Objects.equals(editDate, that.editDate) && Objects.equals(dom_event, that.dom_event) && Objects.equals(dom_note, that.dom_note) && Objects.equals(dom_comment, that.dom_comment);
+        return eventID == that.eventID && authorID == that.authorID && Objects.equals(eventName, that.eventName) && Objects.equals(editDate, that.editDate) && Objects.equals(dom_event, that.dom_event) && Objects.equals(dom_note, that.dom_note) && Objects.equals(dom_comment, that.dom_comment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventID, authorID, editDate, dom_event, dom_note, dom_comment);
+        return Objects.hash(eventID, authorID, eventName, editDate, dom_event, dom_note, dom_comment);
     }
 
     @Override
     public String toString() {
         return "Dom_EventCard{" +
-                " authorID=" + authorID +
+                "eventID=" + eventID +
+                ", authorID=" + authorID +
+                ", eventName='" + eventName + '\'' +
                 ", editDate=" + editDate +
-                dom_event.toString() +
                 '}';
     }
 }

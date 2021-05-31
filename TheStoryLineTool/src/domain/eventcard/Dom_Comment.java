@@ -29,6 +29,13 @@ public class Dom_Comment {
         this.eventID = eventID;
     }
 
+    public Dom_Comment(int eventID, String commentAuthor, LocalDateTime localDateTime, String commentText) {
+        this.eventID = eventID;
+        this.commentAuthor = commentAuthor;
+        this.localDateTime = localDateTime;
+        this.commentText = commentText;
+    }
+
     public int getEventID() {
         return eventID;
     }

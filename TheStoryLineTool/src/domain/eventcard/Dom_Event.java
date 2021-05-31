@@ -24,6 +24,16 @@ public class Dom_Event {
         this.eventID = eventID;
     }
 
+    public Dom_Event(int eventID, String eventName, String eventDate, int chapterNo, String role, String location, String eventDescribed) {
+        this.eventID = eventID;
+        this.eventName = eventName;
+        this.eventDate = eventDate;
+        this.chapterNo = chapterNo;
+        this.role = role;
+        this.location = location;
+        this.eventDescribed = eventDescribed;
+    }
+
     public String getEventName() {
         return eventName;
     }

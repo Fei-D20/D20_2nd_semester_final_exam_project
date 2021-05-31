@@ -3,7 +3,10 @@ package GUI;
 
 import application.opration.edit.Edit_InputLimit;
 import application.opration.mouse.Opr_Editable_DoubleClick;
+import domain.eventcard.Dom_Comment;
+import domain.eventcard.Dom_Event;
 import domain.eventcard.Dom_EventCard;
+import domain.eventcard.Dom_Note;
 import domain.story.Dom_EventList;
 import domain.user.Dom_Author;
 import javafx.application.Application;
@@ -13,16 +16,20 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import javafx.util.converter.FormatStringConverter;
+
+import java.text.Format;
+import java.time.LocalDateTime;
+
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -33,9 +40,16 @@ import javafx.util.StringConverter;
  * @ Version 0.1
  */
 public class main_OnePage extends Application {
+    String tf_LoginUserText = "New User";
+    String tf_loginPasswordText;
+    Dom_EventCard newEventCard;
+    Dom_EventCard selectedEventCard;
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        Dom_Author currentUser = new Dom_Author(tf_LoginUserText, tf_loginPasswordText);
 
         // *************** Controller Bar ******************
         Button bu_New = new Button("+");
@@ -74,32 +88,101 @@ public class main_OnePage extends Application {
         AnchorPane.setRightAnchor(vb_ControlBar,0.0);
         AnchorPane.setBottomAnchor(vb_ControlBar,0.0);
 
+
+        // ****************************** Event List *****************************
+
+        Label lb_EventList = new Label("Event List : ");
+
+        lb_EventList.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;");
+        lb_EventList.setPrefHeight(1);
+        lb_EventList.setPadding(new Insets(1));
+
+
+        ListView<Dom_EventCard> lv_EventList
+                = new ListView<Dom_EventCard>(FXCollections.observableArrayList(Dom_EventList.getInstance()));
+
+        lv_EventList.setPlaceholder(new Label("Event Card List"));
+        lv_EventList.setPrefHeight(700);
+        lv_EventList.setPrefWidth(200);
+//        lv_EventList.setOpacity(0.5);
+        lv_EventList.setStyle( "-fx-font-size: 12;" + "-fx-font-weight: bold" );
+        lv_EventList.setEditable(true);
+
+
+        lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+
+        ButtonBar bb_EventList = new ButtonBar();
+        Button bu_EventList_Add = new Button("Add");
+        bb_EventList.getButtons().add(bu_EventList_Add);
+        bu_EventList_Add.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                newEventCard = new Dom_EventCard(currentUser.getAuthorID());
+                newEventCard.getDom_event().setEventName("new Event");
+                newEventCard.getDom_event().setEventDate("The day of happening");
+                newEventCard.getDom_event().setEventDescribed("some thing happening");
+                newEventCard.getDom_note().setNoteText("What happened?");
+                newEventCard.getDom_comment().setCommentAuthor("who are you");
+                newEventCard.getDom_comment().setCommentText("what you want to say? ");
+
+                Dom_EventList.getInstance().add(newEventCard);
+                lv_EventList.getItems().add(newEventCard);
+
+                lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+                lv_EventList.getSelectionModel().clearSelection();
+                lv_EventList.getSelectionModel().select(newEventCard);
+                lv_EventList.scrollTo(lv_EventList.getSelectionModel().getSelectedIndex());
+                lv_EventList.requestFocus();
+            }
+        });
+
+
+
+        VBox vb_EventList = new VBox();
+        vb_EventList.setPrefWidth(200); // this is decide the event card weight
+        vb_EventList.getChildren().addAll(lb_EventList,lv_EventList,bb_EventList);
+        vb_EventList.setStyle("-fx-background-color: darkgray");
+
+        AnchorPane anP_EventList = new AnchorPane(vb_EventList);
+        AnchorPane.setLeftAnchor(vb_EventList,1.0);
+        AnchorPane.setRightAnchor(vb_EventList,1.0);
+        AnchorPane.setTopAnchor(vb_EventList,1.0);
+        AnchorPane.setBottomAnchor(vb_EventList,1.0);
+        anP_EventList.setStyle("-fx-background-color: lightgray");
+
+
         // ************************ Event Card ******************************
 
-        Label lb_EventCardTitle = new Label("Event Card : ");
+
+        Label lb_EventCardTitle = new Label();
+        lb_EventCardTitle.setText("Event Card : ");
         lb_EventCardTitle.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;");
 
-        Label lb_EventTitleEventNumber = new Label("Event Number : ");
-        TextField tf_EventTitleEventNumber = new TextField("event number");
-        tf_EventTitleEventNumber.setOnMouseClicked(new Opr_Editable_DoubleClick());
-        tf_EventTitleEventNumber.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
+
+        Label lb_EventTitleEventName = new Label("Event Name : ");
+        TextField tf_EventTitleEventName = new TextField();
+
+        tf_EventTitleEventName.setOnMouseClicked(new Opr_Editable_DoubleClick());
+        tf_EventTitleEventName.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
 
         Label lb_EventTitleAuthor = new Label("Author : ");
-        TextField tf_EventTitleAuthor = new TextField("author");
+        TextField tf_EventTitleAuthor = new TextField();
         tf_EventTitleAuthor.setOnMouseClicked(new Opr_Editable_DoubleClick());
         tf_EventTitleAuthor.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
 
         Label lb_EventTitleDate = new Label("Date : ");
-        TextField tf_EventTitleDate = new TextField("date");
+        TextField tf_EventTitleDate = new TextField();
         tf_EventTitleDate.setOnMouseClicked(new Opr_Editable_DoubleClick());
         tf_EventTitleDate.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
+
 
 
         TilePane tp_EventTitle = new TilePane();
         tp_EventTitle.getChildren().addAll(
                 lb_EventTitleAuthor, tf_EventTitleAuthor,
                 lb_EventTitleDate, tf_EventTitleDate,
-                lb_EventTitleEventNumber, tf_EventTitleEventNumber);
+                lb_EventTitleEventName, tf_EventTitleEventName);
         tp_EventTitle.setStyle("-fx-background-color: lightgray");
         tp_EventTitle.setPrefTileHeight(20);
         tp_EventTitle.setPrefTileWidth(120);
@@ -189,74 +272,7 @@ public class main_OnePage extends Application {
         AnchorPane.setBottomAnchor(vb_EventCard,1.0);
         anP_EventCard.setStyle("-fx-background-color: lightgray");
 
-        // ****************************** Event List *****************************
 
-        Label lb_EventList = new Label("Event List : ");
-
-        lb_EventList.setStyle("-fx-font-weight: bold;" +
-                "-fx-font-size: 16;");
-        lb_EventList.setPrefHeight(1);
-        lb_EventList.setPadding(new Insets(1));
-
-
-        ListView<Dom_EventCard> lv_EventList
-                = new ListView<Dom_EventCard>(FXCollections.observableArrayList(Dom_EventList.getInstance()));
-
-        lv_EventList.setPlaceholder(new Label("Event Card List"));
-        lv_EventList.setPrefHeight(700);
-        lv_EventList.setPrefWidth(200);
-        lv_EventList.setOpacity(0.5);
-        lv_EventList.setStyle("-fx-text-fill: blue;" +
-                "-fx-font-size: 16;" +
-                "-fx-font-weight: bold" );
-
-        lv_EventList.setEditable(true);
-        lv_EventList.setCellFactory(TextFieldListCell.forListView(new StringConverter<Dom_EventCard>() {
-            @Override
-            public String toString(Dom_EventCard object) {
-                String s = object.getAuthorID() + " : " + object.getEditDate() + object.getAuthorID();
-                return s;
-            }
-
-            @Override
-            public Dom_EventCard fromString(String string) {
-                return null;
-            }
-        }));
-
-
-        ButtonBar bb_EventList = new ButtonBar();
-        Button bu_EventList_Add = new Button("Add");
-        bb_EventList.getButtons().add(bu_EventList_Add);
-
-        // *
-        Dom_Author fei = new Dom_Author("fei" , 001, 123);
-        // *
-        bu_EventList_Add.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // create the domain object
-                Dom_EventCard newEventCard = new Dom_EventCard(fei.getAuthorID());
-
-                // put it into event list
-                Dom_EventList.getInstance().add(newEventCard);
-
-                // put it into the event list showing.
-                lv_EventList.getItems().add(newEventCard);
-            }
-        });
-
-        VBox vb_EventList = new VBox();
-        vb_EventList.setPrefWidth(200); // this is decide the event card weight
-        vb_EventList.getChildren().addAll(lb_EventList,lv_EventList,bb_EventList);
-        vb_EventList.setStyle("-fx-background-color: darkgray");
-
-        AnchorPane anP_EventList = new AnchorPane(vb_EventList);
-        AnchorPane.setLeftAnchor(vb_EventList,1.0);
-        AnchorPane.setRightAnchor(vb_EventList,1.0);
-        AnchorPane.setTopAnchor(vb_EventList,1.0);
-        AnchorPane.setBottomAnchor(vb_EventList,1.0);
-        anP_EventList.setStyle("-fx-background-color: lightgray");
 
         // ********************* Event Map **********************************
 
@@ -265,14 +281,14 @@ public class main_OnePage extends Application {
                 "-fx-font-size: 16;" +
                 "-fx-background-color: lightgray;");
         lb_EventMap.setPrefHeight(1);
-        lb_EventMap.setPrefWidth(800);
+        lb_EventMap.setPrefWidth(2000);
         lb_EventMap.setPadding(new Insets(1));
 
         Canvas can_EventMap = new Canvas();
         can_EventMap.setStyle("-fx-background-color: white");
 
         VBox vb_EventMap = new VBox();
-        vb_EventMap.setPrefWidth(800); // this is decide the event card weight
+        vb_EventMap.setPrefWidth(2000); // this is decide the event card weight
         vb_EventMap.getChildren().addAll(lb_EventMap,can_EventMap);
         vb_EventMap.setStyle("-fx-background-color: gray");
 
@@ -336,13 +352,125 @@ public class main_OnePage extends Application {
         AnchorPane.setBottomAnchor(bp_Root,0.0);
         AnchorPane.setRightAnchor(bp_Root,0.0);
 
-
         Scene scene = new Scene(anp_Root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("The Story Line Tool");
         primaryStage.setHeight(768);
         primaryStage.setWidth(1366);
         primaryStage.show();
+
+
+        // ****************** Log in *********************
+
+        Label lb_Login_user = new Label("Author Name : ");
+        TextField tf_LoginUser = new TextField();
+
+        Label lb_Login_Password = new Label("Password : ");
+        TextField tf_LoginPassword = new TextField();
+
+        Button bu_OK = new Button(" OK ");
+        Button bu_cancel = new Button("Cancel");
+
+        GridPane gp_Login = new GridPane();
+        gp_Login.setStyle("-fx-background-color: lightgray");
+        gp_Login.setPadding(new Insets(2));
+        gp_Login.setPrefWidth(300);
+        gp_Login.setPrefHeight(200);
+        gp_Login.setAlignment(Pos.CENTER);
+        gp_Login.setHgap(10);
+        gp_Login.setVgap(10);
+
+        gp_Login.add(lb_Login_user,0,0);
+        gp_Login.add(tf_LoginUser,1,0);
+        gp_Login.add(lb_Login_Password,0,1);
+        gp_Login.add(tf_LoginPassword,1,1);
+        gp_Login.add(bu_OK,0,2);
+        gp_Login.add(bu_cancel,1,2);
+
+
+        Scene scene_Login = new Scene(gp_Login);
+        Stage stage_Login = new Stage();
+        stage_Login.setTitle("Log in");
+        stage_Login.initOwner(primaryStage);
+        stage_Login.initModality(Modality.WINDOW_MODAL);
+        stage_Login.setAlwaysOnTop(true);
+        stage_Login.setResizable(false);
+        stage_Login.setScene(scene_Login);
+        stage_Login.show();
+
+
+        primaryStage.xProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                double ps_XPro_value = (double) newValue;
+                stage_Login.setX(ps_XPro_value/2);
+            }
+        });
+        primaryStage.yProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                double ps_YPro_Value = (double) newValue;
+                stage_Login.setY(ps_YPro_Value/2);
+            }
+        });
+
+        bu_OK.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                tf_LoginUserText = tf_LoginUser.getText();
+                tf_loginPasswordText = tf_LoginPassword.getText();
+
+                System.out.println(tf_LoginUserText);
+                System.out.println(main_OnePage.this.tf_loginPasswordText);
+
+                stage_Login.close();
+            }
+        });
+        bu_cancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage_Login.close();
+            }
+        });
+
+
+        // ****************** Event List application ***********************
+        lv_EventList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Dom_EventCard>() {
+            @Override
+            public void changed(ObservableValue<? extends Dom_EventCard> observable, Dom_EventCard oldValue, Dom_EventCard newValue) {
+                lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+                selectedEventCard = newValue;
+                if(selectedEventCard != null) {
+                    lb_EventCardTitle.setText("Event Card : " + String.valueOf(selectedEventCard.getEventName()));
+                    tf_EventTitleEventName.setText(String.valueOf(selectedEventCard.getEventName()));
+                    tf_EventTitleAuthor.setText(String.valueOf(selectedEventCard.getAuthorID()));
+                    tf_EventTitleDate.setText(String.valueOf(selectedEventCard.getEditDate()));
+
+                    /*
+                     * right here remember to set the text for event and comment and note
+                     * and remember to change the node of each three to text field for input.
+                     */
+
+                }
+            }
+        });
+        lv_EventList.setCellFactory(TextFieldListCell.forListView(new StringConverter<Dom_EventCard>() {
+            @Override
+            public String toString(Dom_EventCard object) {
+                String s = object.getEventName();
+                return s;
+            }
+
+            @Override
+            public Dom_EventCard fromString(String string) {
+                Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
+                int selectedIndex = lv_EventList.getSelectionModel().getSelectedIndex();
+                String eventNumber = String.valueOf(selectedIndex + 1);
+                selectedItem.setEventName("Event " + eventNumber + " : " + string);
+                return selectedItem;
+            }
+        }));
 
     }
 }
