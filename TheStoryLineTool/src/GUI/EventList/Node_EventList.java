@@ -23,6 +23,18 @@ public class Node_EventList {
         ObservableList<Dom_EventCard> dom_eventCards = FXCollections.observableArrayList(Dom_EventList.getInstance());
         ListView<Dom_EventCard> lv_EventList = new ListView<Dom_EventCard>(dom_eventCards);
         lv_EventList.setEditable(true);
+        lv_EventList.setCellFactory(TextFieldListCell.forListView(new StringConverter<Dom_EventCard>() {
+            @Override
+            public String toString(Dom_EventCard object) {
+                String s = object.getAuthorID() + " : " + object.getEditDate() + object.getAuthorID();
+                return s;
+            }
+
+            @Override
+            public Dom_EventCard fromString(String string) {
+                return null;
+            }
+        }));
 
 
         lv_EventList.setPlaceholder(new Label("Event Card List"));

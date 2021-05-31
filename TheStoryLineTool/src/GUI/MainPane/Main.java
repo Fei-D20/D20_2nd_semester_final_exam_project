@@ -27,6 +27,8 @@ public class Main extends Application {
         primaryStage.setHeight(768);
         primaryStage.setWidth(1366);
         primaryStage.show();
+
+
     }
 
     public static void main(String[] args) {

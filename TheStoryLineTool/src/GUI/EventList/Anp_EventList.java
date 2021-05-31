@@ -1,13 +1,20 @@
 package GUI.EventList;
 
 
+import GUI.EventCard.AnP_EventCard;
+import GUI.MainPane.AnP_Root;
+import application.controller.eventcard.App_ChangeEventCard;
 import domain.eventcard.Dom_EventCard;
 import domain.story.Dom_EventList;
 import domain.user.Dom_Author;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
@@ -37,16 +44,10 @@ public class Anp_EventList {
         Node node_EventList = new Node_EventList().showEventList();
         ListView lv_EventList = (ListView) node_EventList;
 
-        /**
-         * 关于绑定的例子
-         */
-        Label label = new Label("label");
-        label.textProperty().bind(lv_EventList.getSelectionModel().selectedItemProperty());
-
-
         ButtonBar buttonBar = new ButtonBar();
         Button button = new Button("add");
         buttonBar.getButtons().add(button);
+
         // *
         Dom_Author fei = new Dom_Author("fei" , 001, 123);
         // *
@@ -77,6 +78,7 @@ public class Anp_EventList {
         AnchorPane.setTopAnchor(vBox,1.0);
         AnchorPane.setBottomAnchor(vBox,1.0);
         anchorPane.setStyle("-fx-background-color: lightgray");
+
 
         return anchorPane;
 
