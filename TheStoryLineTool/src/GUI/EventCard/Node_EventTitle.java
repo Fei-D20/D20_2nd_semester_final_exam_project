@@ -33,12 +33,12 @@ public class Node_EventTitle {
 
         Label lb_eventNumber = new Label("Event Number : ");
 
-        TextField tf_EventNumber = new TextField("event number");
+        TextField tf_EventNumber = new TextField("write event number here ");
         tf_EventNumber.setOnMouseClicked(new Opr_Editable_DoubleClick());
         tf_EventNumber.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
 
         Label lb_Author = new Label("Author : ");
-        TextField tf_Author = new TextField("author");
+        TextField tf_Author = new TextField("write author's name here");
         tf_Author.setOnMouseClicked(new Opr_Editable_DoubleClick());
         tf_Author.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
 
