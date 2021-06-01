@@ -3,10 +3,7 @@ package GUI;
 
 import application.opration.edit.Edit_InputLimit;
 import application.opration.mouse.Opr_Editable_DoubleClick;
-import domain.eventcard.Dom_Comment;
-import domain.eventcard.Dom_Event;
 import domain.eventcard.Dom_EventCard;
-import domain.eventcard.Dom_Note;
 import domain.story.Dom_EventList;
 import domain.user.Dom_Author;
 import javafx.application.Application;
@@ -22,13 +19,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Polyline;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import javafx.util.converter.FormatStringConverter;
-
-import java.text.Format;
-import java.time.LocalDateTime;
 
 
 /**
@@ -281,14 +275,15 @@ public class main_OnePage extends Application {
                 "-fx-font-size: 16;" +
                 "-fx-background-color: lightgray;");
         lb_EventMap.setPrefHeight(1);
-        lb_EventMap.setPrefWidth(2000);
+        lb_EventMap.setPrefWidth(800);
         lb_EventMap.setPadding(new Insets(1));
 
-        Canvas can_EventMap = new Canvas();
+
+        Canvas can_EventMap = new Canvas(500,500);
         can_EventMap.setStyle("-fx-background-color: white");
 
         VBox vb_EventMap = new VBox();
-        vb_EventMap.setPrefWidth(2000); // this is decide the event card weight
+        vb_EventMap.setPrefWidth(800); // this is decide the event card weight
         vb_EventMap.getChildren().addAll(lb_EventMap,can_EventMap);
         vb_EventMap.setStyle("-fx-background-color: gray");
 
@@ -312,7 +307,7 @@ public class main_OnePage extends Application {
         can_TimeLine.setStyle("-fx-background-color: white");
 
         VBox vb_TimeLine = new VBox();
-        vb_TimeLine.setPrefHeight(120); // this is decide the time line height
+        vb_TimeLine.setPrefHeight(100); // this is decide the time line height
         vb_TimeLine.setPrefWidth(2000);
         vb_TimeLine.getChildren().addAll(lb_TimeLine,can_TimeLine);
         vb_TimeLine.setStyle("-fx-background-color: gray");
@@ -355,8 +350,8 @@ public class main_OnePage extends Application {
         Scene scene = new Scene(anp_Root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("The Story Line Tool");
-        primaryStage.setHeight(768);
-        primaryStage.setWidth(1366);
+        primaryStage.setHeight(800);
+        primaryStage.setWidth(1000);
         primaryStage.show();
 
 
