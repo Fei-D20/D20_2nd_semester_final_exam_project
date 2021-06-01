@@ -6,6 +6,9 @@ import com.Application.opration.mouse.Opr_Editable_DoubleClick;
 import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
 import com.Domain.user.Dom_Author;
+import com.Domain.user.Dom_LoginedUser;
+import com.Domain.user.Dom_User;
+import com.GUI.User.GUI_UserLogin;
 import com.GUI.User.GUI_UserRegister;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -34,16 +37,17 @@ import javafx.util.StringConverter;
  * @ Version 0.1
  */
 public class main_OnePage extends Application {
-    String tf_LoginUserText = "New User";
-    String tf_loginPasswordText;
     Dom_EventCard newEventCard;
     Dom_EventCard selectedEventCard;
+    Dom_User loginedUser;
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Dom_Author currentUser = new Dom_Author(tf_LoginUserText, tf_loginPasswordText);
+
+
+
 
         // *************** Controller Bar ******************
         Button bu_New = new Button("+");
@@ -112,7 +116,9 @@ public class main_OnePage extends Application {
         bu_EventList_Add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                newEventCard = new Dom_EventCard(currentUser.getAuthorID());
+                newEventCard = new Dom_EventCard();
+                System.out.println("the author name is : " + loginedUser.getUserName());
+                newEventCard.setAuthorName(loginedUser.getUserName());
                 newEventCard.getDom_event().setEventName("new Event");
                 newEventCard.getDom_event().setEventDate("The day of happening");
                 newEventCard.getDom_event().setEventDescribed("some thing happening");
@@ -120,6 +126,7 @@ public class main_OnePage extends Application {
                 newEventCard.getDom_comment().setCommentAuthor("who are you");
                 newEventCard.getDom_comment().setCommentText("what you want to say? ");
 
+                System.out.println("the new event card :" + newEventCard.toString());
                 Dom_EventList.getInstance().add(newEventCard);
                 lv_EventList.getItems().add(newEventCard);
 
@@ -337,7 +344,6 @@ public class main_OnePage extends Application {
         BorderPane.setMargin(anP_EventMap,new Insets(1));
         BorderPane.setMargin(anP_TimeLine,new Insets(1));
 
-        // this is behind of borderpane for set the margin for the scene
 
         AnchorPane anp_Root = new AnchorPane();
         anp_Root.getChildren().add(bp_Root);
@@ -354,99 +360,22 @@ public class main_OnePage extends Application {
         primaryStage.setWidth(1000);
         primaryStage.show();
 
-
-        // ****************** Log in *********************
-
-        Label lb_Login_user = new Label("Author Name : ");
-        TextField tf_LoginUser = new TextField();
-
-        Label lb_Login_Password = new Label("Password : ");
-        TextField tf_LoginPassword = new TextField();
-
-        Button bu_Register = new Button("New User Register");
-
-        Button bu_Login = new Button(" Login ");
-        Button bu_cancel = new Button("Cancel");
-        HBox hBox_Login = new HBox(bu_Login, bu_cancel);
-        hBox_Login.setAlignment(Pos.CENTER_RIGHT);
-
-
-        GridPane gp_Login = new GridPane();
-        gp_Login.setStyle("-fx-background-color: lightgray");
-        gp_Login.setPadding(new Insets(2));
-        gp_Login.setPrefWidth(300);
-        gp_Login.setPrefHeight(200);
-        gp_Login.setAlignment(Pos.CENTER);
-        gp_Login.setHgap(2);
-        gp_Login.setVgap(2);
-
-        gp_Login.add(lb_Login_user,0,0);
-        gp_Login.add(tf_LoginUser,1,0);
-        gp_Login.add(lb_Login_Password,0,1);
-        gp_Login.add(tf_LoginPassword,1,1);
-        gp_Login.add(bu_Register, 0,2);
-        gp_Login.add(hBox_Login,1,2);
-
-
-        Scene scene_Login = new Scene(gp_Login);
-        Stage stage_Login = new Stage();
-        stage_Login.setTitle("Log in");
-        stage_Login.initOwner(primaryStage);
-        stage_Login.initModality(Modality.WINDOW_MODAL);
-        stage_Login.setAlwaysOnTop(true);
-        stage_Login.setResizable(false);
-        stage_Login.setScene(scene_Login);
-        stage_Login.show();
-
-
-        primaryStage.xProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                double ps_XPro_value = (double) newValue;
-                stage_Login.setX(ps_XPro_value/2);
-            }
-        });
-        primaryStage.yProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                double ps_YPro_Value = (double) newValue;
-                stage_Login.setY(ps_YPro_Value/2);
-            }
-        });
-
-        bu_Register.setOnAction(event -> GUI_UserRegister.showRegisterStage(stage_Login,scene_Login));
-
-        bu_Login.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                tf_LoginUserText = tf_LoginUser.getText();
-                tf_loginPasswordText = tf_LoginPassword.getText();
-
-                System.out.println(tf_LoginUserText);
-                System.out.println(main_OnePage.this.tf_loginPasswordText);
-
-                stage_Login.close();
-            }
-        });
-        bu_cancel.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                stage_Login.close();
-            }
-        });
-
+        // show the login window
+        GUI_UserLogin.showLoginStage(primaryStage);
+        // after here it should always use the changeListener:
+        loginedUser = Dom_LoginedUser.getInstance();
 
         // ****************** Event List application ***********************
         lv_EventList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Dom_EventCard>() {
             @Override
             public void changed(ObservableValue<? extends Dom_EventCard> observable, Dom_EventCard oldValue, Dom_EventCard newValue) {
                 lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
                 selectedEventCard = newValue;
                 if(selectedEventCard != null) {
-                    lb_EventCardTitle.setText("Event Card : " + String.valueOf(selectedEventCard.getEventName()));
-                    tf_EventTitleEventName.setText(String.valueOf(selectedEventCard.getEventName()));
-                    tf_EventTitleAuthor.setText(String.valueOf(selectedEventCard.getAuthorID()));
+                    lb_EventCardTitle.setText("Event Card : " + selectedEventCard.getEventName());
+                    tf_EventTitleEventName.setText(selectedEventCard.getEventName());
+                    tf_EventTitleAuthor.setText(selectedEventCard.getAuthorName());
                     tf_EventTitleDate.setText(String.valueOf(selectedEventCard.getEditDate()));
 
                     /*
@@ -467,12 +396,19 @@ public class main_OnePage extends Application {
             @Override
             public Dom_EventCard fromString(String string) {
                 Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
+
                 int selectedIndex = lv_EventList.getSelectionModel().getSelectedIndex();
                 String eventNumber = String.valueOf(selectedIndex + 1);
+
                 selectedItem.setEventName("Event " + eventNumber + " : " + string);
                 return selectedItem;
             }
         }));
+
+
+        // ***************** Event card application *************************
+        // right here is the event card use the login user's name put on the author name testified
+
 
     }
 }

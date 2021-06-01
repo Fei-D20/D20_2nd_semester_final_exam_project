@@ -1,5 +1,6 @@
 package com.DB.Dao;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
@@ -18,7 +19,7 @@ public interface IF_BaseDao<T> {
 
     public void delete(int id);
 
-    public T getInstance(int id);
+    public ResultSet getInstance(T t);
 
     public ArrayList<T> getAll();
 }

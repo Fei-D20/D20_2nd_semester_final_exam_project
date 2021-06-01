@@ -1,8 +1,5 @@
 package com.Domain.user;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-
 import java.util.Objects;
 import java.util.Random;
 
@@ -15,7 +12,7 @@ import java.util.Random;
  * @ Version 0.1
  */
 public class Dom_User {
-    int userID;
+    int authorID;
     String userName;
     String passWord;
 
@@ -23,15 +20,18 @@ public class Dom_User {
     }
 
     public Dom_User(String userName, String passWord) {
-        this.userID = new Random().nextInt(999999);
+        this.authorID = new Random().nextInt(999999);
         this.userName = userName;
         this.passWord = passWord;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getAuthorID() {
+        return authorID;
     }
 
+    public void setAuthorID(int authorID) {
+        this.authorID = authorID;
+    }
 
     public String getUserName() {
         return userName;
@@ -54,18 +54,18 @@ public class Dom_User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dom_User dom_user = (Dom_User) o;
-        return userID == dom_user.userID && Objects.equals(userName, dom_user.userName) && Objects.equals(passWord, dom_user.passWord);
+        return authorID == dom_user.authorID && Objects.equals(userName, dom_user.userName) && Objects.equals(passWord, dom_user.passWord);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userID, userName, passWord);
+        return Objects.hash(authorID, userName, passWord);
     }
 
     @Override
     public String toString() {
         return "Dom_User{" +
-                "userID=" + userID +
+                "userID=" + authorID +
                 ", userName='" + userName + '\'' +
                 ", passWord='" + passWord + '\'' +
                 '}';

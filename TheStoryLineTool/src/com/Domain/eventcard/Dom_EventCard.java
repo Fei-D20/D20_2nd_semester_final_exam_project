@@ -1,5 +1,6 @@
 package com.Domain.eventcard;
 
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -13,39 +14,30 @@ import java.util.Objects;
  */
 public class Dom_EventCard  {
     private int eventID;
-    private int authorID;
     private String eventName;
+    private String authorName;
 
-    private LocalDateTime editDate;
-    public Dom_Event dom_event;
-    public Dom_Note dom_note;
-    public Dom_Comment dom_comment ;
+    private LocalDateTime editDate = LocalDateTime.now();
+    private Dom_Event dom_event = new Dom_Event(this.eventID);
+    private Dom_Note dom_note = new Dom_Note(this.eventID);
+    private Dom_Comment dom_comment = new Dom_Comment(this.eventID);
 
-    /**
-     * on this constructor each time the event card be created. excepte the authorID should be identify.
-     * the date should be create by the exactly time.
-     * after that the eventID be created by the hashcode() method to based on different time for specialized.
-     * and the reset part of object will also use the same event id .
-     * @param authorID the author who is log in.
-     */
-    public Dom_EventCard(int authorID) {
-        this.authorID = authorID;
-        this.editDate = LocalDateTime.now();
-        this.eventID = hashCode();
-        this.eventName = "New Event";
-        this.dom_event = new Dom_Event(this.eventID);
-        this.dom_note = new Dom_Note(this.eventID);
-        this.dom_comment = new Dom_Comment(this.eventID);
+    public Dom_EventCard() {
     }
 
+    public Dom_EventCard(int eventID, String eventName, String authorName, LocalDateTime editDate) {
+        this.eventID = eventID;
+        this.eventName = eventName;
+        this.authorName = authorName;
+        this.editDate = editDate;
+    }
 
     public int getEventID() {
         return eventID;
     }
 
-
-    public int getAuthorID() {
-        return authorID;
+    public void setEventID(int eventID) {
+        this.eventID = eventID;
     }
 
     public String getEventName() {
@@ -54,6 +46,14 @@ public class Dom_EventCard  {
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     public LocalDateTime getEditDate() {
@@ -68,36 +68,36 @@ public class Dom_EventCard  {
         return dom_event;
     }
 
+    public void setDom_event(Dom_Event dom_event) {
+        this.dom_event = dom_event;
+    }
 
     public Dom_Note getDom_note() {
         return dom_note;
     }
 
+    public void setDom_note(Dom_Note dom_note) {
+        this.dom_note = dom_note;
+    }
 
     public Dom_Comment getDom_comment() {
         return dom_comment;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Dom_EventCard that = (Dom_EventCard) o;
-        return eventID == that.eventID && authorID == that.authorID && Objects.equals(eventName, that.eventName) && Objects.equals(editDate, that.editDate) && Objects.equals(dom_event, that.dom_event) && Objects.equals(dom_note, that.dom_note) && Objects.equals(dom_comment, that.dom_comment);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(eventID, authorID, eventName, editDate, dom_event, dom_note, dom_comment);
+    public void setDom_comment(Dom_Comment dom_comment) {
+        this.dom_comment = dom_comment;
     }
 
     @Override
     public String toString() {
         return "Dom_EventCard{" +
                 "eventID=" + eventID +
-                ", authorID=" + authorID +
                 ", eventName='" + eventName + '\'' +
+                ", authorName='" + authorName + '\'' +
                 ", editDate=" + editDate +
+                ", dom_event=" + dom_event +
+                ", dom_note=" + dom_note +
+                ", dom_comment=" + dom_comment +
                 '}';
     }
 }

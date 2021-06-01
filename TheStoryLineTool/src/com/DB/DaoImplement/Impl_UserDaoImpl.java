@@ -1,11 +1,15 @@
 package com.DB.DaoImplement;
 
 import com.DB.Dao.IF_UserDao;
-import com.DB.util.connection.CRUD_Util;
+import com.DB.util.CRUD_Util;
 import com.Domain.user.Dom_User;
-import com.sun.deploy.util.UpdateCheck;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
+
+import static com.DB.util.CRUD_Util.getInstance;
+import static com.DB.util.CRUD_Util.update;
 
 
 /**
@@ -21,9 +25,9 @@ public class Impl_UserDaoImpl implements IF_UserDao {
     @Override
     public void add(Dom_User user) {
         try {
-            String sql = "INSERT INTO  tbl_User(fld_UserID, fld_UserName, fld_Password) values (?,?,?)\n";
-            CRUD_Util.update(sql,user.getUserID(),user.getUserName(),user.getPassWord());
-            System.out.println("Insert finished");
+            String sql = "INSERT INTO  tbl_User(Fld_AuthorID, fld_UserName, fld_Password) values (?,?,?)";
+            CRUD_Util.update(sql,user.getAuthorID(),user.getUserName(),user.getPassWord());
+            System.out.println("The user : " + user.getUserName() + " register into database is successful ! ");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,7 +44,16 @@ public class Impl_UserDaoImpl implements IF_UserDao {
     }
 
     @Override
-    public Dom_User getInstance(int id) {
+    public ResultSet getInstance(Dom_User temp_User) {
+        ResultSet instance = null;
+        try {
+            String userName = temp_User.getUserName();
+            String sql = "SELECT Fld_AuthorID,Fld_Password FROM Tbl_User where Fld_UserName = ?";
+            instance = CRUD_Util.getInstance(sql, userName);
+            return instance;
+        } catch (Exception e) {
+            System.out.println("The user is not exist, please register user ");
+        }
         return null;
     }
 

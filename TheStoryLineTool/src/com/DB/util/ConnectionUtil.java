@@ -1,4 +1,4 @@
-package com.DB.util.connection;
+package com.DB.util;
 
 import org.junit.Test;
 

@@ -1,11 +1,11 @@
 package com.DB.Test;
 
-import com.DB.util.connection.ConnectionUtil;
+import com.DB.util.ConnectionUtil;
 import org.junit.Test;
 
 import java.sql.Connection;
 
-import static com.DB.util.connection.CRUD_Util.*;
+import static com.DB.util.CRUD_Util.*;
 
 
 /**

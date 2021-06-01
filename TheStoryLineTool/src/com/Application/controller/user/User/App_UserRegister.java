@@ -2,7 +2,6 @@ package com.Application.controller.user.User;
 
 import com.Domain.user.Dom_User;
 import com.Function.user.Func_User;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TextField;
 
 /**

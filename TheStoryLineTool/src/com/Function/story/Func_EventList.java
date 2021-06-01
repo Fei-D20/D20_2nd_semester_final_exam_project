@@ -31,24 +31,4 @@ public class Func_EventList {
     public void getEvent(int index){
         Dom_EventList.getInstance();
     }
-
-    @Test
-    public void test(){
-        Dom_EventCard dom_eventCard2 = new Dom_EventCard(002);
-        Dom_EventCard dom_eventCard3 = new Dom_EventCard(003);
-        Dom_EventCard dom_eventCard4 = new Dom_EventCard(004);
-        Dom_EventCard dom_eventCard5 = new Dom_EventCard(005);
-        Dom_EventCard dom_eventCard6 = new Dom_EventCard(006);
-
-        new Func_EventList().setEvent(dom_eventCard2);
-        new Func_EventList().setEvent(dom_eventCard3);
-        new Func_EventList().setEvent(dom_eventCard4);
-        new Func_EventList().setEvent(dom_eventCard5);
-        new Func_EventList().setEvent(dom_eventCard6);
-
-        for (Dom_EventCard dom_eventCard : new Func_EventList().getEventList()) {
-            System.out.println(dom_eventCard);
-        }
-
-    }
 }

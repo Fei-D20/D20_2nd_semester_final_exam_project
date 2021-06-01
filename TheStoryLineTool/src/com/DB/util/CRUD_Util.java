@@ -1,6 +1,4 @@
-package com.DB.util.connection;
-
-import org.junit.Test;
+package com.DB.util;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +13,10 @@ import java.sql.ResultSetMetaData;
  * @ Version
  */
 public class CRUD_Util {
+
+    static Connection connection = null;
+    static PreparedStatement preparedStatement = null;
+    static ResultSet resultSet = null;
 
     public static void update(String sql, Object... args) {
 
@@ -36,9 +38,7 @@ public class CRUD_Util {
     }
 
     public static ResultSet getInstance(String sql, Object args) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
+
         try {
             connection = ConnectionUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -66,9 +66,11 @@ public class CRUD_Util {
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            ConnectionUtil.closeConPSAndRS(connection, preparedStatement, resultSet);
         }
+        // remember close the at end of the usage:
+        // finally {
+        //            ConnectionUtil.closeConPSAndRS(connection, preparedStatement, resultSet);
+        //        }
         return resultSet;
     }
 
@@ -105,6 +107,15 @@ public class CRUD_Util {
 
     }
 
+    public static Connection getConnection() {
+        return connection;
+    }
 
+    public static PreparedStatement getPreparedStatement() {
+        return preparedStatement;
+    }
 
+    public static ResultSet getResultSet() {
+        return resultSet;
+    }
 }
