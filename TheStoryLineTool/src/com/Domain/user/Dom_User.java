@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -22,7 +23,7 @@ public class Dom_User {
     }
 
     public Dom_User(String userName, String passWord) {
-        this.userID = hashCode();
+        this.userID = new Random().nextInt(999999);
         this.userName = userName;
         this.passWord = passWord;
     }
