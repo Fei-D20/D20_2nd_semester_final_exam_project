@@ -1,9 +1,5 @@
 package com.Domain.user;
 
-import com.Domain.eventcard.Dom_EventCard;
-
-import java.util.ArrayList;
-
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
  * @ create 2021-06-01-23.00
@@ -25,6 +21,6 @@ public class Dom_LoginedUser {
 
     public static void setInstance(Dom_User dom_user){
         loginedUser = dom_user;
-        System.out.println("it is worded : " + dom_user.getAuthorID());
+        System.out.println("it is worded : " + dom_user.getUserID());
     }
 }

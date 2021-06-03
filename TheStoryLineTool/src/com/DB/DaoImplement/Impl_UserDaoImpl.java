@@ -5,10 +5,8 @@ import com.DB.util.CRUD_Util;
 import com.Domain.user.Dom_User;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 
-import static com.DB.util.CRUD_Util.getInstance;
 import static com.DB.util.CRUD_Util.update;
 
 
@@ -23,11 +21,11 @@ import static com.DB.util.CRUD_Util.update;
 public class Impl_UserDaoImpl implements IF_UserDao {
 
     @Override
-    public void add(Dom_User user) {
+    public void add(Dom_User dom_user) {
         try {
-            String sql = "INSERT INTO  tbl_User(Fld_AuthorID, fld_UserName, fld_Password) values (?,?,?)";
-            CRUD_Util.update(sql,user.getAuthorID(),user.getUserName(),user.getPassWord());
-            System.out.println("The user : " + user.getUserName() + " register into database is successful ! ");
+            String sql = "INSERT INTO  tbl_User(fld_userid, fld_username, fld_password, fld_identity) values (?,?,?,?)";
+            CRUD_Util.update(sql,dom_user.getUserID(),dom_user.getUserName(),dom_user.getPassWord(),dom_user.getAuthor());
+            System.out.println("The user : " + dom_user.getUserName() + " register into database is successful ! ");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,21 +33,19 @@ public class Impl_UserDaoImpl implements IF_UserDao {
 
     @Override
     public void modify(Dom_User dom_user) {
+    }
+
+    @Override
+    public void delete(Dom_User dom_user) {
 
     }
 
     @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
-    public ResultSet getInstance(Dom_User temp_User) {
+    public ResultSet getInstance(Dom_User dom_user) {
         ResultSet instance = null;
         try {
-            String userName = temp_User.getUserName();
-            String sql = "SELECT Fld_AuthorID,Fld_Password FROM Tbl_User where Fld_UserName = ?";
-            instance = CRUD_Util.getInstance(sql, userName);
+            String sql = "SELECT fld_userid, fld_password, fld_identity FROM Tbl_User where Fld_UserName = ?";
+            instance = CRUD_Util.getInstance(sql, dom_user.getUserName());
             return instance;
         } catch (Exception e) {
             System.out.println("The user is not exist, please register user ");

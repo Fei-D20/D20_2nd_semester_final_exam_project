@@ -12,25 +12,33 @@ import java.util.Random;
  * @ Version 0.1
  */
 public class Dom_User {
-    int authorID;
+    int userID;
     String userName;
     String passWord;
+    Boolean isAuthor;
 
     public Dom_User() {
     }
 
     public Dom_User(String userName, String passWord) {
-        this.authorID = new Random().nextInt(999999);
+        this.userID = new Random().nextInt(999999);
         this.userName = userName;
         this.passWord = passWord;
     }
 
-    public int getAuthorID() {
-        return authorID;
+    public Dom_User(String userName, String passWord, boolean isAuthor) {
+        this.userID = new Random().nextInt(999999);
+        this.userName = userName;
+        this.passWord = passWord;
+        this.isAuthor = isAuthor;
     }
 
-    public void setAuthorID(int authorID) {
-        this.authorID = authorID;
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getUserName() {
@@ -49,25 +57,34 @@ public class Dom_User {
         this.passWord = passWord;
     }
 
+    public Boolean getAuthor() {
+        return isAuthor;
+    }
+
+    public void setAuthor(Boolean author) {
+        isAuthor = author;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dom_User dom_user = (Dom_User) o;
-        return authorID == dom_user.authorID && Objects.equals(userName, dom_user.userName) && Objects.equals(passWord, dom_user.passWord);
+        return userID == dom_user.userID && Objects.equals(userName, dom_user.userName) && Objects.equals(passWord, dom_user.passWord) && Objects.equals(isAuthor, dom_user.isAuthor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(authorID, userName, passWord);
+        return Objects.hash(userID, userName, passWord, isAuthor);
     }
 
     @Override
     public String toString() {
         return "Dom_User{" +
-                "userID=" + authorID +
+                "userID=" + userID +
                 ", userName='" + userName + '\'' +
                 ", passWord='" + passWord + '\'' +
+                ", isAuthor=" + isAuthor +
                 '}';
     }
 }

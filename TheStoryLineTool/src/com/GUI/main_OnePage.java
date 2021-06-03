@@ -5,11 +5,9 @@ import com.Application.opration.edit.Edit_InputLimit;
 import com.Application.opration.mouse.Opr_Editable_DoubleClick;
 import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
-import com.Domain.user.Dom_Author;
 import com.Domain.user.Dom_LoginedUser;
 import com.Domain.user.Dom_User;
 import com.GUI.User.GUI_UserLogin;
-import com.GUI.User.GUI_UserRegister;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,13 +15,11 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.*;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -44,10 +40,6 @@ public class main_OnePage extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-
-
-
 
         // *************** Controller Bar ******************
         Button bu_New = new Button("+");

@@ -13,13 +13,35 @@ import java.util.ArrayList;
  */
 public interface IF_BaseDao<T> {
 
+    /**
+     * insert one instance into database
+     * @param t the instance t.
+     */
     public void add(T t);
 
+    /**
+     * modity a instance from the database
+     * @param t the instance be changed
+     */
     public void modify(T t);
 
-    public void delete(int id);
+    /**
+     * remove a instance from the database
+     * @param t the instance's primary key
+     */
+    public void delete(T t);
 
+    /**
+     * select a instance form the database
+     * @param t which instance be choose
+     * @return
+     */
     public ResultSet getInstance(T t);
 
+
+    /**
+     * select all the instance from a table
+      * @return
+     */
     public ArrayList<T> getAll();
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/Document/Diagram/DB_Query.sql" dialect="TSQL" />
-    <file url="file://$PROJECT_DIR$/Document/SQLStoryLineTool.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/Document/Database.script/DB_Query.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/Document/Database.script/SQLStoryLineTool.sql" dialect="TSQL" />
   </component>
 </project>

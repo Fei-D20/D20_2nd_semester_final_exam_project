@@ -4,7 +4,6 @@ import com.DB.DaoImplement.Impl_UserDaoImpl;
 import com.DB.util.CRUD_Util;
 import com.DB.util.ConnectionUtil;
 import com.Domain.user.Dom_User;
-import sun.java2d.pipe.SpanIterator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,23 +24,29 @@ public class Func_User extends CRUD_Util{
 
     public static Dom_User userLogin(Dom_User temp_User){
         try {
-            ResultSet instance = impl_userDao.getInstance(temp_User); // here return the user info based on the user name.
-
-            String temp_userPassWord = temp_User.getPassWord();
-            String fld_password = instance.getString("Fld_Password");
-
-            System.out.println(temp_userPassWord);
-            System.out.println(fld_password);
-
-            boolean equals = temp_userPassWord.equals(fld_password);
-            System.out.println(equals);
-
-            if(true){ // should use equals but it always false
-                temp_User.setAuthorID(instance.getInt("Fld_AuthorID"));
-                System.out.println("the found user is : " + temp_User.toString());
-                return temp_User;
+            ResultSet instance = null; // here return the user info based on the user name.
+            try {
+                instance = impl_userDao.getInstance(temp_User);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
+            if(instance == null){
+                System.out.println(" the author is not exist !!");
+                return null;
+            } else {
+                String temp_userPassWord = temp_User.getPassWord();
+                String fld_password = instance.getString("Fld_Password");
+
+                if(temp_userPassWord.equals(fld_password)){ // should use equals but it always false
+                    temp_User.setUserID(instance.getInt("Fld_UserID"));
+                    System.out.println("the found user is : " + temp_User.toString());
+                    return temp_User;
+                } else {
+                    System.out.println("the pass word is not correct !! ");
+                    return null;
+                }
+            }
         } catch (SQLException throwables) {
             System.out.println("some thing happened ");
             throwables.printStackTrace();

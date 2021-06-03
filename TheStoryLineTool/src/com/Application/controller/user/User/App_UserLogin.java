@@ -22,7 +22,7 @@ public class App_UserLogin {
         Dom_User temp_User = new Dom_User(tf_LoginUserText, tf_LoginPasswordText);
         Dom_User dom_user = Func_User.userLogin(temp_User);
         Dom_LoginedUser.setInstance(dom_user);
-        System.out.println("app: "+Dom_LoginedUser.getInstance().getAuthorID());
+        System.out.println("app: "+Dom_LoginedUser.getInstance().getUserID());
 
         stage.close();
     }
