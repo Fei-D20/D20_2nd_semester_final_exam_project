@@ -20,7 +20,9 @@ public class Dom_LoginedUser {
     }
 
     public static void setInstance(Dom_User dom_user){
-        loginedUser = dom_user;
-        System.out.println("it is worded : " + dom_user.getUserID());
+        if (dom_user != null) {
+            loginedUser = dom_user;
+            System.out.println("it is worked : " + dom_user.getUserID());
+        }
     }
 }

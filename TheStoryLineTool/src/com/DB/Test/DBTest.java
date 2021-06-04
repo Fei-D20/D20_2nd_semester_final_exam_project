@@ -67,7 +67,7 @@ public class DBTest {
 
     @Test
     public void testGetTable() {
-        String sql = "SELECT * FROM schema_TestTable.tbl_TestTable";
+        String sql = "SELECT * FROM tbl_User";
         getTable(sql);
     }
 }

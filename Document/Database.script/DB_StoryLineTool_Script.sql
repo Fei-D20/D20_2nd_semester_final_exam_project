@@ -67,7 +67,8 @@ create table tbl_EventCard
         constraint tbl_EventCard_tbl_Comment_fld_CommentID_fk
             references tbl_Comment,
     fld_PreEventCardID int,
-    fld_AfterEventCardID int
+    fld_AfterEventCardID int,
+    fld_EditDate date
 )
     go
 

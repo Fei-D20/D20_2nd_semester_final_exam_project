@@ -24,31 +24,21 @@ public class Func_User extends CRUD_Util{
 
     public static Dom_User userLogin(Dom_User temp_User){
         try {
-            ResultSet instance = null; // here return the user info based on the user name.
-            try {
-                instance = impl_userDao.getInstance(temp_User);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            ResultSet instance = impl_userDao.getInstance(temp_User);
 
-            if(instance == null){
-                System.out.println(" the author is not exist !!");
-                return null;
+            String temp_userPassword = temp_User.getPassword();
+            String fld_password = instance.getString("fld_password");
+
+            if(temp_userPassword.equals(fld_password)){ // should use equals but it always false
+                temp_User.setUserID(instance.getInt("fld_UserID"));
+                System.out.println("the found user is : " + temp_User.toString());
+                return temp_User;
             } else {
-                String temp_userPassWord = temp_User.getPassWord();
-                String fld_password = instance.getString("Fld_Password");
-
-                if(temp_userPassWord.equals(fld_password)){ // should use equals but it always false
-                    temp_User.setUserID(instance.getInt("Fld_UserID"));
-                    System.out.println("the found user is : " + temp_User.toString());
-                    return temp_User;
-                } else {
-                    System.out.println("the pass word is not correct !! ");
-                    return null;
-                }
+                System.out.println("the password is not correct !! ");
+                return null;
             }
         } catch (SQLException throwables) {
-            System.out.println("some thing happened ");
+            System.out.println("The user is not exist ! ");
             throwables.printStackTrace();
         }finally {
             ConnectionUtil.closeConPSAndRS(CRUD_Util.getConnection(),CRUD_Util.getPreparedStatement(),CRUD_Util.getResultSet());

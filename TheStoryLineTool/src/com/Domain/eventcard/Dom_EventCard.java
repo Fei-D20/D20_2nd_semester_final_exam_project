@@ -2,7 +2,6 @@ package com.Domain.eventcard;
 
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -13,31 +12,31 @@ import java.util.Objects;
  * @ Version 0.1
  */
 public class Dom_EventCard  {
-    private int eventID;
+    private int eventCardID;
     private String eventName;
     private String authorName;
 
     private LocalDateTime editDate = LocalDateTime.now();
-    private Dom_Event dom_event = new Dom_Event(this.eventID);
-    private Dom_Note dom_note = new Dom_Note(this.eventID);
-    private Dom_Comment dom_comment = new Dom_Comment(this.eventID);
+    private Dom_Event dom_event = new Dom_Event(this.eventCardID);
+    private Dom_Note dom_note = new Dom_Note(this.eventCardID);
+    private Dom_Comment dom_comment = new Dom_Comment(this.eventCardID);
 
     public Dom_EventCard() {
     }
 
-    public Dom_EventCard(int eventID, String eventName, String authorName, LocalDateTime editDate) {
-        this.eventID = eventID;
+    public Dom_EventCard(int eventCardID, String eventName, String authorName, LocalDateTime editDate) {
+        this.eventCardID = eventCardID;
         this.eventName = eventName;
         this.authorName = authorName;
         this.editDate = editDate;
     }
 
-    public int getEventID() {
-        return eventID;
+    public int getEventCardID() {
+        return eventCardID;
     }
 
-    public void setEventID(int eventID) {
-        this.eventID = eventID;
+    public void setEventCardID(int eventCardID) {
+        this.eventCardID = eventCardID;
     }
 
     public String getEventName() {
@@ -91,7 +90,7 @@ public class Dom_EventCard  {
     @Override
     public String toString() {
         return "Dom_EventCard{" +
-                "eventID=" + eventID +
+                "eventID=" + eventCardID +
                 ", eventName='" + eventName + '\'' +
                 ", authorName='" + authorName + '\'' +
                 ", editDate=" + editDate +

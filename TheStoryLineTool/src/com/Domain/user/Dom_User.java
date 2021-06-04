@@ -49,7 +49,7 @@ public class Dom_User {
         this.userName = userName;
     }
 
-    public String getPassWord() {
+    public String getPassword() {
         return passWord;
     }
 

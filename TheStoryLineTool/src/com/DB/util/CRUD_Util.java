@@ -74,7 +74,7 @@ public class CRUD_Util {
         return resultSet;
     }
 
-    public static void getTable(String sql) {
+    public static ResultSet getTable(String sql) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -99,12 +99,13 @@ public class CRUD_Util {
             }
 
             resultSet.beforeFirst();
+            return resultSet;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             ConnectionUtil.closeConPSAndRS(connection, preparedStatement, resultSet);
         }
-
+        return null;
     }
 
     public static Connection getConnection() {

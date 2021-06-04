@@ -7,7 +7,7 @@ import com.Domain.user.Dom_User;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import static com.DB.util.CRUD_Util.update;
+import static com.DB.util.CRUD_Util.getTable;
 
 
 /**
@@ -24,7 +24,7 @@ public class Impl_UserDaoImpl implements IF_UserDao {
     public void add(Dom_User dom_user) {
         try {
             String sql = "INSERT INTO  tbl_User(fld_userid, fld_username, fld_password, fld_identity) values (?,?,?,?)";
-            CRUD_Util.update(sql,dom_user.getUserID(),dom_user.getUserName(),dom_user.getPassWord(),dom_user.getAuthor());
+            CRUD_Util.update(sql,dom_user.getUserID(),dom_user.getUserName(),dom_user.getPassword(),dom_user.getAuthor());
             System.out.println("The user : " + dom_user.getUserName() + " register into database is successful ! ");
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,13 +48,15 @@ public class Impl_UserDaoImpl implements IF_UserDao {
             instance = CRUD_Util.getInstance(sql, dom_user.getUserName());
             return instance;
         } catch (Exception e) {
-            System.out.println("The user is not exist, please register user ");
+            e.printStackTrace();
         }
         return null;
     }
 
     @Override
     public ArrayList<Dom_User> getAll() {
+        String sql = "SELECT * FROM tbl_User";
+        ResultSet table = getTable(sql);
         return null;
     }
 }
