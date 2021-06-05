@@ -19,7 +19,10 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -207,6 +210,7 @@ public class main_OnePage extends Application {
         vb_Event.getChildren().addAll(lb_EventChapter,lb_EventRole,lb_EventTime,ta_EventValue);
         vb_Event.setStyle("-fx-background-color: lightgray");
 
+
         //******* Note *********
 
         Label lb_Note = new Label("Note : ");
@@ -278,12 +282,14 @@ public class main_OnePage extends Application {
         lb_EventMap.setPadding(new Insets(1));
 
 
-        Canvas can_EventMap = new Canvas(500,500);
-        can_EventMap.setStyle("-fx-background-color: white");
+//        Canvas can_EventMap = new Canvas(500,500);
+//        can_EventMap.setStyle("-fx-background-color: white");
+
+        TilePane tp_EventMap = new TilePane();
 
         VBox vb_EventMap = new VBox();
         vb_EventMap.setPrefWidth(800); // this is decide the event card weight
-        vb_EventMap.getChildren().addAll(lb_EventMap,can_EventMap);
+        vb_EventMap.getChildren().addAll(lb_EventMap,tp_EventMap);
         vb_EventMap.setStyle("-fx-background-color: gray");
 
         AnchorPane anP_EventMap = new AnchorPane(vb_EventMap);
@@ -402,5 +408,93 @@ public class main_OnePage extends Application {
         // right here is the event card use the login user's name put on the author name testified
 
 
+        // ***************** Event card drag and drop ************************
+
+//        vb_EventCard.setOnMouseDragged(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//
+//                System.out.println("drag start. ");
+//            }
+//        });
+
+        Button test_button = new Button("Test button");
+
+        vb_EventTitle.setOnDragDetected(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                vb_EventTitle.startFullDrag();
+                tp_EventMap.getChildren().add(test_button);
+                System.out.println("get drag ");
+            }
+        });
+
+        vb_EventTitle.setOnMouseDragOver(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                // get the mouse location
+                // put into testbutton layout
+                System.out.println("dragover");
+            }
+        });
+
+        vb_EventTitle.setOnMouseDragExited(new EventHandler<MouseDragEvent>() {
+
+            @Override
+            public void handle(MouseDragEvent event) {
+                System.out.println("grag out");
+            }
+        });
+
+        vb_EventTitle.setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                System.out.println("grag in ");
+            }
+        });
+
+
+
+        // ********************** Event map drag ***************
+        vb_EventMap.setOnDragDetected(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                vb_EventMap.startFullDrag();
+                tp_EventMap.getChildren().add(test_button);
+                System.out.println("get drag ");
+            }
+        });
+
+        vb_EventMap.setOnMouseDragOver(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                // get the mouse location
+                // put into testbutton layout
+                System.out.println("dragover");
+            }
+        });
+
+        vb_EventMap.setOnMouseDragExited(new EventHandler<MouseDragEvent>() {
+
+            @Override
+            public void handle(MouseDragEvent event) {
+                System.out.println("grag out");
+            }
+        });
+
+        vb_EventMap.setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                System.out.println("grag in ");
+            }
+        });
+
+        vb_EventMap.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println(event.getSource());
+                System.out.println(event.getTarget());
+            }
+        });
     }
 }
