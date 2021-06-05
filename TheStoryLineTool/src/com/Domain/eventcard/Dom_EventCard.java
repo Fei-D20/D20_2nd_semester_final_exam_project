@@ -17,9 +17,9 @@ public class Dom_EventCard  {
     private String authorName;
 
     private LocalDateTime editDate = LocalDateTime.now();
-    private Dom_Event dom_event = new Dom_Event(this.eventCardID);
-    private Dom_Note dom_note = new Dom_Note(this.eventCardID);
-    private Dom_Comment dom_comment = new Dom_Comment(this.eventCardID);
+    private Dom_Event dom_event = new Dom_Event();
+    private Dom_Note dom_note = new Dom_Note();
+    private Dom_Comment dom_comment = new Dom_Comment();
 
     public Dom_EventCard() {
     }

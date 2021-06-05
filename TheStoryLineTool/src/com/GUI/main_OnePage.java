@@ -4,6 +4,7 @@ package com.GUI;
 import com.Application.opration.dragNdrop.Opr_Drag;
 import com.Application.opration.edit.Edit_InputLimit;
 import com.Application.opration.mouse.Opr_Editable_DoubleClick;
+import com.Domain.eventcard.Dom_Event;
 import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
 import com.Domain.user.Dom_LoginedUser;
@@ -37,10 +38,7 @@ import javafx.util.StringConverter;
  * @ Version 0.1
  */
 public class main_OnePage extends Application {
-    Dom_EventCard newEventCard;
     Dom_EventCard selectedEventCard;
-    Dom_User loginedUser;
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -104,36 +102,13 @@ public class main_OnePage extends Application {
 
 
         lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
+//        Opr_Drag.Drag(lv_EventList);
 
 
         ButtonBar bb_EventList = new ButtonBar();
         Button bu_EventList_Add = new Button("Add");
         bb_EventList.getButtons().add(bu_EventList_Add);
-        bu_EventList_Add.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                newEventCard = new Dom_EventCard();
-                System.out.println("the author name is : " + loginedUser.getUserName());
-                newEventCard.setAuthorName(loginedUser.getUserName());
-                newEventCard.getDom_event().setEventName("new Event");
-                newEventCard.getDom_event().setEventDate("The day of happening");
-                newEventCard.getDom_event().setEventDescribed("some thing happening");
-                newEventCard.getDom_note().setNoteText("What happened?");
-                newEventCard.getDom_comment().setCommentAuthor("who are you");
-                newEventCard.getDom_comment().setCommentText("what you want to say? ");
 
-                System.out.println("the new event card :" + newEventCard.toString());
-                Dom_EventList.getInstance().add(newEventCard);
-                lv_EventList.getItems().add(newEventCard);
-
-                lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-                lv_EventList.getSelectionModel().clearSelection();
-                lv_EventList.getSelectionModel().select(newEventCard);
-                lv_EventList.scrollTo(lv_EventList.getSelectionModel().getSelectedIndex());
-                lv_EventList.requestFocus();
-            }
-        });
 
 
         VBox vb_EventList = new VBox();
@@ -364,7 +339,7 @@ public class main_OnePage extends Application {
         // show the login window
         GUI_UserLogin.showLoginStage(primaryStage);
         // after here it should always use the changeListener:
-        loginedUser = Dom_LoginedUser.getInstance();
+        Dom_User loginedUser = Dom_LoginedUser.getInstance();
 
         // ****************** Event List application ***********************
         lv_EventList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Dom_EventCard>() {
@@ -411,6 +386,33 @@ public class main_OnePage extends Application {
         // right here is the event card use the login user's name put on the author name testified
 
 
+
+        // ********************* list view button **************************
+        bu_EventList_Add.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Dom_EventCard newEventCard = new Dom_EventCard();
+                System.out.println(newEventCard);
+                System.out.println("the author name is : " + Dom_LoginedUser.getInstance().getUserName());
+                newEventCard.setAuthorName(Dom_LoginedUser.getInstance().getUserName());
+                newEventCard.setEventName("new Event");
+                newEventCard.getDom_event().setEventDescribed("some thing happening");
+                newEventCard.getDom_note().setNoteText("What happened?");
+                newEventCard.getDom_comment().setCommentAuthor("who are you");
+                newEventCard.getDom_comment().setCommentText("what you want to say? ");
+                System.out.println(newEventCard);
+
+                System.out.println("the new event card :" + newEventCard.toString());
+                Dom_EventList.getInstance().add(newEventCard);
+                lv_EventList.getItems().add(newEventCard);
+
+                lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+                lv_EventList.getSelectionModel().clearSelection();
+                lv_EventList.getSelectionModel().select(newEventCard);
+                lv_EventList.scrollTo(lv_EventList.getSelectionModel().getSelectedIndex());
+                lv_EventList.requestFocus();
+            }
+        });
 
 
 

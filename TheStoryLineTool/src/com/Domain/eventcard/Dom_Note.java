@@ -15,6 +15,9 @@ public class Dom_Note {
     private String noteText;
 
 
+    public Dom_Note() {
+    }
+
     public Dom_Note(int eventID) {
         this.eventID = eventID;
     }
