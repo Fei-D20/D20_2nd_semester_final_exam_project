@@ -1,10 +1,8 @@
 package com.GUI;
 
 
-import com.Application.opration.dragNdrop.Opr_Drag;
 import com.Application.opration.edit.Edit_InputLimit;
 import com.Application.opration.mouse.Opr_Editable_DoubleClick;
-import com.Domain.eventcard.Dom_Event;
 import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
 import com.Domain.user.Dom_LoginedUser;
@@ -24,7 +22,6 @@ import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -105,6 +102,8 @@ public class main_OnePage extends Application {
 //        Opr_Drag.Drag(lv_EventList);
 
 
+
+
         ButtonBar bb_EventList = new ButtonBar();
         Button bu_EventList_Add = new Button("Add");
         bb_EventList.getButtons().add(bu_EventList_Add);
@@ -161,7 +160,6 @@ public class main_OnePage extends Application {
         VBox vb_EventTitle = new VBox();
         vb_EventTitle.getChildren().addAll(lb_EventCardTitle, tp_EventTitle);
         // ***************** Event card drag and drop ************************
-        Opr_Drag.Drag(vb_EventTitle);
 
 
         // ****************** Event ******************
@@ -269,7 +267,6 @@ public class main_OnePage extends Application {
         vb_EventMap.setStyle("-fx-background-color: gray");
 
         // ********************** Event map drag ***************
-        Opr_Drag.Drag(vb_EventMap);
 
         AnchorPane anP_EventMap = new AnchorPane(vb_EventMap);
         AnchorPane.setLeftAnchor(vb_EventMap, 1.0);
@@ -415,6 +412,33 @@ public class main_OnePage extends Application {
         });
 
 
+        // ******************** listview drag *********************
+
+        lv_EventList.setOnDragDetected(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                lv_EventList.startFullDrag();
+            }
+        });
+        lv_EventList.setOnMouseDragOver(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                System.out.println("over the listview");
+            }
+        });
+
+        lv_EventList.setOnMouseDragExited(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+
+                Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
+                String eventName = selectedItem.getEventName();
+                TextField textField = new TextField(eventName);
+                tp_EventMap.getChildren().add(textField);
+
+            }
+        });
 
     }
 }
