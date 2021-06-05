@@ -1,6 +1,7 @@
 package com.GUI;
 
 
+import com.Application.opration.dragNdrop.Opr_Drag;
 import com.Application.opration.edit.Edit_InputLimit;
 import com.Application.opration.mouse.Opr_Editable_DoubleClick;
 import com.Domain.eventcard.Dom_EventCard;
@@ -53,20 +54,20 @@ public class main_OnePage extends Application {
 
         // here is the quick start icon
         ButtonBar bb_quickStart = new ButtonBar();
-        bb_quickStart.getButtons().addAll(bu_New,bu_Delete);
-        ButtonBar.setButtonUniformSize(bu_New,true);
+        bb_quickStart.getButtons().addAll(bu_New, bu_Delete);
+        ButtonBar.setButtonUniformSize(bu_New, true);
 
         MenuItem mi_New = new MenuItem("New");
         MenuItem mi_Delete = new MenuItem("Delete");
         Menu menu_file = new Menu("File");
-        menu_file.getItems().addAll(mi_New,mi_Delete);
+        menu_file.getItems().addAll(mi_New, mi_Delete);
 
         Menu menu_edit = new Menu("Edit");
         Menu menu_view = new Menu("View");
         Menu menu_help = new Menu("Help");
 
         MenuBar mb_MainMenu = new MenuBar();
-        mb_MainMenu.getMenus().addAll(menu_file,menu_edit,menu_view,menu_help);
+        mb_MainMenu.getMenus().addAll(menu_file, menu_edit, menu_view, menu_help);
 
 
         VBox vb_ControlBar = new VBox(mb_MainMenu);
@@ -76,10 +77,10 @@ public class main_OnePage extends Application {
         anP_ControlBar.getChildren().add(vb_ControlBar);
         anP_ControlBar.setPrefHeight(60);
         anP_ControlBar.setStyle("-fx-background-color: lightgray;");
-        AnchorPane.setTopAnchor(vb_ControlBar,0.0);
-        AnchorPane.setLeftAnchor(vb_ControlBar,0.0);
-        AnchorPane.setRightAnchor(vb_ControlBar,0.0);
-        AnchorPane.setBottomAnchor(vb_ControlBar,0.0);
+        AnchorPane.setTopAnchor(vb_ControlBar, 0.0);
+        AnchorPane.setLeftAnchor(vb_ControlBar, 0.0);
+        AnchorPane.setRightAnchor(vb_ControlBar, 0.0);
+        AnchorPane.setBottomAnchor(vb_ControlBar, 0.0);
 
 
         // ****************************** Event List *****************************
@@ -98,11 +99,12 @@ public class main_OnePage extends Application {
         lv_EventList.setPrefHeight(700);
         lv_EventList.setPrefWidth(200);
 //        lv_EventList.setOpacity(0.5);
-        lv_EventList.setStyle( "-fx-font-size: 12;" + "-fx-font-weight: bold" );
+        lv_EventList.setStyle("-fx-font-size: 12;" + "-fx-font-weight: bold");
         lv_EventList.setEditable(true);
 
 
         lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
 
 
         ButtonBar bb_EventList = new ButtonBar();
@@ -134,17 +136,16 @@ public class main_OnePage extends Application {
         });
 
 
-
         VBox vb_EventList = new VBox();
         vb_EventList.setPrefWidth(200); // this is decide the event card weight
-        vb_EventList.getChildren().addAll(lb_EventList,lv_EventList,bb_EventList);
+        vb_EventList.getChildren().addAll(lb_EventList, lv_EventList, bb_EventList);
         vb_EventList.setStyle("-fx-background-color: darkgray");
 
         AnchorPane anP_EventList = new AnchorPane(vb_EventList);
-        AnchorPane.setLeftAnchor(vb_EventList,1.0);
-        AnchorPane.setRightAnchor(vb_EventList,1.0);
-        AnchorPane.setTopAnchor(vb_EventList,1.0);
-        AnchorPane.setBottomAnchor(vb_EventList,1.0);
+        AnchorPane.setLeftAnchor(vb_EventList, 1.0);
+        AnchorPane.setRightAnchor(vb_EventList, 1.0);
+        AnchorPane.setTopAnchor(vb_EventList, 1.0);
+        AnchorPane.setBottomAnchor(vb_EventList, 1.0);
         anP_EventList.setStyle("-fx-background-color: lightgray");
 
 
@@ -173,7 +174,6 @@ public class main_OnePage extends Application {
         tf_EventTitleDate.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
 
 
-
         TilePane tp_EventTitle = new TilePane();
         tp_EventTitle.getChildren().addAll(
                 lb_EventTitleAuthor, tf_EventTitleAuthor,
@@ -184,7 +184,9 @@ public class main_OnePage extends Application {
         tp_EventTitle.setPrefTileWidth(120);
 
         VBox vb_EventTitle = new VBox();
-        vb_EventTitle.getChildren().addAll(lb_EventCardTitle,tp_EventTitle);
+        vb_EventTitle.getChildren().addAll(lb_EventCardTitle, tp_EventTitle);
+        // ***************** Event card drag and drop ************************
+        Opr_Drag.Drag(vb_EventTitle);
 
 
         // ****************** Event ******************
@@ -203,11 +205,11 @@ public class main_OnePage extends Application {
         ta_EventValue.setWrapText(true);
         ta_EventValue.setEditable(false);
         ta_EventValue.setOnMouseClicked(new Opr_Editable_DoubleClick());
-        ta_EventValue.textProperty().addListener(new Edit_InputLimit(120,ta_EventValue));
+        ta_EventValue.textProperty().addListener(new Edit_InputLimit(120, ta_EventValue));
         ta_EventValue.setPromptText("Quick note :  max 120 words ");
 
         VBox vb_Event = new VBox(10);
-        vb_Event.getChildren().addAll(lb_EventChapter,lb_EventRole,lb_EventTime,ta_EventValue);
+        vb_Event.getChildren().addAll(lb_EventChapter, lb_EventRole, lb_EventTime, ta_EventValue);
         vb_Event.setStyle("-fx-background-color: lightgray");
 
 
@@ -223,11 +225,11 @@ public class main_OnePage extends Application {
         ta_NoteValue.setWrapText(true);
         ta_NoteValue.setEditable(false);
         ta_NoteValue.setOnMouseClicked(new Opr_Editable_DoubleClick());
-        ta_NoteValue.textProperty().addListener(new Edit_InputLimit(2000,ta_NoteValue));
+        ta_NoteValue.textProperty().addListener(new Edit_InputLimit(2000, ta_NoteValue));
         ta_NoteValue.setPromptText("event description : max 2000 words ");
 
         VBox vb_Note = new VBox(10);
-        vb_Note.getChildren().addAll(lb_Note,ta_NoteValue);
+        vb_Note.getChildren().addAll(lb_Note, ta_NoteValue);
         vb_Note.setStyle("-fx-background-color: lightgray");
 
         // ****** Comment ********
@@ -245,7 +247,7 @@ public class main_OnePage extends Application {
         ta_CommentValue.setEditable(false);
         ta_CommentValue.setOnMouseClicked(new Opr_Editable_DoubleClick());
         ta_CommentValue.setPromptText("event comment : max 2000 word");
-        ta_CommentValue.textProperty().addListener(new Edit_InputLimit(2000,ta_CommentValue));
+        ta_CommentValue.textProperty().addListener(new Edit_InputLimit(2000, ta_CommentValue));
         ta_CommentValue.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -254,7 +256,7 @@ public class main_OnePage extends Application {
         });
 
         VBox vb_Comment = new VBox(10);
-        vb_Comment.getChildren().addAll(lb_Comment,lb_CommentAuthor,lb_CommentDate,ta_CommentValue);
+        vb_Comment.getChildren().addAll(lb_Comment, lb_CommentAuthor, lb_CommentDate, ta_CommentValue);
         vb_Comment.setStyle("-fx-background-color: lightgray");
 
         VBox vb_EventCard = new VBox();
@@ -263,12 +265,11 @@ public class main_OnePage extends Application {
         vb_EventCard.getChildren().addAll(vb_EventTitle, vb_Event, vb_Note, vb_Comment);
 
         AnchorPane anP_EventCard = new AnchorPane(vb_EventCard);
-        AnchorPane.setLeftAnchor(vb_EventCard,1.0);
-        AnchorPane.setRightAnchor(vb_EventCard,1.0);
-        AnchorPane.setTopAnchor(vb_EventCard,1.0);
-        AnchorPane.setBottomAnchor(vb_EventCard,1.0);
+        AnchorPane.setLeftAnchor(vb_EventCard, 1.0);
+        AnchorPane.setRightAnchor(vb_EventCard, 1.0);
+        AnchorPane.setTopAnchor(vb_EventCard, 1.0);
+        AnchorPane.setBottomAnchor(vb_EventCard, 1.0);
         anP_EventCard.setStyle("-fx-background-color: lightgray");
-
 
 
         // ********************* Event Map **********************************
@@ -289,14 +290,17 @@ public class main_OnePage extends Application {
 
         VBox vb_EventMap = new VBox();
         vb_EventMap.setPrefWidth(800); // this is decide the event card weight
-        vb_EventMap.getChildren().addAll(lb_EventMap,tp_EventMap);
+        vb_EventMap.getChildren().addAll(lb_EventMap, tp_EventMap);
         vb_EventMap.setStyle("-fx-background-color: gray");
 
+        // ********************** Event map drag ***************
+        Opr_Drag.Drag(vb_EventMap);
+
         AnchorPane anP_EventMap = new AnchorPane(vb_EventMap);
-        AnchorPane.setLeftAnchor(vb_EventMap,1.0);
-        AnchorPane.setRightAnchor(vb_EventMap,1.0);
-        AnchorPane.setTopAnchor(vb_EventMap,1.0);
-        AnchorPane.setBottomAnchor(vb_EventMap,1.0);
+        AnchorPane.setLeftAnchor(vb_EventMap, 1.0);
+        AnchorPane.setRightAnchor(vb_EventMap, 1.0);
+        AnchorPane.setTopAnchor(vb_EventMap, 1.0);
+        AnchorPane.setBottomAnchor(vb_EventMap, 1.0);
         anP_EventMap.setStyle("-fx-background-color: lightgray");
 
 
@@ -314,16 +318,15 @@ public class main_OnePage extends Application {
         VBox vb_TimeLine = new VBox();
         vb_TimeLine.setPrefHeight(100); // this is decide the time line height
         vb_TimeLine.setPrefWidth(2000);
-        vb_TimeLine.getChildren().addAll(lb_TimeLine,can_TimeLine);
+        vb_TimeLine.getChildren().addAll(lb_TimeLine, can_TimeLine);
         vb_TimeLine.setStyle("-fx-background-color: gray");
 
         AnchorPane anP_TimeLine = new AnchorPane(vb_TimeLine);
-        AnchorPane.setLeftAnchor(vb_TimeLine,1.0);
-        AnchorPane.setRightAnchor(vb_TimeLine,1.0);
-        AnchorPane.setTopAnchor(vb_TimeLine,1.0);
-        AnchorPane.setBottomAnchor(vb_TimeLine,1.0);
+        AnchorPane.setLeftAnchor(vb_TimeLine, 1.0);
+        AnchorPane.setRightAnchor(vb_TimeLine, 1.0);
+        AnchorPane.setTopAnchor(vb_TimeLine, 1.0);
+        AnchorPane.setBottomAnchor(vb_TimeLine, 1.0);
         anP_TimeLine.setStyle("-fx-background-color: lightgray");
-
 
 
         // *********************** Root *********************
@@ -336,20 +339,20 @@ public class main_OnePage extends Application {
         bp_Root.setStyle("-fx-background-color: gray");
         bp_Root.setRight(anP_EventCard);
 
-        BorderPane.setMargin(anP_EventCard,new Insets(1));
-        BorderPane.setMargin(anP_ControlBar,new Insets(1));
-        BorderPane.setMargin(anP_EventList,new Insets(1));
-        BorderPane.setMargin(anP_EventMap,new Insets(1));
-        BorderPane.setMargin(anP_TimeLine,new Insets(1));
+        BorderPane.setMargin(anP_EventCard, new Insets(1));
+        BorderPane.setMargin(anP_ControlBar, new Insets(1));
+        BorderPane.setMargin(anP_EventList, new Insets(1));
+        BorderPane.setMargin(anP_EventMap, new Insets(1));
+        BorderPane.setMargin(anP_TimeLine, new Insets(1));
 
 
         AnchorPane anp_Root = new AnchorPane();
         anp_Root.getChildren().add(bp_Root);
         anp_Root.setPadding(new Insets(5));
-        AnchorPane.setTopAnchor(bp_Root,0.0);
-        AnchorPane.setLeftAnchor(bp_Root,0.0);
-        AnchorPane.setBottomAnchor(bp_Root,0.0);
-        AnchorPane.setRightAnchor(bp_Root,0.0);
+        AnchorPane.setTopAnchor(bp_Root, 0.0);
+        AnchorPane.setLeftAnchor(bp_Root, 0.0);
+        AnchorPane.setBottomAnchor(bp_Root, 0.0);
+        AnchorPane.setRightAnchor(bp_Root, 0.0);
 
         Scene scene = new Scene(anp_Root);
         primaryStage.setScene(scene);
@@ -370,7 +373,7 @@ public class main_OnePage extends Application {
                 lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
                 selectedEventCard = newValue;
-                if(selectedEventCard != null) {
+                if (selectedEventCard != null) {
                     lb_EventCardTitle.setText("Event Card : " + selectedEventCard.getEventName());
                     tf_EventTitleEventName.setText(selectedEventCard.getEventName());
                     tf_EventTitleAuthor.setText(selectedEventCard.getAuthorName());
@@ -408,93 +411,8 @@ public class main_OnePage extends Application {
         // right here is the event card use the login user's name put on the author name testified
 
 
-        // ***************** Event card drag and drop ************************
-
-//        vb_EventCard.setOnMouseDragged(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//
-//                System.out.println("drag start. ");
-//            }
-//        });
-
-        Button test_button = new Button("Test button");
-
-        vb_EventTitle.setOnDragDetected(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                vb_EventTitle.startFullDrag();
-                tp_EventMap.getChildren().add(test_button);
-                System.out.println("get drag ");
-            }
-        });
-
-        vb_EventTitle.setOnMouseDragOver(new EventHandler<MouseDragEvent>() {
-            @Override
-            public void handle(MouseDragEvent event) {
-                // get the mouse location
-                // put into testbutton layout
-                System.out.println("dragover");
-            }
-        });
-
-        vb_EventTitle.setOnMouseDragExited(new EventHandler<MouseDragEvent>() {
-
-            @Override
-            public void handle(MouseDragEvent event) {
-                System.out.println("grag out");
-            }
-        });
-
-        vb_EventTitle.setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
-            @Override
-            public void handle(MouseDragEvent event) {
-                System.out.println("grag in ");
-            }
-        });
 
 
 
-        // ********************** Event map drag ***************
-        vb_EventMap.setOnDragDetected(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                vb_EventMap.startFullDrag();
-                tp_EventMap.getChildren().add(test_button);
-                System.out.println("get drag ");
-            }
-        });
-
-        vb_EventMap.setOnMouseDragOver(new EventHandler<MouseDragEvent>() {
-            @Override
-            public void handle(MouseDragEvent event) {
-                // get the mouse location
-                // put into testbutton layout
-                System.out.println("dragover");
-            }
-        });
-
-        vb_EventMap.setOnMouseDragExited(new EventHandler<MouseDragEvent>() {
-
-            @Override
-            public void handle(MouseDragEvent event) {
-                System.out.println("grag out");
-            }
-        });
-
-        vb_EventMap.setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
-            @Override
-            public void handle(MouseDragEvent event) {
-                System.out.println("grag in ");
-            }
-        });
-
-        vb_EventMap.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println(event.getSource());
-                System.out.println(event.getTarget());
-            }
-        });
     }
 }
