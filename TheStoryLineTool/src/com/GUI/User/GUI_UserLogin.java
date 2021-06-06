@@ -3,6 +3,7 @@ package com.GUI.User;
 import com.Application.controller.user.User.App_UserLogin;
 import com.Domain.user.Dom_LoginedUser;
 import com.GUI.main_OnePage;
+import com.GUI.user.GUI_UserRegister;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;

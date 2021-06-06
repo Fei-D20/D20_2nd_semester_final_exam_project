@@ -6,9 +6,7 @@ import com.Application.opration.mouse.Opr_Editable_DoubleClick;
 import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
 import com.Domain.user.Dom_LoginedUser;
-import com.Domain.user.Dom_User;
-import com.GUI.User.GUI_UserLogin;
-import com.GUI.User.GUI_UserRegister;
+
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -61,7 +59,7 @@ public class main_OnePage extends Application {
             @Override
             public void handle(ActionEvent event) {
 
-                GUI_UserLogin.showLoginStage(primaryStage);
+                com.GUI.User.GUI_UserLogin.showLoginStage(primaryStage);
             }
         });
 
@@ -344,7 +342,7 @@ public class main_OnePage extends Application {
         primaryStage.show();
 
         // show the login window
-        GUI_UserLogin.showLoginStage(primaryStage);
+        com.GUI.User.GUI_UserLogin.showLoginStage(primaryStage);
         // after here it should always use the changeListener:
 //        Dom_User loginedUser = Dom_LoginedUser.getInstance();
 
