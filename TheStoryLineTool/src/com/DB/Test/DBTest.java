@@ -66,7 +66,7 @@ String password;
                 con.close();
 
             }catch(Exception e){
-                System.out.println("register finish");
+                System.out.println("Error: Please try again");
                 e.printStackTrace();
             }
 
