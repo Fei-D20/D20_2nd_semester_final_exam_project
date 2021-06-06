@@ -1,5 +1,6 @@
 package com.DB.Test;
 
+import com.DB.DaoImplement.eventcard.Impl_CommentDao;
 import com.DB.DaoImplement.eventcard.Impl_EventCardDao;
 import com.DB.DaoImplement.user.Impl_UserDao;
 import com.Domain.eventcard.Dom_EventCard;
@@ -19,10 +20,15 @@ import java.time.temporal.TemporalField;
  * @ Version 0.1
  */
 public class ImplementTest {
-   @Test
-   public void test1(){
-       Impl_UserDao impl_userDao = new Impl_UserDao();
-       impl_userDao.getAll();
-   }
+    @Test
+    public void test1() {
+        Impl_UserDao impl_userDao = new Impl_UserDao();
+        impl_userDao.getAll();
+    }
 
+    @Test
+    public void test2() {
+        Impl_CommentDao impl_commentDao = new Impl_CommentDao();
+        impl_commentDao.getAll();
+    }
 }

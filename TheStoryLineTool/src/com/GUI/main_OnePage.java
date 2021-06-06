@@ -26,6 +26,10 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -272,10 +276,13 @@ public class main_OnePage extends Application {
 
         TilePane tp_EventMap = new TilePane();
 
+       /////// scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+
         VBox vb_EventMap = new VBox();
         vb_EventMap.setPrefWidth(800); // this is decide the event card weight
         vb_EventMap.getChildren().addAll(lb_EventMap, tp_EventMap);
         vb_EventMap.setStyle("-fx-background-color: gray");
+
 
 
         AnchorPane anP_EventMap = new AnchorPane(vb_EventMap);
@@ -286,7 +293,9 @@ public class main_OnePage extends Application {
         anP_EventMap.setStyle("-fx-background-color: lightgray");
 
 
-        // *********************** Time Line **************************
+
+
+    // *********************** Time Line **************************
 
         Label lb_TimeLine = new Label("Time Line : ");
         lb_TimeLine.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;" + "-fx-background-color: lightgray;");

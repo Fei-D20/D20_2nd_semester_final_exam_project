@@ -1,10 +1,14 @@
 package com.DB.DaoImplement.eventcard;
 
 import com.DB.Dao.eventcard.IF_CommentDao;
+import com.DB.util.CRUD_Util;
 import com.Domain.eventcard.Dom_Comment;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import static com.DB.util.CRUD_Util.getTable;
+import static com.DB.util.CRUD_Util.update;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -17,26 +21,61 @@ import java.util.ArrayList;
 public class Impl_CommentDao implements IF_CommentDao {
     @Override
     public void add(Dom_Comment dom_comment) {
-
+        try {
+            String sql = "INSERT INTO  tbl_Comment(fld_commentID, fld_commentTime, fld_commentText, fld_Author) values (?,?,?,?)";
+            update(sql,dom_comment.getCommentID(),dom_comment.getLocalDateTime(),dom_comment.getCommentText(),dom_comment.getCommentAuthor());
+            System.out.println("The Comment : " + dom_comment.getCommentText() + "   saved into database is successful ! ");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void modify(Dom_Comment dom_comment) {
-
+        try {
+            String sql = "UPDATE tbl_Comment SET fld_CommentId = ?,fld_CommentTime = ? ,fld_Text = ? where fld_CommentAuthour = ?";
+            update(sql,dom_comment.getCommentID(),dom_comment.getLocalDateTime(),dom_comment.getCommentText(),dom_comment.getCommentAuthor());
+            System.out.println("update finished");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
 
     @Override
     public void delete(Dom_Comment dom_comment) {
-
+        try {
+            String sql = "DELETE FROM tbl_Comment WHERE fld_CommentID = ?";
+            update(sql, dom_comment.getCommentID());
+            System.out.println("delete finished");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public ResultSet getInstance(Dom_Comment dom_comment) {
-        return null;
-    }
 
+    ResultSet instance = null;
+        try {
+        String sql = "SELECT fld_commentID, fld_commentTime, fld_commentText, fld_Author FROM Tbl_Comment where Fld_CommentID = ?";
+        instance = CRUD_Util.getInstance(sql, dom_comment.getCommentID());
+        return instance;
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+        return null;
+}
     @Override
     public ArrayList<Dom_Comment> getAll() {
+
+        try {
+            String sql = "SELECT * FROM tbl_Comment";
+            ResultSet table = getTable(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
-}
+    }
