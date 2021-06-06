@@ -1,6 +1,6 @@
-package com.DB.DaoImplement;
+package com.DB.DaoImplement.user;
 
-import com.DB.Dao.IF_UserDao;
+import com.DB.Dao.user.IF_UserDao;
 import com.DB.util.CRUD_Util;
 import com.Domain.user.Dom_User;
 
@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import static com.DB.util.CRUD_Util.getTable;
+import static com.DB.util.CRUD_Util.update;
 
 
 /**
@@ -18,13 +19,13 @@ import static com.DB.util.CRUD_Util.getTable;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class Impl_UserDaoImpl implements IF_UserDao {
+public class Impl_UserDao implements IF_UserDao {
 
     @Override
     public void add(Dom_User dom_user) {
         try {
             String sql = "INSERT INTO  tbl_User(fld_userid, fld_username, fld_password, fld_identity) values (?,?,?,?)";
-            CRUD_Util.update(sql,dom_user.getUserID(),dom_user.getUserName(),dom_user.getPassword(),dom_user.getAuthor());
+            update(sql,dom_user.getUserID(),dom_user.getUserName(),dom_user.getPassword(),dom_user.getAuthor());
             System.out.println("The user : " + dom_user.getUserName() + " register into database is successful ! ");
         } catch (Exception e) {
             e.printStackTrace();
@@ -33,11 +34,24 @@ public class Impl_UserDaoImpl implements IF_UserDao {
 
     @Override
     public void modify(Dom_User dom_user) {
+        try {
+            String sql = "UPDATE tbl_User SET fld_UserName = ?,fld_Password = ? ,fld_Identity = ? where fld_UserID = ?";
+            update(sql,dom_user.getUserName(),dom_user.getPassword(),dom_user.getAuthor(),dom_user.getUserID());
+            System.out.println("update finished");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Dom_User dom_user) {
-
+        try {
+            String sql = "DELETE FROM tbl_User WHERE fld_UserID = ?";
+            update(sql, dom_user.getUserID());
+            System.out.println("delete finished");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -55,8 +69,12 @@ public class Impl_UserDaoImpl implements IF_UserDao {
 
     @Override
     public ArrayList<Dom_User> getAll() {
-        String sql = "SELECT * FROM tbl_User";
-        ResultSet table = getTable(sql);
+        try {
+            String sql = "SELECT * FROM tbl_User";
+            ResultSet table = getTable(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

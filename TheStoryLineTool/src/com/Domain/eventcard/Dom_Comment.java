@@ -12,7 +12,7 @@ import java.util.Objects;
  * @ Version 0.1
  */
 public class Dom_Comment {
-    private int eventID;
+    private int commentID;
     private String commentAuthor;
     private LocalDateTime localDateTime;
     private String commentText;
@@ -20,39 +20,39 @@ public class Dom_Comment {
     public Dom_Comment() {
     }
 
-    public Dom_Comment(int eventID) {
-        this.eventID = eventID;
-    }
-
-    public Dom_Comment(int eventID, String commentAuthor, LocalDateTime localDateTime, String commentText) {
-        this.eventID = eventID;
+    public Dom_Comment(int commentID, String commentAuthor, LocalDateTime localDateTime, String commentText) {
+        this.commentID = commentID;
         this.commentAuthor = commentAuthor;
         this.localDateTime = localDateTime;
         this.commentText = commentText;
     }
 
-    public int getEventID() {
-        return eventID;
+    public int getCommentID() {
+        return commentID;
+    }
+
+    public void setCommentID(int commentID) {
+        this.commentID = commentID;
     }
 
     public String getCommentAuthor() {
         return commentAuthor;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
-    }
-
-    public String getCommentText() {
-        return commentText;
-    }
-
     public void setCommentAuthor(String commentAuthor) {
         this.commentAuthor = commentAuthor;
     }
 
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
+
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
+    }
+
+    public String getCommentText() {
+        return commentText;
     }
 
     public void setCommentText(String commentText) {
@@ -64,18 +64,18 @@ public class Dom_Comment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dom_Comment that = (Dom_Comment) o;
-        return eventID == that.eventID && Objects.equals(commentAuthor, that.commentAuthor) && Objects.equals(localDateTime, that.localDateTime) && Objects.equals(commentText, that.commentText);
+        return commentID == that.commentID && Objects.equals(commentAuthor, that.commentAuthor) && Objects.equals(localDateTime, that.localDateTime) && Objects.equals(commentText, that.commentText);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventID, commentAuthor, localDateTime, commentText);
+        return Objects.hash(commentID, commentAuthor, localDateTime, commentText);
     }
 
     @Override
     public String toString() {
         return "Dom_Comment{" +
-                "eventID=" + eventID +
+                "eventID=" + commentID +
                 ", commentAuthor='" + commentAuthor + '\'' +
                 ", localDateTime=" + localDateTime +
                 ", commentText='" + commentText + '\'' +

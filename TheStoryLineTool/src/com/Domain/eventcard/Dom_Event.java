@@ -10,28 +10,33 @@ package com.Domain.eventcard;
  */
 public class Dom_Event {
     private int eventID;
-    private String eventName = "new Event";
+    private String eventName;
     private String eventDate;
     private int chapterNo;
     private String role;
     private String location;
-    private String eventDescribed;
+    private String quickNote;
 
     public Dom_Event() {
     }
 
-    public Dom_Event(int eventID) {
-        this.eventID = eventID;
-    }
 
-    public Dom_Event(int eventID, String eventName, String eventDate, int chapterNo, String role, String location, String eventDescribed) {
+    public Dom_Event(int eventID, String eventName, String eventDate, int chapterNo, String role, String location, String quickNote) {
         this.eventID = eventID;
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.chapterNo = chapterNo;
         this.role = role;
         this.location = location;
-        this.eventDescribed = eventDescribed;
+        this.quickNote = quickNote;
+    }
+
+    public int getEventID() {
+        return eventID;
+    }
+
+    public void setEventID(int eventID) {
+        this.eventID = eventID;
     }
 
     public String getEventName() {
@@ -74,12 +79,12 @@ public class Dom_Event {
         this.location = location;
     }
 
-    public String getEventDescribed() {
-        return eventDescribed;
+    public String getQuickNote() {
+        return quickNote;
     }
 
-    public void setEventDescribed(String eventDescribed) {
-        this.eventDescribed = eventDescribed;
+    public void setQuickNote(String quickNote) {
+        this.quickNote = quickNote;
     }
 
     @Override
@@ -91,7 +96,7 @@ public class Dom_Event {
                 ", chapterNo=" + chapterNo +
                 ", role='" + role + '\'' +
                 ", location='" + location + '\'' +
-                ", eventDescribed='" + eventDescribed + '\'' +
+                ", eventDescribed='" + quickNote + '\'' +
                 '}';
     }
 }

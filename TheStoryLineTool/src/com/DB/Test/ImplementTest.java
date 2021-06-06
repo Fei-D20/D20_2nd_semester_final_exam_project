@@ -1,7 +1,14 @@
 package com.DB.Test;
 
-import com.DB.DaoImplement.Impl_UserDaoImpl;
+import com.DB.DaoImplement.eventcard.Impl_EventCardDao;
+import com.DB.DaoImplement.user.Impl_UserDao;
+import com.Domain.eventcard.Dom_EventCard;
+import javafx.event.EventHandler;
 import org.junit.Test;
+
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalField;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -14,7 +21,8 @@ import org.junit.Test;
 public class ImplementTest {
    @Test
    public void test1(){
-       Impl_UserDaoImpl impl_userDao = new Impl_UserDaoImpl();
+       Impl_UserDao impl_userDao = new Impl_UserDao();
        impl_userDao.getAll();
    }
+
 }

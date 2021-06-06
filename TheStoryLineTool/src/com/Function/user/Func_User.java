@@ -1,6 +1,6 @@
 package com.Function.user;
 
-import com.DB.DaoImplement.Impl_UserDaoImpl;
+import com.DB.DaoImplement.user.Impl_UserDao;
 import com.DB.util.CRUD_Util;
 import com.DB.util.ConnectionUtil;
 import com.Domain.user.Dom_User;
@@ -17,7 +17,7 @@ import java.sql.SQLException;
  * @ Version 0.1
  */
 public class Func_User extends CRUD_Util{
-    private static Impl_UserDaoImpl impl_userDao = new Impl_UserDaoImpl();
+    private static Impl_UserDao impl_userDao = new Impl_UserDao();
     public static void userRegister(Dom_User user){
         impl_userDao.add(user);
     }

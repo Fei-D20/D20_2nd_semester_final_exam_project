@@ -8,6 +8,7 @@ import com.Domain.story.Dom_EventList;
 import com.Domain.user.Dom_LoginedUser;
 import com.Domain.user.Dom_User;
 import com.GUI.User.GUI_UserLogin;
+import com.GUI.User.GUI_UserRegister;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -47,6 +48,7 @@ public class main_OnePage extends Application {
 
         Button bu_Delete = new Button("-");
 
+
         // here is the quick start icon
         ButtonBar bb_quickStart = new ButtonBar();
         bb_quickStart.getButtons().addAll(bu_New, bu_Delete);
@@ -54,8 +56,17 @@ public class main_OnePage extends Application {
 
         MenuItem mi_New = new MenuItem("New");
         MenuItem mi_Delete = new MenuItem("Delete");
+        MenuItem mi_newUserRegister = new MenuItem("New User Register");
+        mi_newUserRegister.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                GUI_UserLogin.showLoginStage(primaryStage);
+            }
+        });
+
         Menu menu_file = new Menu("File");
-        menu_file.getItems().addAll(mi_New, mi_Delete);
+        menu_file.getItems().addAll(mi_New, mi_Delete, mi_newUserRegister);
 
         Menu menu_edit = new Menu("Edit");
         Menu menu_view = new Menu("View");
@@ -266,7 +277,6 @@ public class main_OnePage extends Application {
         vb_EventMap.getChildren().addAll(lb_EventMap, tp_EventMap);
         vb_EventMap.setStyle("-fx-background-color: gray");
 
-        // ********************** Event map drag ***************
 
         AnchorPane anP_EventMap = new AnchorPane(vb_EventMap);
         AnchorPane.setLeftAnchor(vb_EventMap, 1.0);
@@ -336,7 +346,7 @@ public class main_OnePage extends Application {
         // show the login window
         GUI_UserLogin.showLoginStage(primaryStage);
         // after here it should always use the changeListener:
-        Dom_User loginedUser = Dom_LoginedUser.getInstance();
+//        Dom_User loginedUser = Dom_LoginedUser.getInstance();
 
         // ****************** Event List application ***********************
         lv_EventList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Dom_EventCard>() {
@@ -393,7 +403,7 @@ public class main_OnePage extends Application {
                 System.out.println("the author name is : " + Dom_LoginedUser.getInstance().getUserName());
                 newEventCard.setAuthorName(Dom_LoginedUser.getInstance().getUserName());
                 newEventCard.setEventName("new Event");
-                newEventCard.getDom_event().setEventDescribed("some thing happening");
+                newEventCard.getDom_event().setQuickNote("some thing happening");
                 newEventCard.getDom_note().setNoteText("What happened?");
                 newEventCard.getDom_comment().setCommentAuthor("who are you");
                 newEventCard.getDom_comment().setCommentText("what you want to say? ");
@@ -434,11 +444,12 @@ public class main_OnePage extends Application {
 
                 Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
                 String eventName = selectedItem.getEventName();
-                TextField textField = new TextField(eventName);
-                tp_EventMap.getChildren().add(textField);
+                Button button = new Button(eventName);
+                tp_EventMap.getChildren().add(button);
 
             }
         });
+
 
     }
 }

@@ -11,31 +11,35 @@ import java.util.Objects;
  * @ Version 0.1
  */
 public class Dom_Note {
-    private int eventID;
+    private int noteID;
     private String noteText;
 
 
     public Dom_Note() {
     }
 
-    public Dom_Note(int eventID) {
-        this.eventID = eventID;
+    public Dom_Note(int noteID) {
+        this.noteID = noteID;
     }
 
-    public Dom_Note(int eventID, String noteText) {
-        this.eventID = eventID;
+    public Dom_Note(int noteID, String noteText) {
+        this.noteID = noteID;
         this.noteText = noteText;
     }
 
-    public int getEventID() {
-        return eventID;
+    public int getNoteID() {
+        return noteID;
+    }
+
+    public void setNoteID(int noteID) {
+        this.noteID = noteID;
     }
 
     public String getNoteText() {
         return noteText;
     }
 
-    public void setNoteText(String  noteText) {
+    public void setNoteText(String noteText) {
         this.noteText = noteText;
     }
 
@@ -44,18 +48,18 @@ public class Dom_Note {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dom_Note dom_note = (Dom_Note) o;
-        return eventID == dom_note.eventID && Objects.equals(noteText, dom_note.noteText);
+        return noteID == dom_note.noteID && Objects.equals(noteText, dom_note.noteText);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventID, noteText);
+        return Objects.hash(noteID, noteText);
     }
 
     @Override
     public String toString() {
         return "Dom_Note{" +
-                "eventID=" + eventID +
+                "eventID=" + noteID +
                 ", noteText='" + noteText + '\'' +
                 '}';
     }
