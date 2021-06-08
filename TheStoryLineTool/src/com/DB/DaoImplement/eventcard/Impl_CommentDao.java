@@ -46,7 +46,7 @@ public class Impl_CommentDao implements IF_CommentDao {
     @Override
     public void delete(Dom_Comment dom_comment) {
         try {
-            String sql = "DELETE FROM tbl_Comment WHERE fld_CommentID = ?";
+            Sctring sql = "DELETE FROM tbl_Comment WHERE fld_CommentID = ?";
             update(sql, dom_comment.getCommentID());
             System.out.println("delete finished");
         } catch (Exception e) {
