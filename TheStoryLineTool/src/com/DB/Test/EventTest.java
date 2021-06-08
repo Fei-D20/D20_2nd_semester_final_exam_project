@@ -24,19 +24,19 @@ public class EventTest {
     @Test
 public void testInsert(){
         Impl_EventDao impl_eventDao = new Impl_EventDao();
-        impl_eventDao.add(new Dom_Event(1,"EventNew1",2,"Father","Valby",);
+        impl_eventDao.add(new Dom_Event(1,"EventNew1",2,"Father","Valby",""));
         }
 
 @Test
 public void testDelete(){
     Impl_EventDao impl_eventDao = new Impl_EventDao();
-    impl_eventDao.delete(new Dom_Event(1,"EventNew1",2,"Father","Valby","");
+    impl_eventDao.delete(new Dom_Event(1,"EventNew1",2,"Father","Valby","testing"));
 }
 
 @Test
 public void testmodify() {
     Impl_EventDao impl_eventDao = new Impl_EventDao();
-    impl_eventDao.modify(new Dom_Event(3,"",4,"","",);
+    impl_eventDao.modify(new Dom_Event(3,"event2",4,"valby","testing","test"));
 }
         }
 

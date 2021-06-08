@@ -31,6 +31,9 @@ public class Dom_Event {
         this.quickNote = quickNote;
     }
 
+    public Dom_Event(int i, String eventNew1, int i1, String father, String valby, String testing) {
+    }
+
     public int getEventID() {
         return eventID;
     }
