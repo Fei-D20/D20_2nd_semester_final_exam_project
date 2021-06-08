@@ -1,13 +1,10 @@
 package com.DB.Test;
-import java.sql.Date;
-import com.DB.DaoImplement.eventcard.Impl_CommentDao;
+
 import com.DB.DaoImplement.eventcard.Impl_EventDao;
-import com.Domain.eventcard.Dom_Comment;
 import com.Domain.eventcard.Dom_Event;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -24,19 +21,20 @@ public class EventTest {
     @Test
 public void testInsert(){
         Impl_EventDao impl_eventDao = new Impl_EventDao();
-        impl_eventDao.add(new Dom_Event(1,"EventNew1",2,"Father","Valby",""));
-        }
+        Dom_Event dom_event = new Dom_Event(1, "EventNew1", LocalDate.now(), 2, "Father", "Valby", "tser");
+
+        impl_eventDao.add(dom_event);
+}
 
 @Test
 public void testDelete(){
     Impl_EventDao impl_eventDao = new Impl_EventDao();
-    impl_eventDao.delete(new Dom_Event(1,"EventNew1",2,"Father","Valby","testing"));
+    impl_eventDao.delete(new Dom_Event(1,"EventNew1",LocalDate.now(),2,"Father","Valby","tser"));
 }
 
 @Test
 public void testmodify() {
     Impl_EventDao impl_eventDao = new Impl_EventDao();
-    impl_eventDao.modify(new Dom_Event(3,"event2",4,"valby","testing","test"));
+    impl_eventDao.modify(new Dom_Event(1,"EventNew1",LocalDate.now(),2,"Mother","Valby","tser"));}
 }
-        }
 

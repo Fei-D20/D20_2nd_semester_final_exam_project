@@ -1,11 +1,9 @@
 package com.DB.Test;
-
 import com.DB.DaoImplement.eventcard.Impl_CommentDao;
 import com.Domain.eventcard.Dom_Comment;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -23,8 +21,19 @@ public class CommentTest {
     }
 
     @Test
+    public void testModify(){
+        Impl_CommentDao impl_commentDao = new Impl_CommentDao();
+        Dom_Comment dom_comment = new Dom_Comment();
+        dom_comment.setCommentID(1);
+        dom_comment.setCommentText("now it test the modify");
+        impl_commentDao.modify(dom_comment);
+    }
+
+    @Test
     public void testDelete(){
         Impl_CommentDao impl_commentDao = new Impl_CommentDao();
         impl_commentDao.delete(new Dom_Comment(2,"Fei", LocalDate.now(),"this is the test of comment. "));
     }
+
+
 }

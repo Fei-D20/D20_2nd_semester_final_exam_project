@@ -1,5 +1,8 @@
 package com.Domain.eventcard;
 
+import java.time.LocalDate;
+import java.util.Objects;
+
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
  * @ create 2021-05-26-20.18
@@ -11,7 +14,7 @@ package com.Domain.eventcard;
 public class Dom_Event {
     private int eventID;
     private String eventName;
-    private String eventDate;
+    private LocalDate eventDate;
     private int chapterNo;
     private String role;
     private String location;
@@ -20,8 +23,7 @@ public class Dom_Event {
     public Dom_Event() {
     }
 
-
-    public Dom_Event(int eventID, String eventName, String eventDate, int chapterNo, String role, String location, String quickNote) {
+    public Dom_Event(int eventID, String eventName, LocalDate eventDate, int chapterNo, String role, String location, String quickNote) {
         this.eventID = eventID;
         this.eventName = eventName;
         this.eventDate = eventDate;
@@ -50,11 +52,11 @@ public class Dom_Event {
         this.eventName = eventName;
     }
 
-    public String getEventDate() {
+    public LocalDate getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(String eventDate) {
+    public void setEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;
     }
 
@@ -91,15 +93,28 @@ public class Dom_Event {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dom_Event dom_event = (Dom_Event) o;
+        return eventID == dom_event.eventID && chapterNo == dom_event.chapterNo && Objects.equals(eventName, dom_event.eventName) && Objects.equals(eventDate, dom_event.eventDate) && Objects.equals(role, dom_event.role) && Objects.equals(location, dom_event.location) && Objects.equals(quickNote, dom_event.quickNote);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(eventID, eventName, eventDate, chapterNo, role, location, quickNote);
+    }
+
+    @Override
     public String toString() {
         return "Dom_Event{" +
                 "eventID=" + eventID +
                 ", eventName='" + eventName + '\'' +
-                ", eventDate='" + eventDate + '\'' +
+                ", eventDate=" + eventDate +
                 ", chapterNo=" + chapterNo +
                 ", role='" + role + '\'' +
                 ", location='" + location + '\'' +
-                ", eventDescribed='" + quickNote + '\'' +
+                ", quickNote='" + quickNote + '\'' +
                 '}';
     }
 }

@@ -17,31 +17,31 @@ public interface IF_BaseDao<T> {
      * insert one instance into database
      * @param t the instance t.
      */
-    public void add(T t);
+    void add(T t);
 
     /**
      * modity a instance from the database
      * @param t the instance be changed
      */
-    public void modify(T t);
+    void modify(T t);
 
     /**
      * remove a instance from the database
      * @param t the instance's primary key
      */
-    public void delete(T t);
+    void delete(T t);
 
     /**
      * select a instance form the database
      * @param t which instance be choose
      * @return
      */
-    public ResultSet getInstance(T t);
+    ResultSet getInstance(T t);
 
 
     /**
      * select all the instance from a table
       * @return
      */
-    public ArrayList<T> getAll();
+    ArrayList<T> getAll();
 }

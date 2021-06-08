@@ -18,7 +18,7 @@ public class Dom_EventList {
      * In this class we use the singleton patten for instance the only one object.
      * So each of the method invoke this class variable will not instance a new one.
      */
-    private static ArrayList<Dom_EventCard> sto_eventList = new ArrayList<>();
+    private static final ArrayList<Dom_EventCard> sto_eventList = new ArrayList<>();
 
     private Dom_EventList() {
     }
