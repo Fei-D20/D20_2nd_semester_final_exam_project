@@ -22,7 +22,7 @@ public class DBTest {
         Connection connection = ConnectionUtil.getConnection();
         ConnectionUtil.closeConnection(connection);
     }
-/*
+
     @Test
     public void testInsert() {
         try {
@@ -34,7 +34,9 @@ public class DBTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
+
     @Test
     public void testUpdate() {
         try {
@@ -45,6 +47,7 @@ public class DBTest {
             e.printStackTrace();
         }
     }
+
     @Test
     public void testDelete() {
         try {
@@ -67,4 +70,4 @@ public class DBTest {
         String sql = "SELECT * FROM tbl_User";
         getTable(sql);
     }
-*/}
+}

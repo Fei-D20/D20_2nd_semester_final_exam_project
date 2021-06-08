@@ -1,4 +1,4 @@
-package com.GUI.User;
+package com.GUI.user;
 
 import com.Application.controller.user.User.App_UserRegister;
 import javafx.event.ActionEvent;
