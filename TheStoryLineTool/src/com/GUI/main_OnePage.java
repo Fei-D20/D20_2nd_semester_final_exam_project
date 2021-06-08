@@ -7,6 +7,8 @@ import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
 import com.Domain.user.Dom_LoginedUser;
 
+import com.GUI.controlbar.GUI_ControlBar;
+import com.GUI.eventlist.GUI_EventList;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -40,97 +42,14 @@ public class main_OnePage extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         // *************** Controller Bar ******************
-        Button bu_New = new Button("+");
-        bu_New.setPrefWidth(5.0);
-        bu_New.setPrefHeight(5.0);
-
-        Button bu_Delete = new Button("-");
-
-
-        // here is the quick start icon
-        ButtonBar bb_quickStart = new ButtonBar();
-        bb_quickStart.getButtons().addAll(bu_New, bu_Delete);
-        ButtonBar.setButtonUniformSize(bu_New, true);
-
-        MenuItem mi_New = new MenuItem("New");
-        MenuItem mi_Delete = new MenuItem("Delete");
-        MenuItem mi_newUserRegister = new MenuItem("New User Register");
-        mi_newUserRegister.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-                com.GUI.User.GUI_UserLogin.showLoginStage(primaryStage);
-            }
-        });
-
-        Menu menu_file = new Menu("File");
-        menu_file.getItems().addAll(mi_New, mi_Delete, mi_newUserRegister);
-
-        Menu menu_edit = new Menu("Edit");
-        Menu menu_view = new Menu("View");
-        Menu menu_help = new Menu("Help");
-
-        MenuBar mb_MainMenu = new MenuBar();
-        mb_MainMenu.getMenus().addAll(menu_file, menu_edit, menu_view, menu_help);
-
-
-        VBox vb_ControlBar = new VBox(mb_MainMenu);
-        vb_ControlBar.setSpacing(3);
-
-        AnchorPane anP_ControlBar = new AnchorPane();
-        anP_ControlBar.getChildren().add(vb_ControlBar);
-        anP_ControlBar.setPrefHeight(60);
-        anP_ControlBar.setStyle("-fx-background-color: lightgray;");
-        AnchorPane.setTopAnchor(vb_ControlBar, 0.0);
-        AnchorPane.setLeftAnchor(vb_ControlBar, 0.0);
-        AnchorPane.setRightAnchor(vb_ControlBar, 0.0);
-        AnchorPane.setBottomAnchor(vb_ControlBar, 0.0);
-
+        GUI_ControlBar GUIControlBar = new GUI_ControlBar();
+        AnchorPane anP_ControlBar = GUIControlBar.showControlBar(primaryStage);
 
         // ****************************** Event List *****************************
 
-        Label lb_EventList = new Label("Event List : ");
-
-        lb_EventList.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;");
-        lb_EventList.setPrefHeight(1);
-        lb_EventList.setPadding(new Insets(1));
-
-
-        ListView<Dom_EventCard> lv_EventList
-                = new ListView<Dom_EventCard>(FXCollections.observableArrayList(Dom_EventList.getInstance()));
-
-        lv_EventList.setPlaceholder(new Label("Event Card List"));
-        lv_EventList.setPrefHeight(700);
-        lv_EventList.setPrefWidth(200);
-//        lv_EventList.setOpacity(0.5);
-        lv_EventList.setStyle("-fx-font-size: 12;" + "-fx-font-weight: bold");
-        lv_EventList.setEditable(true);
-
-
-        lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-//        Opr_Drag.Drag(lv_EventList);
-
-
-
-
-        ButtonBar bb_EventList = new ButtonBar();
-        Button bu_EventList_Add = new Button("Add");
-        bb_EventList.getButtons().add(bu_EventList_Add);
-
-
-
-        VBox vb_EventList = new VBox();
-        vb_EventList.setPrefWidth(200); // this is decide the event card weight
-        vb_EventList.getChildren().addAll(lb_EventList, lv_EventList, bb_EventList);
-        vb_EventList.setStyle("-fx-background-color: darkgray");
-
-        AnchorPane anP_EventList = new AnchorPane(vb_EventList);
-        AnchorPane.setLeftAnchor(vb_EventList, 1.0);
-        AnchorPane.setRightAnchor(vb_EventList, 1.0);
-        AnchorPane.setTopAnchor(vb_EventList, 1.0);
-        AnchorPane.setBottomAnchor(vb_EventList, 1.0);
-        anP_EventList.setStyle("-fx-background-color: lightgray");
-
+        GUI_EventList gui_eventList = new GUI_EventList();
+        AnchorPane anP_EventList = gui_eventList.showEventList();
+        ListView<Dom_EventCard> lv_EventList = gui_eventList.getLv_EventList();
 
         // ************************ Event Card ******************************
 
@@ -393,7 +312,7 @@ public class main_OnePage extends Application {
 
 
         // ********************* list view button **************************
-        bu_EventList_Add.setOnAction(new EventHandler<ActionEvent>() {
+        gui_eventList.getBu_EventList_Add().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 Dom_EventCard newEventCard = new Dom_EventCard();
