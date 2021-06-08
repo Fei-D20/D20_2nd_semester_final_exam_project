@@ -35,23 +35,6 @@ public class ImplementTest {
 
     }
 
-    @Test
-    public void test3() {
-        Impl_EventCardDao impl_eventCardDao = new Impl_EventCardDao();
-        impl_eventCardDao.getAll();
-    }
-
-    @Test
-    public void test4() {
-        Impl_EventDao impl_eventDao = new Impl_EventDao();
-        impl_eventDao.getAll();
-    }
-
-    @Test
-    public void test5() {
-        Impl_NoteDao impl_noteDao = new Impl_NoteDao();
-        impl_noteDao.getAll();
-    }
 }
 
 
