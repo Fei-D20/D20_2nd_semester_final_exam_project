@@ -5,6 +5,7 @@ import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
 import com.Domain.user.Dom_LoginedUser;
 
+import com.GUI.User.GUI_UserLogin;
 import com.GUI.controlbar.GUI_ControlBar;
 import com.GUI.eventcard.*;
 import com.GUI.eventlist.GUI_EventList;
@@ -100,9 +101,8 @@ public class main_OnePage extends Application {
         primaryStage.show();
 
         // show the login window
-        com.GUI.User.GUI_UserLogin.showLoginStage(primaryStage);
-        // after here it should always use the changeListener:
-//        Dom_User loginedUser = Dom_LoginedUser.getInstance();
+        GUI_UserLogin.showLoginStage(primaryStage);
+
 
         // ****************** Event List application ***********************
         lv_EventList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Dom_EventCard>() {
