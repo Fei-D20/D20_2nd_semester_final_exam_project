@@ -24,7 +24,7 @@ public class Impl_NoteDao implements IF_NoteDao {
     public void add(Dom_Note dom_note) {
         try {
             String sql = "INSERT INTO  tbl_Note(fld_NoteID, fld_NoteText) values (?,?,?,?)";
-            CRUD_Util.update(sql, new Object[]{dom_note.getNoteID(), dom_note.getNoteText()});
+            CRUD_Util.update(sql, dom_note.getNoteID(), dom_note.getNoteText());
             System.out.println("The Note : " + dom_note.getNoteText() + " saved into database is successful ! ");
         } catch (Exception var3) {
             var3.printStackTrace();
@@ -35,7 +35,7 @@ public class Impl_NoteDao implements IF_NoteDao {
     public void modify(Dom_Note dom_note) {
         try {
             String sql = "UPDATE tbl_Note SET fld_NoteID = ?,fld_NoteText = ? where fld_NoteID = ?";
-            CRUD_Util.update(sql, new Object[]{dom_note.getNoteID(), dom_note.getNoteText()});
+            CRUD_Util.update(sql, dom_note.getNoteID(), dom_note.getNoteText());
             System.out.println("update finished");
         } catch (Exception var3) {
             var3.printStackTrace();
@@ -46,7 +46,7 @@ public class Impl_NoteDao implements IF_NoteDao {
     public void delete(Dom_Note dom_note) {
         try {
             String sql = "DELETE FROM tbl_note WHERE fld_NoteID = ?";
-            CRUD_Util.update(sql, new Object[]{dom_note.getNoteID()});
+            CRUD_Util.update(sql, dom_note.getNoteID());
             System.out.println("delete finished");
         } catch (Exception var3) {
             var3.printStackTrace();

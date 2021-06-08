@@ -7,7 +7,7 @@ import com.Domain.eventcard.Dom_Comment;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static com.DB.util.CRUD_Util.getTable;
@@ -30,7 +30,7 @@ public class Impl_CommentDao implements IF_CommentDao {
             LocalDate localDate = dom_comment.getLocalDate();
             Date date = Date.valueOf(localDate);
 
-            update(sql,dom_comment.getCommentID(),date,dom_comment.getCommentText(),dom_comment.getCommentAuthor());
+            update(sql,dom_comment.getCommentID(),dom_comment.getLocalDate(),dom_comment.getCommentText(),dom_comment.getCommentAuthor());
             System.out.println("The Comment : " + dom_comment.getCommentText() + "   saved into database is successful ! ");
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,7 +66,7 @@ public class Impl_CommentDao implements IF_CommentDao {
 
     ResultSet instance = null;
         try {
-        String sql = "SELECT fld_commentID, fld_commentTime, fld_commentText, fld_Author FROM Tbl_Comment where Fld_CommentID = ?";
+        String sql = "SELECT fld_commentID, fld_commentTime,fld_commentDate, fld_commentText, fld_Author FROM Tbl_Comment where Fld_CommentID = ?";
         instance = CRUD_Util.getInstance(sql, dom_comment.getCommentID());
         return instance;
     } catch (Exception e) {

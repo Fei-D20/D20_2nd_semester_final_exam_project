@@ -123,7 +123,7 @@ public class main_OnePage extends Application {
                     gui_eventCard.getGui_eventCardTitle().getLb_EventCardTitle().setText("Event Card : " + selectedEventCard.getEventName());
                     gui_eventCard.getGui_eventCardTitle().getTf_EventTitleEventName().setText(selectedEventCard.getEventName());
                     gui_eventCard.getGui_eventCardTitle().getTf_EventTitleAuthor().setText(selectedEventCard.getAuthorName());
-                    gui_eventCard.getGui_eventCardTitle().getTf_EventTitleDate().setText(String.valueOf(selectedEventCard.getEditDate()));
+                    gui_eventCard.getGui_eventCardTitle().getTf_EventTitleDate().setText(String.valueOf(selectedEventCard.getLocalDate()));
 
                     /*
                      * right here remember to set the text for event and comment and note

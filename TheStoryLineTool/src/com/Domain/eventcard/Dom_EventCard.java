@@ -1,8 +1,7 @@
 package com.Domain.eventcard;
-
+import java.sql.Date;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -18,8 +17,7 @@ public class Dom_EventCard  {
     private String authorName;
     private int PreEventCardID;
     private int AfterEventCardID;
-
-    private LocalDate editDate = LocalDate.now();
+    private LocalDate localDate = LocalDate.now();
     private Dom_Event dom_event = new Dom_Event();
     private Dom_Note dom_note = new Dom_Note();
     private Dom_Comment dom_comment = new Dom_Comment();
@@ -28,18 +26,18 @@ public class Dom_EventCard  {
     public Dom_EventCard() {
     }
 
-    public Dom_EventCard(int eventCardID, String eventName, String authorName, LocalDate editDate) {
+    public Dom_EventCard(int eventCardID, String eventName, String authorName, LocalDate localDate) {
         this.eventCardID = eventCardID;
         this.eventName = eventName;
         this.authorName = authorName;
-        this.editDate = editDate;
+        this.localDate = localDate;
     }
 
-    public Dom_EventCard(int eventCardID, String eventName, String authorName, LocalDate editDate, Dom_Event dom_event, Dom_Note dom_note, Dom_Comment dom_comment) {
+    public Dom_EventCard(int eventCardID, String eventName, String authorName, LocalDate localDate, Dom_Event dom_event, Dom_Note dom_note, Dom_Comment dom_comment) {
         this.eventCardID = eventCardID;
         this.eventName = eventName;
         this.authorName = authorName;
-        this.editDate = editDate;
+        this.localDate = localDate;
         this.dom_event = dom_event;
         this.dom_note = dom_note;
         this.dom_comment = dom_comment;
@@ -69,12 +67,12 @@ public class Dom_EventCard  {
         this.authorName = authorName;
     }
 
-    public LocalDate getEditDate() {
-        return editDate;
+   public LocalDate getLocalDate() {
+        return localDate;
     }
 
-    public void setEditDate(LocalDate editDate) {
-        this.editDate = editDate;
+    public void setLocalDate(LocalDate editDate) {
+        this.localDate = localDate;
     }
 
     public Dom_Event getDom_event() {
@@ -123,7 +121,7 @@ public class Dom_EventCard  {
                 "eventID=" + eventCardID +
                 ", eventName='" + eventName + '\'' +
                 ", authorName='" + authorName + '\'' +
-                ", editDate=" + editDate +
+                ", localDate=" + localDate +
                 ", dom_event=" + dom_event +
                 ", dom_note=" + dom_note +
                 ", dom_comment=" + dom_comment +
