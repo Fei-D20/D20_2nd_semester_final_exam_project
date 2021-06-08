@@ -5,6 +5,7 @@ import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
 import com.Domain.user.Dom_LoginedUser;
 
+import com.GUI.User.GUI_UserLogin;
 import com.GUI.controlbar.GUI_ControlBar;
 import com.GUI.eventcard.*;
 import com.GUI.eventlist.GUI_EventList;
@@ -15,9 +16,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.MouseDragEvent;
@@ -36,6 +37,7 @@ import javafx.util.StringConverter;
  * @ Version 0.1
  */
 public class main_OnePage extends Application {
+
     Dom_EventCard selectedEventCard;
 
     @Override
@@ -100,9 +102,15 @@ public class main_OnePage extends Application {
         primaryStage.show();
 
         // show the login window
-        com.GUI.User.GUI_UserLogin.showLoginStage(primaryStage);
-        // after here it should always use the changeListener:
-//        Dom_User loginedUser = Dom_LoginedUser.getInstance();
+        GUI_UserLogin.showLoginStage(primaryStage);
+
+        gui_eventCard.getGui_eventCardTitle().getTf_EventTitleEventName().textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                selectedEventCard.setEventName(newValue);
+                lv_EventList.getSelectionModel().getSelectedItem().setEventName(newValue);
+            }
+        });
 
         // ****************** Event List application ***********************
         lv_EventList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Dom_EventCard>() {
@@ -154,9 +162,9 @@ public class main_OnePage extends Application {
         gui_eventList.getBu_EventList_Add().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
                 Dom_EventCard newEventCard = new Dom_EventCard();
-                System.out.println(newEventCard);
-                System.out.println("the author name is : " + Dom_LoginedUser.getInstance().getUserName());
+
                 newEventCard.setAuthorName(Dom_LoginedUser.getInstance().getUserName());
                 newEventCard.setEventName("new Event");
                 newEventCard.getDom_event().setQuickNote("some thing happening");

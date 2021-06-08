@@ -22,6 +22,7 @@ public class GUI_EventCardTitle {
     private TextField tf_EventTitleDate;
 
     public VBox showEventCard(){
+
         lb_EventCardTitle = new Label();
         lb_EventCardTitle.setText("Event Card : ");
         lb_EventCardTitle.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;");
