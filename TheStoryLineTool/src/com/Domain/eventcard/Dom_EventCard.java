@@ -15,11 +15,14 @@ public class Dom_EventCard  {
     private int eventCardID;
     private String eventName;
     private String authorName;
+    private int PreEventCardID;
+    private int AfterEventCardID;
 
     private LocalDateTime editDate = LocalDateTime.now();
     private Dom_Event dom_event = new Dom_Event();
     private Dom_Note dom_note = new Dom_Note();
     private Dom_Comment dom_comment = new Dom_Comment();
+
 
     public Dom_EventCard() {
     }
@@ -95,6 +98,22 @@ public class Dom_EventCard  {
 
     public void setDom_comment(Dom_Comment dom_comment) {
         this.dom_comment = dom_comment;
+    }
+
+    public int getPreEventCardID() {
+        return this.PreEventCardID;
+    }
+
+    public void setPreEventCardID(int preEventCardID) {
+        this.PreEventCardID = preEventCardID;
+    }
+
+    public int getAfterEventCardID() {
+        return this.AfterEventCardID;
+    }
+
+    public void setAfterEventCardID(int afterEventCardID) {
+        this.AfterEventCardID = afterEventCardID;
     }
 
     @Override
