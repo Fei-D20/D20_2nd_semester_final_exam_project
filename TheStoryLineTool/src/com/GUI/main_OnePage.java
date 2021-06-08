@@ -6,9 +6,8 @@ import com.Application.opration.mouse.Opr_Editable_DoubleClick;
 import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
 import com.Domain.user.Dom_LoginedUser;
-import com.Domain.user.Dom_User;
 import com.GUI.User.GUI_UserLogin;
-import com.GUI.User.GUI_UserRegister;
+
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

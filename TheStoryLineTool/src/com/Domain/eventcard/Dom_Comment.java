@@ -1,5 +1,6 @@
 package com.Domain.eventcard;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -14,18 +15,19 @@ import java.util.Objects;
 public class Dom_Comment {
     private int commentID;
     private String commentAuthor;
-    private LocalDateTime localDateTime;
+    private LocalDate localDate;
     private String commentText;
 
     public Dom_Comment() {
     }
 
-    public Dom_Comment(int commentID, String commentAuthor, LocalDateTime localDateTime, String commentText) {
+    public Dom_Comment(int commentID, String commentAuthor, LocalDate localDate, String commentText) {
         this.commentID = commentID;
         this.commentAuthor = commentAuthor;
-        this.localDateTime = localDateTime;
+        this.localDate = localDate;
         this.commentText = commentText;
     }
+
 
     public int getCommentID() {
         return commentID;
@@ -43,12 +45,12 @@ public class Dom_Comment {
         this.commentAuthor = commentAuthor;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public LocalDate getLocalDate() {
+        return localDate;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
     }
 
     public String getCommentText() {
@@ -64,20 +66,20 @@ public class Dom_Comment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dom_Comment that = (Dom_Comment) o;
-        return commentID == that.commentID && Objects.equals(commentAuthor, that.commentAuthor) && Objects.equals(localDateTime, that.localDateTime) && Objects.equals(commentText, that.commentText);
+        return commentID == that.commentID && Objects.equals(commentAuthor, that.commentAuthor) && Objects.equals(localDate, that.localDate) && Objects.equals(commentText, that.commentText);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(commentID, commentAuthor, localDateTime, commentText);
+        return Objects.hash(commentID, commentAuthor, localDate, commentText);
     }
 
     @Override
     public String toString() {
         return "Dom_Comment{" +
-                "eventID=" + commentID +
+                "commentID=" + commentID +
                 ", commentAuthor='" + commentAuthor + '\'' +
-                ", localDateTime=" + localDateTime +
+                ", localDate=" + localDate +
                 ", commentText='" + commentText + '\'' +
                 '}';
     }

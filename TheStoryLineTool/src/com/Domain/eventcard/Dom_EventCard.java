@@ -1,6 +1,7 @@
 package com.Domain.eventcard;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -18,7 +19,7 @@ public class Dom_EventCard  {
     private int PreEventCardID;
     private int AfterEventCardID;
 
-    private LocalDateTime editDate = LocalDateTime.now();
+    private LocalDate editDate = LocalDate.now();
     private Dom_Event dom_event = new Dom_Event();
     private Dom_Note dom_note = new Dom_Note();
     private Dom_Comment dom_comment = new Dom_Comment();
@@ -27,14 +28,14 @@ public class Dom_EventCard  {
     public Dom_EventCard() {
     }
 
-    public Dom_EventCard(int eventCardID, String eventName, String authorName, LocalDateTime editDate) {
+    public Dom_EventCard(int eventCardID, String eventName, String authorName, LocalDate editDate) {
         this.eventCardID = eventCardID;
         this.eventName = eventName;
         this.authorName = authorName;
         this.editDate = editDate;
     }
 
-    public Dom_EventCard(int eventCardID, String eventName, String authorName, LocalDateTime editDate, Dom_Event dom_event, Dom_Note dom_note, Dom_Comment dom_comment) {
+    public Dom_EventCard(int eventCardID, String eventName, String authorName, LocalDate editDate, Dom_Event dom_event, Dom_Note dom_note, Dom_Comment dom_comment) {
         this.eventCardID = eventCardID;
         this.eventName = eventName;
         this.authorName = authorName;
@@ -68,11 +69,11 @@ public class Dom_EventCard  {
         this.authorName = authorName;
     }
 
-    public LocalDateTime getEditDate() {
+    public LocalDate getEditDate() {
         return editDate;
     }
 
-    public void setEditDate(LocalDateTime editDate) {
+    public void setEditDate(LocalDate editDate) {
         this.editDate = editDate;
     }
 

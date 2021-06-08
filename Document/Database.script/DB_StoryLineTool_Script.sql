@@ -1,11 +1,11 @@
 create table tbl_Comment
 (
-    fld_CommentID     int not null
+    fld_CommentID   int not null
         constraint tbl_comment_pk
             primary key nonclustered,
-    fld_CommentTime   date,
-    fld_CommentText   varchar(30),
-    fld_CommentAuthor varchar(30)
+    fld_CommentTime date,
+    fld_CommentText varchar(30),
+    fld_Author      varchar(30)
 )
     go
 
