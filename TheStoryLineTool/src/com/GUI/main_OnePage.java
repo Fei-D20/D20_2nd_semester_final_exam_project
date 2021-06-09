@@ -15,18 +15,39 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -37,8 +58,9 @@ import javafx.util.StringConverter;
  * @ Version 0.1
  */
 public class main_OnePage extends Application {
-
+    private Dragboard dragboard;
     Dom_EventCard selectedEventCard;
+    private final DataFormat buttonFormat = new DataFormat("com.example.myapp.formats.button");
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -188,30 +210,27 @@ public class main_OnePage extends Application {
 
         // ******************** listview drag *********************
 
-        lv_EventList.setOnDragDetected(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
+        lv_EventList.setOnDragDetected(event ->  {
+                dragboard = anP_EventMap.startDragAndDrop(TransferMode.ANY);
+                dragboard.setDragView(new Text(lv_EventList.getSelectionModel().getSelectedItem().getEventName()).snapshot(null, null), event.getX(), event.getY());
+                ClipboardContent cc = new ClipboardContent();
+                cc.putString(lv_EventList.getSelectionModel().getSelectedItem().getEventName());
+                dragboard.setContent(cc);
                 lv_EventList.startFullDrag();
-            }
-        });
-        lv_EventList.setOnMouseDragOver(new EventHandler<MouseDragEvent>() {
-            @Override
-            public void handle(MouseDragEvent event) {
-                System.out.println("over the listview");
-            }
-        });
+            });
 
-        lv_EventList.setOnMouseDragExited(new EventHandler<MouseDragEvent>() {
-            @Override
-            public void handle(MouseDragEvent event) {
-
+            anP_EventMap.setOnDragDropped(event ->{
                 Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
                 String eventName = selectedItem.getEventName();
                 Button button = new Button(eventName);
                 gui_eventMap.getTp_EventMap().getChildren().add(button);
 
-            }
+            });
+
+
+        anP_EventMap.setOnDragOver(event -> {
+            event.acceptTransferModes(TransferMode.MOVE);
+            System.out.println("over the Event Map!");
         });
 
 
