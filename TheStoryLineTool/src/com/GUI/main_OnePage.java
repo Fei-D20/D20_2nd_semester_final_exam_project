@@ -76,8 +76,8 @@ public class main_OnePage extends Application {
         bp_Root.setCenter(anP_EventMap);
         bp_Root.setLeft(anP_EventList);
         bp_Root.setBottom(anP_TimeLine);
-        bp_Root.setStyle("-fx-background-color: gray");
         bp_Root.setRight(anP_EventCard);
+        bp_Root.setStyle("-fx-background-color: gray");
 
         BorderPane.setMargin(anP_EventCard, new Insets(1));
         BorderPane.setMargin(anP_ControlBar, new Insets(1));

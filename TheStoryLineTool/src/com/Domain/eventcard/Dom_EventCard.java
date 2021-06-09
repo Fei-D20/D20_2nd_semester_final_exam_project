@@ -1,5 +1,4 @@
 package com.Domain.eventcard;
-import java.sql.Date;
 
 import java.time.LocalDate;
 
@@ -33,10 +32,14 @@ public class Dom_EventCard  {
         this.localDate = localDate;
     }
 
-    public Dom_EventCard(int eventCardID, String eventName, String authorName, LocalDate localDate, Dom_Event dom_event, Dom_Note dom_note, Dom_Comment dom_comment) {
+    public Dom_EventCard(int eventCardID, String eventName, String authorName, int preEventCardID,
+                         int afterEventCardID, LocalDate localDate, Dom_Event dom_event,
+                         Dom_Note dom_note, Dom_Comment dom_comment) {
         this.eventCardID = eventCardID;
         this.eventName = eventName;
         this.authorName = authorName;
+        PreEventCardID = preEventCardID;
+        AfterEventCardID = afterEventCardID;
         this.localDate = localDate;
         this.dom_event = dom_event;
         this.dom_note = dom_note;
