@@ -42,6 +42,8 @@ public class GUI_UserLogin {
 
         Button bu_Register = new Button("New User Register");
 
+        Button bu_ForPassword= new Button("Forgot Password");
+
         Button bu_Login = new Button(" Login ");
         Button bu_cancel = new Button("Cancel");
         HBox hBox_Login = new HBox(bu_Login, bu_cancel);
@@ -63,6 +65,7 @@ public class GUI_UserLogin {
         gp_Login.add(lb_Login_Password,0,1);
         gp_Login.add(tf_LoginPassword,1,1);
         gp_Login.add(bu_Register, 0,2);
+        gp_Login.add(bu_ForPassword, 0,3);
         gp_Login.add(hBox_Login,1,2);
 
 
@@ -81,6 +84,7 @@ public class GUI_UserLogin {
         bu_Register.setOnAction(event -> GUI_UserRegister.showRegisterStage(stage_Login,scene_Login));
         bu_Login.setOnAction(event -> App_UserLogin.login(stage_Login,tf_LoginUser,tf_LoginPassword));
         bu_cancel.setOnAction(event -> App_UserLogin.close(stage_Login));
+        bu_ForPassword.setOnAction(event -> GUI_ForgotPassword.showForPasswordStage(stage_Login,scene_Login));
 
     }
 }
