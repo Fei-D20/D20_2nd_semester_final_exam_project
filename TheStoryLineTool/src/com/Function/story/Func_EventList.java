@@ -1,9 +1,15 @@
 package com.Function.story;
 
+import com.DB.DaoImplement.eventcard.Impl_EventCardDao;
+import com.DB.util.CRUD_Util;
+import com.DB.util.ConnectionUtil;
 import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
 import org.junit.Test;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -19,11 +25,27 @@ public class Func_EventList {
      * The method will set an event card object into the singleton event list.
      * @param eventCard the item of the event list. which is from instance an event card
      */
-    public void setEvent(Dom_EventCard eventCard){
+    public static void setEvent(Dom_EventCard eventCard){
         Dom_EventList.getInstance().add(eventCard);
     }
 
-    public ArrayList<Dom_EventCard> getEventList(){
+    public static ArrayList<Dom_EventCard> getEventList() {
+        try {
+            Impl_EventCardDao impl_eventCardDao = new Impl_EventCardDao();
+            ResultSet all = impl_eventCardDao.getAll();
+            ResultSetMetaData metaData = all.getMetaData();
+            while(all.next()){
+                Dom_EventCard dom_eventCard = new Dom_EventCard(
+                        all.getInt(1),
+                        all.getString(2),
+                        all.getString(3),
+                        all.getDate(9).toLocalDate()
+                );
+                Func_EventList.setEvent(dom_eventCard);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return Dom_EventList.getInstance();
     }
 

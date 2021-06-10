@@ -6,6 +6,7 @@ import com.Domain.eventcard.Dom_EventCard;
 
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.time.LocalDate;
 
 /**
@@ -27,8 +28,7 @@ public class Impl_EventCardDao implements IF_EventCardDao {
 
     public void add(Dom_EventCard dom_eventCard) {
         try {
-            String sql =
-                    "INSERT INTO  tbl_EventCard(fld_EventCardID, fld_EventName, fld_AuthorName, fld_EventId,fld_NoteID,fld_CommentID,fld_PreEventCardId,fld_AfterEventCardID,fld_EditDate) values (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO  tbl_EventCard(fld_EventCardID, fld_EventName, fld_AuthorName, fld_EventId,fld_NoteID,fld_CommentID,fld_PreEventCardId,fld_AfterEventCardID,fld_EditDate) values (?,?,?,?,?,?,?,?,?)";
 
             LocalDate localDate = dom_eventCard.getLocalDate();
             Date date = Date.valueOf(localDate);
@@ -91,9 +91,10 @@ public class Impl_EventCardDao implements IF_EventCardDao {
     public ResultSet getAll() {
         try {
             String sql = "SELECT * FROM tbl_EventCard";
-            ResultSet var2 = CRUD_Util.getTable(sql);
-        } catch (Exception var3) {
-            var3.printStackTrace();
+            ResultSet table = CRUD_Util.getTable(sql);
+            return table;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return null;

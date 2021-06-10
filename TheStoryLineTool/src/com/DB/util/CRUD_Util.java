@@ -102,8 +102,6 @@ public class CRUD_Util {
             return resultSet;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            ConnectionUtil.closeConPSAndRS(connection, preparedStatement, resultSet);
         }
         return null;
     }

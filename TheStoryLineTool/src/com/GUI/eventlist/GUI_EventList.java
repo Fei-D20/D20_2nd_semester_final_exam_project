@@ -1,5 +1,6 @@
 package com.GUI.eventlist;
 
+import com.Application.controller.story.App_EventList;
 import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
 import javafx.collections.FXCollections;
@@ -32,7 +33,7 @@ public class GUI_EventList {
         lb_EventList.setPadding(new Insets(1));
 
 
-        lv_EventList = new ListView<Dom_EventCard>(FXCollections.observableArrayList(Dom_EventList.getInstance()));
+        lv_EventList = new ListView<Dom_EventCard>(App_EventList.getEventList());
 
         lv_EventList.setPlaceholder(new Label("Event Card List"));
         lv_EventList.setPrefHeight(700);

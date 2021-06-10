@@ -1,6 +1,7 @@
 package com.GUI;
 
 
+import com.Application.opration.create.App_Opr_CreateNewEventCard;
 import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
 import com.Domain.user.Dom_LoginedUser;
@@ -15,9 +16,7 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -26,28 +25,11 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -181,32 +163,9 @@ public class main_OnePage extends Application {
 
 
         // ********************* list view button **************************
-        gui_eventList.getBu_EventList_Add().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-                Dom_EventCard newEventCard = new Dom_EventCard();
-
-                newEventCard.setAuthorName(Dom_LoginedUser.getInstance().getUserName());
-                newEventCard.setEventName("new Event");
-                newEventCard.getDom_event().setQuickNote("some thing happening");
-                newEventCard.getDom_note().setNoteText("What happened?");
-                newEventCard.getDom_comment().setCommentAuthor("who are you");
-                newEventCard.getDom_comment().setCommentText("what you want to say? ");
-                System.out.println(newEventCard);
-
-                System.out.println("the new event card :" + newEventCard.toString());
-                Dom_EventList.getInstance().add(newEventCard);
-                lv_EventList.getItems().add(newEventCard);
-
-                lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-                lv_EventList.getSelectionModel().clearSelection();
-                lv_EventList.getSelectionModel().select(newEventCard);
-                lv_EventList.scrollTo(lv_EventList.getSelectionModel().getSelectedIndex());
-                lv_EventList.requestFocus();
-            }
-        });
-
+        App_Opr_CreateNewEventCard app_opr_createNewEventCard = new App_Opr_CreateNewEventCard();
+        app_opr_createNewEventCard.setLv_EventList(lv_EventList);
+        gui_eventList.getBu_EventList_Add().setOnAction(app_opr_createNewEventCard);
 
         // ******************** listview drag *********************
 
@@ -218,16 +177,13 @@ public class main_OnePage extends Application {
                 dragboard.setContent(cc);
                 lv_EventList.startFullDrag();
             });
-
-            anP_EventMap.setOnDragDropped(event ->{
+        anP_EventMap.setOnDragDropped(event ->{
                 Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
                 String eventName = selectedItem.getEventName();
                 Button button = new Button(eventName);
                 gui_eventMap.getTp_EventMap().getChildren().add(button);
 
             });
-
-
         anP_EventMap.setOnDragOver(event -> {
             event.acceptTransferModes(TransferMode.MOVE);
             System.out.println("over the Event Map!");
