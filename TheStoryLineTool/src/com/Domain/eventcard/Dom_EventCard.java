@@ -1,6 +1,7 @@
 package com.Domain.eventcard;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -21,7 +22,6 @@ public class Dom_EventCard  {
     private Dom_Note dom_note = new Dom_Note();
     private Dom_Comment dom_comment = new Dom_Comment();
 
-
     public Dom_EventCard() {
     }
 
@@ -32,19 +32,7 @@ public class Dom_EventCard  {
         this.localDate = localDate;
     }
 
-    public Dom_EventCard(int eventCardID, String eventName, String authorName, int preEventCardID,
-                         int afterEventCardID, LocalDate localDate, Dom_Event dom_event,
-                         Dom_Note dom_note, Dom_Comment dom_comment) {
-        this.eventCardID = eventCardID;
-        this.eventName = eventName;
-        this.authorName = authorName;
-        PreEventCardID = preEventCardID;
-        AfterEventCardID = afterEventCardID;
-        this.localDate = localDate;
-        this.dom_event = dom_event;
-        this.dom_note = dom_note;
-        this.dom_comment = dom_comment;
-    }
+
 
     public int getEventCardID() {
         return eventCardID;
@@ -70,11 +58,27 @@ public class Dom_EventCard  {
         this.authorName = authorName;
     }
 
-   public LocalDate getLocalDate() {
+    public int getPreEventCardID() {
+        return PreEventCardID;
+    }
+
+    public void setPreEventCardID(int preEventCardID) {
+        PreEventCardID = preEventCardID;
+    }
+
+    public int getAfterEventCardID() {
+        return AfterEventCardID;
+    }
+
+    public void setAfterEventCardID(int afterEventCardID) {
+        AfterEventCardID = afterEventCardID;
+    }
+
+    public LocalDate getLocalDate() {
         return localDate;
     }
 
-    public void setLocalDate(LocalDate editDate) {
+    public void setLocalDate(LocalDate localDate) {
         this.localDate = localDate;
     }
 
@@ -102,28 +106,27 @@ public class Dom_EventCard  {
         this.dom_comment = dom_comment;
     }
 
-    public int getPreEventCardID() {
-        return this.PreEventCardID;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dom_EventCard that = (Dom_EventCard) o;
+        return eventCardID == that.eventCardID && PreEventCardID == that.PreEventCardID && AfterEventCardID == that.AfterEventCardID && Objects.equals(eventName, that.eventName) && Objects.equals(authorName, that.authorName) && Objects.equals(localDate, that.localDate) && Objects.equals(dom_event, that.dom_event) && Objects.equals(dom_note, that.dom_note) && Objects.equals(dom_comment, that.dom_comment);
     }
 
-    public void setPreEventCardID(int preEventCardID) {
-        this.PreEventCardID = preEventCardID;
-    }
-
-    public int getAfterEventCardID() {
-        return this.AfterEventCardID;
-    }
-
-    public void setAfterEventCardID(int afterEventCardID) {
-        this.AfterEventCardID = afterEventCardID;
+    @Override
+    public int hashCode() {
+        return Objects.hash(eventCardID, eventName, authorName, PreEventCardID, AfterEventCardID, localDate, dom_event, dom_note, dom_comment);
     }
 
     @Override
     public String toString() {
         return "Dom_EventCard{" +
-                "eventID=" + eventCardID +
+                "eventCardID=" + eventCardID +
                 ", eventName='" + eventName + '\'' +
                 ", authorName='" + authorName + '\'' +
+                ", PreEventCardID=" + PreEventCardID +
+                ", AfterEventCardID=" + AfterEventCardID +
                 ", localDate=" + localDate +
                 ", dom_event=" + dom_event +
                 ", dom_note=" + dom_note +

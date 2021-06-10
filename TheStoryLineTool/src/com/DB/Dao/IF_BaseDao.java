@@ -1,7 +1,6 @@
 package com.DB.Dao;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -43,5 +42,5 @@ public interface IF_BaseDao<T> {
      * select all the instance from a table
       * @return
      */
-    ArrayList<T> getAll();
+    ResultSet getAll();
 }

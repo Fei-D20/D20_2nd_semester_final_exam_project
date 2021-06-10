@@ -31,26 +31,13 @@ create table tbl_Note
 )
     go
 
-create table tbl_User
-(
-    fld_UserID   int not null
-        constraint tbl_User_pk
-            primary key nonclustered,
-    fld_UserName varchar(30),
-    fld_Password varchar(30),
-    fld_Identity int default 0
-)
-    go
-
 create table tbl_EventCard
 (
     fld_EventCardID      int not null
         constraint tbl_EventCard_pk
             primary key nonclustered,
     fld_EventName        varchar(30),
-    fld_AuthorID         int
-        constraint tbl_EventCard_tbl_User_fld_UserID_fk
-            references tbl_User,
+    fld_AuthorName       varchar(30),
     fld_EventID          int
         constraint tbl_EventCard_tbl_Event_fld_EventID_fk
             references tbl_Event,
@@ -63,6 +50,17 @@ create table tbl_EventCard
     fld_PreEventCardID   int,
     fld_AfterEventCardID int,
     fld_EditDate         date
+)
+    go
+
+create table tbl_User
+(
+    fld_UserID   int not null
+        constraint tbl_User_pk
+            primary key nonclustered,
+    fld_UserName varchar(30),
+    fld_Password varchar(30),
+    fld_Identity int default 0
 )
     go
 

@@ -58,6 +58,12 @@ public class UserTest {
     }
 
     @Test
+    public void testGetAll(){
+        Impl_UserDao impl_userDao = new Impl_UserDao();
+        ResultSet all = impl_userDao.getAll();
+    }
+
+    @Test
     public void testDelete(){
         Impl_UserDao impl_userDao = new Impl_UserDao();
         impl_userDao.delete(dom_user);

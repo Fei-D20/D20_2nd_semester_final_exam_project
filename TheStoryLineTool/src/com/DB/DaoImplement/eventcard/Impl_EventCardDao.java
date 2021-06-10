@@ -7,7 +7,6 @@ import com.Domain.eventcard.Dom_EventCard;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -19,21 +18,36 @@ import java.util.ArrayList;
  */
 
 public class Impl_EventCardDao implements IF_EventCardDao {
-    public Impl_EventCardDao() {
-    }
+
+    /**
+     * this is the event card method. and notice when we set the event, note and comment.
+     * we need create the row in those table first.
+     * @param dom_eventCard
+     */
 
     public void add(Dom_EventCard dom_eventCard) {
         try {
-            String sql = "INSERT INTO  tbl_EventCard(fld_EventCardID, fld_EventName, fld_AuthorID, fld_EventId,fld_NoteID,fld_CommentID,fld_PreEventCardId" +
-                    ",fld_AfterEventCardID,fld_localDate) values (?,?,?,?)";
+            String sql =
+                    "INSERT INTO  tbl_EventCard(fld_EventCardID, fld_EventName, fld_AuthorName, fld_EventId,fld_NoteID,fld_CommentID,fld_PreEventCardId,fld_AfterEventCardID,fld_EditDate) values (?,?,?,?,?,?,?,?,?)";
+
             LocalDate localDate = dom_eventCard.getLocalDate();
             Date date = Date.valueOf(localDate);
-            CRUD_Util.update(sql, dom_eventCard.getEventCardID(), dom_eventCard.getEventName(),
-                    dom_eventCard.getDom_event().getEventID(), dom_eventCard.getDom_note().getNoteID(), dom_eventCard.getDom_comment().getCommentID(),
-                    dom_eventCard.getPreEventCardID(), dom_eventCard.getAfterEventCardID(),dom_eventCard.getLocalDate());
+
+            CRUD_Util.update(sql,
+                    dom_eventCard.getEventCardID(),
+                    dom_eventCard.getEventName(),
+                    dom_eventCard.getAuthorName(),
+                    dom_eventCard.getDom_event().getEventID(),
+                    dom_eventCard.getDom_note().getNoteID(),
+                    dom_eventCard.getDom_comment().getCommentID(),
+                    dom_eventCard.getPreEventCardID(),
+                    dom_eventCard.getAfterEventCardID(),
+                    date
+            );
+
             System.out.println("The Event : " + dom_eventCard.getEventName() + "   added into database is successful ! ");
-        } catch (Exception var3) {
-            var3.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -74,7 +88,7 @@ public class Impl_EventCardDao implements IF_EventCardDao {
         }
     }
 
-    public ArrayList<Dom_EventCard> getAll() {
+    public ResultSet getAll() {
         try {
             String sql = "SELECT * FROM tbl_EventCard";
             ResultSet var2 = CRUD_Util.getTable(sql);

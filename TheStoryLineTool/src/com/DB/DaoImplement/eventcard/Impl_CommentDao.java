@@ -6,8 +6,6 @@ import com.Domain.eventcard.Dom_Comment;
 
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 import static com.DB.util.CRUD_Util.getTable;
 import static com.DB.util.CRUD_Util.update;
@@ -41,7 +39,7 @@ public class Impl_CommentDao implements IF_CommentDao {
     @Override
     public void modify(Dom_Comment dom_comment) {
         try {
-            String sql = "UPDATE tbl_Comment SET fld_CommentAuthour = ?,fld_CommentTime = ? ,fld_Text = ? where fld_CommentId = ?";
+            String sql = "UPDATE tbl_Comment SET fld_Author = ?,fld_CommentTime = ? ,fld_CommentText = ? where fld_CommentId = ?";
             update(
                     sql,
                     dom_comment.getCommentAuthor(),
@@ -74,7 +72,8 @@ public class Impl_CommentDao implements IF_CommentDao {
         ResultSet instance = null;
 
         try {
-            String sql = "SELECT fld_commentID, fld_commentTime,fld_commentDate, fld_commentText, fld_Author FROM Tbl_Comment where Fld_CommentID = ?";
+            String sql =
+                    "SELECT fld_commentID, fld_commentTime,fld_CommentTime,fld_commentText, fld_Author FROM Tbl_Comment where Fld_CommentID = ?";
             instance = CRUD_Util.getInstance(sql, dom_comment.getCommentID());
 
             return instance;
@@ -84,10 +83,11 @@ public class Impl_CommentDao implements IF_CommentDao {
         return null;
     }
     @Override
-    public ArrayList<Dom_Comment> getAll() {
+    public ResultSet getAll() {
         try {
             String sql = "SELECT * FROM tbl_Comment";
             ResultSet table = getTable(sql);
+            return table;
 
         } catch (Exception e) {
             e.printStackTrace();

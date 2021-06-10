@@ -5,7 +5,6 @@ import com.DB.util.CRUD_Util;
 import com.Domain.user.Dom_User;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 import static com.DB.util.CRUD_Util.getTable;
 import static com.DB.util.CRUD_Util.update;
@@ -68,7 +67,7 @@ public class Impl_UserDao implements IF_UserDao {
     }
 
     @Override
-    public ArrayList<Dom_User> getAll() {
+    public ResultSet getAll() {
         try {
             String sql = "SELECT * FROM tbl_User";
             ResultSet table = getTable(sql);
