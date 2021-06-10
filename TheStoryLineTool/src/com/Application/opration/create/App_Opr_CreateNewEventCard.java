@@ -1,12 +1,18 @@
 package com.Application.opration.create;
 
 import com.Domain.eventcard.Dom_EventCard;
-import com.Domain.story.Dom_EventList;
 import com.Domain.user.Dom_LoginedUser;
+import com.Function.eventCard.Func_Comment;
+import com.Function.eventCard.Func_Event;
+import com.Function.eventCard.Func_Note;
+import com.Function.story.Func_EventList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+
+import java.time.LocalDate;
+import java.util.Random;
 
 
 /**
@@ -26,16 +32,31 @@ public class App_Opr_CreateNewEventCard implements EventHandler {
 
         Dom_EventCard newEventCard = new Dom_EventCard();
 
+        newEventCard.setEventCardID(new Random().nextInt(99));
         newEventCard.setAuthorName(Dom_LoginedUser.getInstance().getUserName());
         newEventCard.setEventName("new Event");
 
+        newEventCard.getDom_event().setEventID(newEventCard.getEventCardID());
         newEventCard.getDom_event().setQuickNote("some thing happening");
+        newEventCard.getDom_event().setEventDate(LocalDate.now());
+
+        newEventCard.getDom_note().setNoteID(newEventCard.getEventCardID());
         newEventCard.getDom_note().setNoteText("What happened?");
+
+        newEventCard.getDom_comment().setCommentID(newEventCard.getEventCardID());
         newEventCard.getDom_comment().setCommentAuthor("who are you");
         newEventCard.getDom_comment().setCommentText("what you want to say? ");
+        newEventCard.getDom_comment().setLocalDate(LocalDate.now());
+        /*
+         * here should be more about the event note and comment.
+         */
 
-        System.out.println("the new event card :" + newEventCard.toString());
-        Dom_EventList.getInstance().add(newEventCard);
+
+        Func_Event.addEvent(newEventCard.getDom_event());
+        Func_Note.addNote(newEventCard.getDom_note());
+        Func_Comment.addComment(newEventCard.getDom_comment());
+        Func_EventList.addEvent(newEventCard);
+
         lv_EventList.getItems().add(newEventCard);
 
         lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

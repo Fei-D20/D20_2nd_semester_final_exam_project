@@ -5,7 +5,6 @@ import com.DB.util.CRUD_Util;
 import com.DB.util.ConnectionUtil;
 import com.Domain.eventcard.Dom_EventCard;
 import com.Domain.story.Dom_EventList;
-import org.junit.Test;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -25,8 +24,10 @@ public class Func_EventList {
      * The method will set an event card object into the singleton event list.
      * @param eventCard the item of the event list. which is from instance an event card
      */
-    public static void setEvent(Dom_EventCard eventCard){
+    public static void addEvent(Dom_EventCard eventCard){
+        Impl_EventCardDao impl_eventCardDao = new Impl_EventCardDao();
         Dom_EventList.getInstance().add(eventCard);
+        impl_eventCardDao.add(eventCard);
     }
 
     public static ArrayList<Dom_EventCard> getEventList() {
@@ -41,10 +42,12 @@ public class Func_EventList {
                         all.getString(3),
                         all.getDate(9).toLocalDate()
                 );
-                Func_EventList.setEvent(dom_eventCard);
+                Dom_EventList.getInstance().add(dom_eventCard);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } finally {
+            ConnectionUtil.closeConPSAndRS(CRUD_Util.getConnection(),CRUD_Util.getPreparedStatement(),CRUD_Util.getResultSet());
         }
         return Dom_EventList.getInstance();
     }

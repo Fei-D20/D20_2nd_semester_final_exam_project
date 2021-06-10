@@ -20,13 +20,6 @@ import java.util.ArrayList;
  */
 public class App_EventList {
     public static ObservableList<Dom_EventCard> getEventList(){
-        ArrayList<Dom_EventCard> eventList;
-        try {
-            eventList = Func_EventList.getEventList();
-        } finally {
-            ConnectionUtil.closeConPSAndRS(CRUD_Util.getConnection(),CRUD_Util.getPreparedStatement(),CRUD_Util.getResultSet());
-
-        }
-        return FXCollections.observableArrayList(eventList);
+        return FXCollections.observableArrayList(Func_EventList.getEventList());
     }
 }
