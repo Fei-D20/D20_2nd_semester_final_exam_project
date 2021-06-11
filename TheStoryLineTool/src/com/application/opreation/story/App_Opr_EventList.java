@@ -39,11 +39,7 @@ public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
             gui_eventCard.getGui_eventCardTitle().getTf_EventTitleEventName().setText(selectedEventCard.getEventName());
             gui_eventCard.getGui_eventCardTitle().getTf_EventTitleAuthor().setText(selectedEventCard.getAuthorName());
             gui_eventCard.getGui_eventCardTitle().getTf_EventTitleDate().setText(String.valueOf(selectedEventCard.getLocalDate()));
-
-            /*
-             * right here remember to set the text for event and comment and note
-             * and remember to change the node of each three to text field for input.
-             */
+            gui_eventCard.getGui_event().getTf_EventChapter().setText(String.valueOf(selectedEventCard.getDom_event().getChapterNo()));
 
         }
         lv_EventList.refresh();

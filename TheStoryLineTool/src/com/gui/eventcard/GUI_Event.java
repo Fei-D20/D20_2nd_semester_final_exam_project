@@ -18,6 +18,10 @@ import javafx.scene.layout.VBox;
  * @ Version 0.1
  */
 public class GUI_Event {
+        private TextField tf_EventChapter;
+        private TextField tf_Role;
+        private TextField tf_Time;
+        private TextArea ta_EventValue;
     public VBox showEvent(){
         Label lb_Event = new Label("Event : ");
         lb_Event.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;" + "-fx-background-color: darkgray");
@@ -25,17 +29,17 @@ public class GUI_Event {
         lb_Event.setPadding(new Insets(1));
 
         Label lb_EventChapter = new Label("Chapter : ");
-        TextField tf_EventChapter = new TextField();
+        tf_EventChapter = new TextField();
         tf_EventChapter.setOnMouseClicked(new Con_Editable_DoubleClick());
         tf_EventChapter.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
 
         Label lb_EventRole = new Label("Role : ");
-        TextField tf_Role = new TextField();
+        tf_Role = new TextField();
         tf_Role.setOnMouseClicked(new Con_Editable_DoubleClick());
         tf_Role.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
 
         Label lb_EventTime = new Label("Time : ");
-        TextField tf_Time = new TextField();
+        tf_Time = new TextField();
         tf_Time.setOnMouseClicked(new Con_Editable_DoubleClick());
         tf_Time.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
 
@@ -46,7 +50,7 @@ public class GUI_Event {
         tp_Event.setPrefTileHeight(20);
         tp_Event.setPrefTileWidth(120);
 
-        TextArea ta_EventValue = new TextArea();
+        ta_EventValue = new TextArea();
         ta_EventValue.setPrefHeight(30);
         ta_EventValue.setWrapText(true);
         ta_EventValue.setEditable(false);
@@ -59,5 +63,37 @@ public class GUI_Event {
         vb_Event.setStyle("-fx-background-color: lightgray");
 
         return vb_Event;
+    }
+
+    public TextField getTf_EventChapter() {
+        return tf_EventChapter;
+    }
+
+    public void setTf_EventChapter(TextField tf_EventChapter) {
+        this.tf_EventChapter = tf_EventChapter;
+    }
+
+    public TextField getTf_Role() {
+        return tf_Role;
+    }
+
+    public void setTf_Role(TextField tf_Role) {
+        this.tf_Role = tf_Role;
+    }
+
+    public TextField getTf_Time() {
+        return tf_Time;
+    }
+
+    public void setTf_Time(TextField tf_Time) {
+        this.tf_Time = tf_Time;
+    }
+
+    public TextArea getTa_EventValue() {
+        return ta_EventValue;
+    }
+
+    public void setTa_EventValue(TextArea ta_EventValue) {
+        this.ta_EventValue = ta_EventValue;
     }
 }
