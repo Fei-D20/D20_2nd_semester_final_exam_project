@@ -39,7 +39,6 @@ import javafx.scene.text.Text;
  */
 public class main_OnePage extends Application {
     private Dragboard dragboard;
-    Dom_EventCard selectedEventCard;
     private final DataFormat buttonFormat = new DataFormat("com.example.myapp.formats.button");
 
     @Override
@@ -112,7 +111,6 @@ public class main_OnePage extends Application {
         App_Opr_EventList app_opr_eventList = new App_Opr_EventList();
         app_opr_eventList.setLv_EventList(lv_EventList);
         app_opr_eventList.setGui_eventCard(gui_eventCard);
-        app_opr_eventList.setSelectedEventCard(selectedEventCard);
 
         lv_EventList.getSelectionModel().selectedItemProperty().addListener(app_opr_eventList);
         lv_EventList.setCellFactory(TextFieldListCell.forListView(new StringConverter<Dom_EventCard>() {
@@ -136,13 +134,12 @@ public class main_OnePage extends Application {
 
 
         // ****************** Event Title application ***********************
-        App_Opr_ModifyEventTitleEventName app_opr_modifyEventTitleEventName = new App_Opr_ModifyEventTitleEventName(selectedEventCard,lv_EventList);
+        App_Opr_ModifyEventTitleEventName app_opr_modifyEventTitleEventName = new App_Opr_ModifyEventTitleEventName(lv_EventList);
         gui_eventCard.getGui_eventCardTitle().getTf_EventTitleEventName().textProperty().addListener(app_opr_modifyEventTitleEventName);
 
 
 
         // ***************** Event card application *************************
-        // right here is the event card use the login user's name put on the author name testified
 
 
 

@@ -1,5 +1,6 @@
 package com.gui.eventcard;
 
+import com.domain.eventcard.Dom_EventCard;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -14,6 +15,8 @@ import javafx.scene.layout.VBox;
 public class GUI_EventCard {
 
     private GUI_EventCardTitle gui_eventCardTitle;
+
+
 
     public AnchorPane showEventCard(){
         // ************************ Event Card Title ******************************
@@ -36,6 +39,7 @@ public class GUI_EventCard {
         // ****** Comment ********
         GUI_Comment gui_comment = new GUI_Comment();
         VBox vb_Comment = gui_comment.showComment();
+
 
         VBox vb_EventCard = new VBox();
         vb_EventCard.setStyle("-fx-background-color: darkgray");

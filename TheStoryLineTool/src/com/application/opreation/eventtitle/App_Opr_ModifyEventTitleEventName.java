@@ -16,42 +16,21 @@ import javafx.scene.control.ListView;
  */
 public class App_Opr_ModifyEventTitleEventName implements ChangeListener<String> {
 
-    private Dom_EventCard selectedEventCard;
     private ListView<Dom_EventCard> lv_EventList;
 
-    public App_Opr_ModifyEventTitleEventName(Dom_EventCard selectedEventCard, ListView<Dom_EventCard> lv_EventList) {
-        this.selectedEventCard = selectedEventCard;
+    public App_Opr_ModifyEventTitleEventName(ListView<Dom_EventCard> lv_EventList) {
         this.lv_EventList = lv_EventList;
     }
 
     @Override
     public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-        Func_EventCard func_eventCard = new Func_EventCard();
-
-        if(selectedEventCard != null) {
-            selectedEventCard.setEventName(newValue);
-            // here should be change the database but it not ...
-        }
 
         lv_EventList.getSelectionModel().getSelectedItem().setEventName(newValue);
+        Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
+        Func_EventCard func_eventCard = new Func_EventCard();
+        func_eventCard.modify(selectedItem);
         lv_EventList.refresh();
 
 
-    }
-
-    public Dom_EventCard getSelectedEventCard() {
-        return selectedEventCard;
-    }
-
-    public void setSelectedEventCard(Dom_EventCard selectedEventCard) {
-        this.selectedEventCard = selectedEventCard;
-    }
-
-    public ListView<Dom_EventCard> getLv_EventList() {
-        return lv_EventList;
-    }
-
-    public void setLv_EventList(ListView<Dom_EventCard> lv_EventList) {
-        this.lv_EventList = lv_EventList;
     }
 }
