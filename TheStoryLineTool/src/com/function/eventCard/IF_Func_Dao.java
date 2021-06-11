@@ -1,5 +1,7 @@
 package com.function.eventCard;
 
+import java.util.ArrayList;
+
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
  * @ create 2021-06-11-00.02
@@ -12,6 +14,6 @@ public interface IF_Func_Dao<T> {
     void add(T t);
     void modify(T t);
     void delete(T t);
-    void getInstance(T t);
-    void getAll();
+    T getInstance(T t);
+    ArrayList<T> getAll();
 }

@@ -1,7 +1,12 @@
 package com.gui.eventcard;
 
 import com.application.control.mouse.Con_Editable_DoubleClick;
+import com.application.opreation.eventtitle.App_Opr_ModifyEventTitleEventName;
+import com.domain.eventcard.Dom_EventCard;
+import com.function.eventCard.Func_EventCard;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -32,6 +37,19 @@ public class GUI_EventCardTitle {
         tf_EventTitleEventName = new TextField();
         tf_EventTitleEventName.setOnMouseClicked(new Con_Editable_DoubleClick());
         tf_EventTitleEventName.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
+        tf_EventTitleEventName.textProperty().addListener(new App_Opr_ModifyEventTitleEventName(){
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+                ListView<Dom_EventCard> lv_eventList = getLv_EventList();
+                lv_eventList.getSelectionModel().getSelectedItem().setEventName(newValue);
+                Dom_EventCard selectedItem = lv_eventList.getSelectionModel().getSelectedItem();
+                Func_EventCard func_eventCard = new Func_EventCard();
+                func_eventCard.modify(selectedItem);
+                lv_eventList.refresh();
+            }
+        });
+
 
         Label lb_EventTitleAuthor = new Label("Author : ");
         tf_EventTitleAuthor = new TextField();

@@ -43,4 +43,11 @@ public class EventCardTest {
         impl_eventCardDao.delete(new Dom_EventCard(1,"Event1","Raheela",LocalDate.now()));
 
     }
+
+    @Test
+    public void testGetInstance(){
+        Impl_EventCardDao impl_eventCardDao = new Impl_EventCardDao();
+        impl_eventCardDao.getInstance(new Dom_EventCard(1,"Event1","Raheela",LocalDate.now()));
+
+    }
 }

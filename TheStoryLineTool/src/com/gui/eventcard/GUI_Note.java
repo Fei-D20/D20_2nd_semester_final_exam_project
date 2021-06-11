@@ -16,13 +16,15 @@ import javafx.scene.layout.VBox;
  * @ Version 0.1
  */
 public class GUI_Note {
+    private TextArea ta_NoteValue;
+
     public VBox showNote(){
         Label lb_Note = new Label("Note : ");
         lb_Note.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;" + "-fx-background-color: darkgray;");
         lb_Note.setPrefHeight(1);
         lb_Note.setPadding(new Insets(1));
 
-        TextArea ta_NoteValue = new TextArea();
+        ta_NoteValue = new TextArea();
         ta_NoteValue.setPrefHeight(250);
         ta_NoteValue.setWrapText(true);
         ta_NoteValue.setEditable(false);
@@ -35,5 +37,13 @@ public class GUI_Note {
         vb_Note.setStyle("-fx-background-color: lightgray");
 
         return vb_Note;
+    }
+
+    public TextArea getTa_NoteValue() {
+        return ta_NoteValue;
+    }
+
+    public void setTa_NoteValue(TextArea ta_NoteValue) {
+        this.ta_NoteValue = ta_NoteValue;
     }
 }

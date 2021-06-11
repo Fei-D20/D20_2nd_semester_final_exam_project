@@ -1,7 +1,6 @@
 package com.function.story;
 
 import com.db.daoimplement.eventcard.Impl_EventCardDao;
-import com.db.daoimplement.eventcard.Impl_EventDao;
 import com.db.util.CRUD_Util;
 import com.db.util.ConnectionUtil;
 import com.domain.eventcard.Dom_Comment;
@@ -9,12 +8,13 @@ import com.domain.eventcard.Dom_Event;
 import com.domain.eventcard.Dom_EventCard;
 import com.domain.eventcard.Dom_Note;
 import com.domain.story.Dom_EventList;
+import com.function.eventCard.Func_Comment;
+import com.function.eventCard.Func_Event;
+import com.function.eventCard.Func_Note;
 import com.function.eventCard.IF_Func_Dao;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -39,28 +39,26 @@ public class Func_EventList implements IF_Func_Dao<Dom_EventCard> {
                         eventCardRS.getString(3),
                         eventCardRS.getDate(9).toLocalDate()
                 );
+
                 Dom_Event dom_event = dom_eventCard.getDom_event();
                 dom_event.setEventID(dom_eventCard.getEventCardID());
                 dom_event.setEventName(dom_eventCard.getEventName());
+                Func_Event func_event = new Func_Event();
+                Dom_Event eventInstance = func_event.getInstance(dom_event);
+                dom_eventCard.setDom_event(eventInstance);
 
-//                Impl_EventDao impl_eventDao = new Impl_EventDao();
-//                ResultSet eventRS = impl_eventDao.getInstance(dom_event);
-//                while (eventRS.next()) {
-//                    LocalDate date = eventRS.getDate(2).toLocalDate();
-//                    String location = eventRS.getString(5);
-//                    int chapter = eventRS.getInt(3);
-//                    String role = eventRS.getString(4);
-//                    String quickNote = eventRS.getString(6);
-//                    System.out.println(quickNote);
-//                    dom_event.setEventDate(date);
-//                    dom_event.setLocation(location);
-//                    dom_event.setChapterNo(chapter);
-//                    dom_event.setRole(role);
-//                    dom_event.setQuickNote(quickNote);
-//                    dom_eventCard.setDom_event(dom_event);
-//                }
-//
-//                System.out.println("addevent" + dom_event);
+                Dom_Note dom_note = dom_eventCard.getDom_note();
+                dom_note.setNoteID(dom_eventCard.getEventCardID());
+                Func_Note func_note = new Func_Note();
+                Dom_Note noteInstance = func_note.getInstance(dom_note);
+                dom_eventCard.setDom_note(noteInstance);
+
+                Dom_Comment dom_comment = dom_eventCard.getDom_comment();
+                dom_comment.setCommentID(dom_eventCard.getEventCardID());
+                Func_Comment func_comment = new Func_Comment();
+                Dom_Comment commentInstance = func_comment.getInstance(dom_comment);
+                dom_eventCard.setDom_comment(commentInstance);
+
 
                 Dom_EventList.getInstance().add(dom_eventCard);
             }
@@ -90,12 +88,14 @@ public class Func_EventList implements IF_Func_Dao<Dom_EventCard> {
     }
 
     @Override
-    public void getInstance(Dom_EventCard dom_eventCard) {
+    public Dom_EventCard getInstance(Dom_EventCard dom_eventCard) {
 
+        return dom_eventCard;
     }
 
     @Override
-    public void getAll() {
+    public ArrayList<Dom_EventCard> getAll() {
 
+        return null;
     }
 }

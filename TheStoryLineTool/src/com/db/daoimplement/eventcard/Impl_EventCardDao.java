@@ -90,8 +90,8 @@ public class Impl_EventCardDao implements IF_EventCardDao {
         ResultSet instance = null;
 
         try {
-            String sql = "SELECT fld_EventCardID, fld_EventID, fld_AuthorName , fld_NoteID, fld_commentID,fld_PreEventCardId,fld_AfterEventCard,fld_localDate FROM Tbl_EventCard where Fld_EventName = ?";
-            instance = CRUD_Util.getInstance(sql, dom_eventCard.getEventName());
+            String sql = "SELECT fld_EventName, fld_AuthorName ,fld_EventID, fld_NoteID, fld_commentID,fld_PreEventCardId,fld_AfterEventCardID,fld_EditDate FROM Tbl_EventCard where fld_EventCardID = ?";
+            instance = CRUD_Util.getInstance(sql, dom_eventCard.getEventCardID());
             return instance;
         } catch (Exception var4) {
             var4.printStackTrace();

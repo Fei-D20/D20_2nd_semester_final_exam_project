@@ -57,7 +57,7 @@ public class Impl_NoteDao implements IF_NoteDao {
         ResultSet instance = null;
 
         try {
-            String sql = "SELECT fld_NoteID, fld_NoteText FROM Tbl_Note where Fld_NoteID = ?";
+            String sql = "SELECT fld_NoteText FROM Tbl_Note where Fld_NoteID = ?";
             instance = CRUD_Util.getInstance(sql, dom_note.getNoteID());
             return instance;
         } catch (Exception var4) {

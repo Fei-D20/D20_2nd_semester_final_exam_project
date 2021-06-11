@@ -54,6 +54,9 @@ public class main_OnePage extends Application {
         AnchorPane anP_EventList = gui_eventList.showEventList();
         ListView<Dom_EventCard> lv_EventList = gui_eventList.getLv_EventList();
 
+        App_Opr_ModifyEventTitleEventName app_opr_modifyEventTitleEventName = new App_Opr_ModifyEventTitleEventName();
+        app_opr_modifyEventTitleEventName.setLv_EventList(lv_EventList);
+
         // ************************ Event Card ******************************
 
         GUI_EventCard gui_eventCard = new GUI_EventCard();
@@ -134,8 +137,6 @@ public class main_OnePage extends Application {
 
 
         // ****************** Event Title application ***********************
-        App_Opr_ModifyEventTitleEventName app_opr_modifyEventTitleEventName = new App_Opr_ModifyEventTitleEventName(lv_EventList);
-        gui_eventCard.getGui_eventCardTitle().getTf_EventTitleEventName().textProperty().addListener(app_opr_modifyEventTitleEventName);
 
 
 

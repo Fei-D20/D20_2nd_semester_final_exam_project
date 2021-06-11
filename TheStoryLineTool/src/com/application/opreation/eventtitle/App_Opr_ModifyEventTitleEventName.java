@@ -16,21 +16,20 @@ import javafx.scene.control.ListView;
  */
 public class App_Opr_ModifyEventTitleEventName implements ChangeListener<String> {
 
-    private ListView<Dom_EventCard> lv_EventList;
+    private static ListView<Dom_EventCard> lv_EventList;
 
-    public App_Opr_ModifyEventTitleEventName(ListView<Dom_EventCard> lv_EventList) {
-        this.lv_EventList = lv_EventList;
+    public App_Opr_ModifyEventTitleEventName() {
     }
 
     @Override
     public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+    }
 
-        lv_EventList.getSelectionModel().getSelectedItem().setEventName(newValue);
-        Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
-        Func_EventCard func_eventCard = new Func_EventCard();
-        func_eventCard.modify(selectedItem);
-        lv_EventList.refresh();
+    public static ListView<Dom_EventCard> getLv_EventList() {
+        return lv_EventList;
+    }
 
-
+    public static void setLv_EventList(ListView<Dom_EventCard> lv_EventList) {
+        App_Opr_ModifyEventTitleEventName.lv_EventList = lv_EventList;
     }
 }

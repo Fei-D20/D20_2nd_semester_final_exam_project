@@ -69,7 +69,7 @@ public class Impl_EventDao implements IF_EventDao {
         ResultSet instance = null;
 
         try {
-            String sql = "SELECT fld_EventID, fld_EventDate, fld_ChapterNo, fld_Role,fld_Location,fld_QuickNote FROM Tbl_Event where Fld_EventID = ?";
+            String sql = "SELECT fld_EventDate, fld_ChapterNo, fld_Role,fld_Location,fld_QuickNote FROM Tbl_Event where Fld_EventID = ?";
             instance = CRUD_Util.getInstance(sql, dom_event.getEventID());
             return instance;
         } catch (Exception var4) {

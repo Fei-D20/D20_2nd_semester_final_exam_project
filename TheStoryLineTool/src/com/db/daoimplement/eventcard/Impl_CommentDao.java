@@ -72,8 +72,7 @@ public class Impl_CommentDao implements IF_CommentDao {
         ResultSet instance = null;
 
         try {
-            String sql =
-                    "SELECT fld_commentID, fld_commentTime,fld_CommentTime,fld_commentText, fld_Author FROM Tbl_Comment where Fld_CommentID = ?";
+            String sql = "SELECT fld_CommentTime,fld_commentText, fld_Author FROM Tbl_Comment where Fld_CommentID = ?";
             instance = CRUD_Util.getInstance(sql, dom_comment.getCommentID());
 
             return instance;
