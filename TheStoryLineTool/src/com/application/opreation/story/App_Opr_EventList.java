@@ -34,12 +34,17 @@ public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
         lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         selectedEventCard = newValue;
+        System.out.println("get new: " + selectedEventCard);
         if (selectedEventCard != null) {
-            gui_eventCard.getGui_eventCardTitle().getLb_EventCardTitle().setText("Event Card : " + selectedEventCard.getEventName());
+            gui_eventCard.getGui_eventCardTitle().getLb_EventCardTitle().setText("Event Card : " + selectedEventCard.getEventCardID());
             gui_eventCard.getGui_eventCardTitle().getTf_EventTitleEventName().setText(selectedEventCard.getEventName());
             gui_eventCard.getGui_eventCardTitle().getTf_EventTitleAuthor().setText(selectedEventCard.getAuthorName());
             gui_eventCard.getGui_eventCardTitle().getTf_EventTitleDate().setText(String.valueOf(selectedEventCard.getLocalDate()));
+
             gui_eventCard.getGui_event().getTf_EventChapter().setText(String.valueOf(selectedEventCard.getDom_event().getChapterNo()));
+            gui_eventCard.getGui_event().getTf_Role().setText(selectedEventCard.getDom_event().getRole());
+//            gui_eventCard.getGui_event().getTf_Time().setText(selectedEventCard.getDom_event().getEventDate().toString());
+//            gui_eventCard.getGui_event().getTa_EventValue().setText(selectedEventCard.getDom_event().getQuickNote());
 
         }
         lv_EventList.refresh();
