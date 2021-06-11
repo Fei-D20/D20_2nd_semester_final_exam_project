@@ -53,9 +53,21 @@ public class Impl_EventCardDao implements IF_EventCardDao {
 
     public void modify(Dom_EventCard dom_eventCard) {
         try {
-            String sql = "UPDATE tbl_EventCard SET fld_EventCardID = ?,fld_EventName = ? ,fld_AuthorName = ? , fld_EventID= ?,fld_NoteID=?," +
-                    "fld_CommentID=?,fld_PreEventCardId = ?,fld_AfterEventCard=?,fld_LocalDate=?  where fld_EventCardID = ?";
-            CRUD_Util.update(sql,dom_eventCard.getEventCardID(), dom_eventCard.getEventName(), dom_eventCard.getDom_event().getEventID(), dom_eventCard.getDom_note().getNoteID(), dom_eventCard.getLocalDate());
+            String sql = "UPDATE tbl_EventCard SET  " +
+                    "fld_EventName = ?," +
+                    "fld_AuthorName= ?," +
+                    "fld_EditDate= ?," +
+                    "fld_PreEventCardID= ?," +
+                    "fld_AfterEventCardID= ? " +
+                    "WHERE fld_EventCardID= ?";
+            CRUD_Util.update(sql,
+                    dom_eventCard.getEventName(),
+                    dom_eventCard.getAuthorName(),
+                    java.sql.Date.valueOf(dom_eventCard.getLocalDate()),
+                    dom_eventCard.getPreEventCardID(),
+                    dom_eventCard.getAfterEventCardID(),
+                    dom_eventCard.getEventCardID()
+            );
             System.out.println("update finished");
         } catch (Exception var3) {
             var3.printStackTrace();

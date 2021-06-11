@@ -1,6 +1,6 @@
 package com.gui.eventcard;
 
-import com.application.opration.mouse.Opr_Editable_DoubleClick;
+import com.application.control.mouse.Con_Editable_DoubleClick;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
@@ -30,17 +30,17 @@ public class GUI_EventCardTitle {
 
         Label lb_EventTitleEventName = new Label("Event Name : ");
         tf_EventTitleEventName = new TextField();
-        tf_EventTitleEventName.setOnMouseClicked(new Opr_Editable_DoubleClick());
+        tf_EventTitleEventName.setOnMouseClicked(new Con_Editable_DoubleClick());
         tf_EventTitleEventName.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
 
         Label lb_EventTitleAuthor = new Label("Author : ");
         tf_EventTitleAuthor = new TextField();
-        tf_EventTitleAuthor.setOnMouseClicked(new Opr_Editable_DoubleClick());
+        tf_EventTitleAuthor.setOnMouseClicked(new Con_Editable_DoubleClick());
         tf_EventTitleAuthor.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
 
         Label lb_EventTitleDate = new Label("Date : ");
         tf_EventTitleDate = new TextField();
-        tf_EventTitleDate.setOnMouseClicked(new Opr_Editable_DoubleClick());
+        tf_EventTitleDate.setOnMouseClicked(new Con_Editable_DoubleClick());
         tf_EventTitleDate.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
 
 

@@ -1,4 +1,4 @@
-package com.application.opration.edit;
+package com.application.control.edit;
 
 
 import javafx.beans.value.ChangeListener;
@@ -12,7 +12,7 @@ import javafx.beans.value.ObservableValue;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class Edit_Input implements ChangeListener<String> {
+public class Con_Edit_Input implements ChangeListener<String> {
     @Override
     public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
         System.out.println(newValue);

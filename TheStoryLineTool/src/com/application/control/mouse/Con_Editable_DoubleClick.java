@@ -1,4 +1,4 @@
-package com.application.opration.mouse;
+package com.application.control.mouse;
 
 
 import javafx.event.EventHandler;
@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class Opr_Editable_DoubleClick implements EventHandler<MouseEvent> {
+public class Con_Editable_DoubleClick implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent event) {
         if(event.getClickCount() == 2){

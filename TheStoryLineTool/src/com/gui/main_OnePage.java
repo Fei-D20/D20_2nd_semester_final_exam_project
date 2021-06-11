@@ -1,8 +1,10 @@
 package com.gui;
 
 
-import com.application.opration.editeventlist.App_Opr_CreateNewEventCard;
-import com.application.opration.editeventlist.App_Opr_DeleteEventCard;
+import com.application.opreation.eventcard.App_Opr_CreateNewEventCard;
+import com.application.opreation.eventcard.App_Opr_DeleteEventCard;
+import com.application.opreation.eventtitle.App_Opr_ModifyEventTitleEventName;
+import com.application.opreation.story.App_Opr_EventList;
 import com.domain.eventcard.Dom_EventCard;
 
 import com.gui.User.GUI_UserLogin;
@@ -13,8 +15,6 @@ import com.gui.eventmap.GUI_EventMap;
 import com.gui.eventmap.GUI_TimeLine;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -106,35 +106,15 @@ public class main_OnePage extends Application {
         // show the login window
         GUI_UserLogin.showLoginStage(primaryStage);
 
-        gui_eventCard.getGui_eventCardTitle().getTf_EventTitleEventName().textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                selectedEventCard.setEventName(newValue);
-                lv_EventList.getSelectionModel().getSelectedItem().setEventName(newValue);
-            }
-        });
+
 
         // ****************** Event List application ***********************
-        lv_EventList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Dom_EventCard>() {
-            @Override
-            public void changed(ObservableValue<? extends Dom_EventCard> observable, Dom_EventCard oldValue, Dom_EventCard newValue) {
-                lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        App_Opr_EventList app_opr_eventList = new App_Opr_EventList();
+        app_opr_eventList.setLv_EventList(lv_EventList);
+        app_opr_eventList.setGui_eventCard(gui_eventCard);
+        app_opr_eventList.setSelectedEventCard(selectedEventCard);
 
-                selectedEventCard = newValue;
-                if (selectedEventCard != null) {
-                    gui_eventCard.getGui_eventCardTitle().getLb_EventCardTitle().setText("Event Card : " + selectedEventCard.getEventName());
-                    gui_eventCard.getGui_eventCardTitle().getTf_EventTitleEventName().setText(selectedEventCard.getEventName());
-                    gui_eventCard.getGui_eventCardTitle().getTf_EventTitleAuthor().setText(selectedEventCard.getAuthorName());
-                    gui_eventCard.getGui_eventCardTitle().getTf_EventTitleDate().setText(String.valueOf(selectedEventCard.getLocalDate()));
-
-                    /*
-                     * right here remember to set the text for event and comment and note
-                     * and remember to change the node of each three to text field for input.
-                     */
-
-                }
-            }
-        });
+        lv_EventList.getSelectionModel().selectedItemProperty().addListener(app_opr_eventList);
         lv_EventList.setCellFactory(TextFieldListCell.forListView(new StringConverter<Dom_EventCard>() {
             @Override
             public String toString(Dom_EventCard object) {
@@ -153,6 +133,12 @@ public class main_OnePage extends Application {
                 return selectedItem;
             }
         }));
+
+
+        // ****************** Event Title application ***********************
+        App_Opr_ModifyEventTitleEventName app_opr_modifyEventTitleEventName = new App_Opr_ModifyEventTitleEventName(selectedEventCard,lv_EventList);
+        gui_eventCard.getGui_eventCardTitle().getTf_EventTitleEventName().textProperty().addListener(app_opr_modifyEventTitleEventName);
+
 
 
         // ***************** Event card application *************************

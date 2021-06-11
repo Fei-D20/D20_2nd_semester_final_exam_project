@@ -1,7 +1,7 @@
 package com.gui.eventcard;
 
-import com.application.opration.edit.Edit_InputLimit;
-import com.application.opration.mouse.Opr_Editable_DoubleClick;
+import com.application.control.edit.Con_Edit_InputLimit;
+import com.application.control.mouse.Con_Editable_DoubleClick;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -26,8 +26,8 @@ public class GUI_Note {
         ta_NoteValue.setPrefHeight(250);
         ta_NoteValue.setWrapText(true);
         ta_NoteValue.setEditable(false);
-        ta_NoteValue.setOnMouseClicked(new Opr_Editable_DoubleClick());
-        ta_NoteValue.textProperty().addListener(new Edit_InputLimit(2000, ta_NoteValue));
+        ta_NoteValue.setOnMouseClicked(new Con_Editable_DoubleClick());
+        ta_NoteValue.textProperty().addListener(new Con_Edit_InputLimit(2000, ta_NoteValue));
         ta_NoteValue.setPromptText("event description : max 2000 words ");
 
         VBox vb_Note = new VBox(10);

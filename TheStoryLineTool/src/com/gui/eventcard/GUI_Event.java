@@ -1,7 +1,7 @@
 package com.gui.eventcard;
 
-import com.application.opration.edit.Edit_InputLimit;
-import com.application.opration.mouse.Opr_Editable_DoubleClick;
+import com.application.control.edit.Con_Edit_InputLimit;
+import com.application.control.mouse.Con_Editable_DoubleClick;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -30,8 +30,8 @@ public class GUI_Event {
         ta_EventValue.setPrefHeight(30);
         ta_EventValue.setWrapText(true);
         ta_EventValue.setEditable(false);
-        ta_EventValue.setOnMouseClicked(new Opr_Editable_DoubleClick());
-        ta_EventValue.textProperty().addListener(new Edit_InputLimit(120, ta_EventValue));
+        ta_EventValue.setOnMouseClicked(new Con_Editable_DoubleClick());
+        ta_EventValue.textProperty().addListener(new Con_Edit_InputLimit(120, ta_EventValue));
         ta_EventValue.setPromptText("Quick note :  max 120 words ");
 
         VBox vb_Event = new VBox(10);

@@ -1,7 +1,7 @@
 package com.gui.user;
 
 
-import com.application.controller.user.User.App_UserRegister;
+import com.application.opreation.user.User.App_Opr_UserRegister;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -58,7 +58,7 @@ public class GUI_UserRegister {
         bu_Register.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                App_UserRegister.register(tf_RegisterUser,tf_RegisterPassword);
+                App_Opr_UserRegister.register(tf_RegisterUser,tf_RegisterPassword);
                 stage.close();
             }
         });

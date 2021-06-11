@@ -1,7 +1,7 @@
 package com.gui.eventcard;
 
-import com.application.opration.edit.Edit_InputLimit;
-import com.application.opration.mouse.Opr_Editable_DoubleClick;
+import com.application.control.edit.Con_Edit_InputLimit;
+import com.application.control.mouse.Con_Editable_DoubleClick;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -31,9 +31,9 @@ public class GUI_Comment {
         ta_CommentValue.setPrefHeight(250);
         ta_CommentValue.setWrapText(true);
         ta_CommentValue.setEditable(false);
-        ta_CommentValue.setOnMouseClicked(new Opr_Editable_DoubleClick());
+        ta_CommentValue.setOnMouseClicked(new Con_Editable_DoubleClick());
         ta_CommentValue.setPromptText("event comment : max 2000 word");
-        ta_CommentValue.textProperty().addListener(new Edit_InputLimit(2000, ta_CommentValue));
+        ta_CommentValue.textProperty().addListener(new Con_Edit_InputLimit(2000, ta_CommentValue));
         ta_CommentValue.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {

@@ -1,4 +1,4 @@
-package com.application.controller.user.User;
+package com.application.opreation.user.User;
 
 import com.domain.user.Dom_User;
 import com.function.user.Func_User;
@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class App_UserRegister {
+public class App_Opr_UserRegister {
 
     public static void register(TextField tf_UserName , TextField tf_Password){
         String userName = tf_UserName.getText();

@@ -1,4 +1,4 @@
-package com.application.opration.editeventlist;
+package com.application.opreation.eventcard;
 
 import com.domain.eventcard.Dom_EventCard;
 import com.domain.user.Dom_LoginedUser;

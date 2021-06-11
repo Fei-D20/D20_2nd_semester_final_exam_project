@@ -1,4 +1,4 @@
-package com.application.opration.edit;
+package com.application.control.edit;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,12 +12,12 @@ import javafx.scene.control.TextInputControl;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class Edit_InputLimit implements ChangeListener<String> {
+public class Con_Edit_InputLimit implements ChangeListener<String> {
 
     private int inputLimit;
     private TextInputControl textInputControl;
 
-    public Edit_InputLimit(int inputLimit, TextInputControl textInputControl) {
+    public Con_Edit_InputLimit(int inputLimit, TextInputControl textInputControl) {
         this.inputLimit = inputLimit;
         this.textInputControl = textInputControl;
     }

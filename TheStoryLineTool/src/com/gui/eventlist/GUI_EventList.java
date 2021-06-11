@@ -1,6 +1,6 @@
 package com.gui.eventlist;
 
-import com.application.controller.story.App_EventList;
+import com.application.opreation.story.App_Opr_EventList;
 import com.domain.eventcard.Dom_EventCard;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -32,7 +32,7 @@ public class GUI_EventList {
         lb_EventList.setPadding(new Insets(1));
 
 
-        lv_EventList = new ListView<Dom_EventCard>(App_EventList.getEventList());
+        lv_EventList = new ListView<Dom_EventCard>(App_Opr_EventList.getEventList());
 
         lv_EventList.setPlaceholder(new Label("Event Card List"));
         lv_EventList.setPrefHeight(700);

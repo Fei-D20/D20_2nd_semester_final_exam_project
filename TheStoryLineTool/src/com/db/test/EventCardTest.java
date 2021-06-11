@@ -4,6 +4,7 @@ import com.db.daoimplement.eventcard.Impl_EventCardDao;
 import com.domain.eventcard.Dom_EventCard;
 import org.junit.Test;
 
+import java.sql.ResultSet;
 import java.time.LocalDate;
 
 /**
@@ -30,7 +31,10 @@ public class EventCardTest {
 
     @Test
     public void testModify(){
+        Impl_EventCardDao impl_eventCardDao = new Impl_EventCardDao();
+        Dom_EventCard dom_eventCard = new Dom_EventCard(2,"try","Fei",LocalDate.now());
 
+        impl_eventCardDao.modify(dom_eventCard);
     }
 
     @Test

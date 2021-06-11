@@ -1,4 +1,4 @@
-package com.application.controller.user.User;
+package com.application.opreation.user.User;
 
 import com.domain.user.Dom_LoginedUser;
 import com.domain.user.Dom_User;
@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class App_UserLogin {
+public class App_Opr_UserLogin {
     public static void login(Stage stage, TextField user, TextField password){
         String tf_LoginUserText = user.getText();
         String tf_LoginPasswordText = password.getText();

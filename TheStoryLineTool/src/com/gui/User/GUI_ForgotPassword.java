@@ -1,6 +1,6 @@
 package com.gui.User;
 
-import com.application.controller.user.User.App_ForgotPassword;
+import com.application.opreation.user.User.App_Opr_ForgotPassword;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -55,7 +55,7 @@ public class GUI_ForgotPassword {
         bu_SendPassword.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                App_ForgotPassword.PasswordRequest(tf_Email,tf_UserName);
+                App_Opr_ForgotPassword.PasswordRequest(tf_Email,tf_UserName);
                 stage.close();
             }
         });
