@@ -5,6 +5,8 @@ import com.application.control.mouse.Con_Editable_DoubleClick;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -23,8 +25,26 @@ public class GUI_Event {
         lb_Event.setPadding(new Insets(1));
 
         Label lb_EventChapter = new Label("Chapter : ");
+        TextField tf_EventChapter = new TextField();
+        tf_EventChapter.setOnMouseClicked(new Con_Editable_DoubleClick());
+        tf_EventChapter.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
+
         Label lb_EventRole = new Label("Role : ");
+        TextField tf_Role = new TextField();
+        tf_Role.setOnMouseClicked(new Con_Editable_DoubleClick());
+        tf_Role.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
+
         Label lb_EventTime = new Label("Time : ");
+        TextField tf_Time = new TextField();
+        tf_Time.setOnMouseClicked(new Con_Editable_DoubleClick());
+        tf_Time.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
+
+
+        TilePane tp_Event = new TilePane();
+        tp_Event.getChildren().addAll(lb_EventChapter,tf_EventChapter,lb_EventRole,tf_Role,lb_EventTime,tf_Time);
+        tp_Event.setStyle("-fx-background-color: lightgray");
+        tp_Event.setPrefTileHeight(20);
+        tp_Event.setPrefTileWidth(120);
 
         TextArea ta_EventValue = new TextArea();
         ta_EventValue.setPrefHeight(30);
@@ -35,7 +55,7 @@ public class GUI_Event {
         ta_EventValue.setPromptText("Quick note :  max 120 words ");
 
         VBox vb_Event = new VBox(10);
-        vb_Event.getChildren().addAll(lb_EventChapter, lb_EventRole, lb_EventTime, ta_EventValue);
+        vb_Event.getChildren().addAll(lb_Event,tp_Event, ta_EventValue);
         vb_Event.setStyle("-fx-background-color: lightgray");
 
         return vb_Event;

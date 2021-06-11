@@ -15,6 +15,9 @@ import javafx.scene.layout.VBox;
 public class GUI_EventCard {
 
     private GUI_EventCardTitle gui_eventCardTitle;
+    private GUI_Event gui_event;
+    private GUI_Note gui_note;
+    private GUI_Comment gui_comment;
 
 
 
@@ -27,17 +30,17 @@ public class GUI_EventCard {
 
         // ****************** Event ******************
 
-        GUI_Event gui_event = new GUI_Event();
+        gui_event = new GUI_Event();
         VBox vb_Event = gui_event.showEvent();
 
 
         //******* Note *********
 
-        GUI_Note gui_note = new GUI_Note();
+        gui_note = new GUI_Note();
         VBox vb_Note = gui_note.showNote();
 
         // ****** Comment ********
-        GUI_Comment gui_comment = new GUI_Comment();
+        gui_comment = new GUI_Comment();
         VBox vb_Comment = gui_comment.showComment();
 
 
@@ -62,5 +65,29 @@ public class GUI_EventCard {
 
     public void setGui_eventCardTitle(GUI_EventCardTitle gui_eventCardTitle) {
         this.gui_eventCardTitle = gui_eventCardTitle;
+    }
+
+    public GUI_Event getGui_event() {
+        return gui_event;
+    }
+
+    public void setGui_event(GUI_Event gui_event) {
+        this.gui_event = gui_event;
+    }
+
+    public GUI_Note getGui_note() {
+        return gui_note;
+    }
+
+    public void setGui_note(GUI_Note gui_note) {
+        this.gui_note = gui_note;
+    }
+
+    public GUI_Comment getGui_comment() {
+        return gui_comment;
+    }
+
+    public void setGui_comment(GUI_Comment gui_comment) {
+        this.gui_comment = gui_comment;
     }
 }
