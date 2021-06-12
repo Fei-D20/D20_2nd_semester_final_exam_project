@@ -51,6 +51,7 @@ public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
             gui_eventCard.getGui_comment().getTf_CommentAuthor().setText(selectedEventCard.getDom_comment().getCommentAuthor());
             gui_eventCard.getGui_comment().getTa_CommentValue().setText(selectedEventCard.getDom_comment().getCommentText());
 
+            App_Opr_View.setSelectedEvent(selectedEventCard);
         }
         lv_EventList.refresh();
     }

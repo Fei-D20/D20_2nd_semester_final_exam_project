@@ -138,6 +138,8 @@ public class main_OnePage extends Application {
 
 
         // ****************** View application ***********************
+
+
         gui_view.getBu_Export().setOnAction(new App_Opr_View());
 
 
