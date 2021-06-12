@@ -3,16 +3,17 @@ package com.gui;
 
 import com.application.opreation.eventcard.App_Opr_CreateNewEventCard;
 import com.application.opreation.eventcard.App_Opr_DeleteEventCard;
-import com.application.opreation.eventtitle.App_Opr_ModifyText;
+import com.application.opreation.eventcard.App_Opr_ModifyText;
 import com.application.opreation.story.App_Opr_EventList;
+import com.application.opreation.story.App_Opr_View;
 import com.domain.eventcard.Dom_EventCard;
 
-import com.gui.User.GUI_UserLogin;
+import com.gui.user.GUI_UserLogin;
 import com.gui.controlbar.GUI_ControlBar;
 import com.gui.eventcard.*;
 import com.gui.eventlist.GUI_EventList;
 import com.gui.eventmap.GUI_EventMap;
-import com.gui.eventmap.GUI_TimeLine;
+import com.gui.eventmap.GUI_View;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -67,10 +68,10 @@ public class main_OnePage extends Application {
         GUI_EventMap gui_eventMap = new GUI_EventMap();
         AnchorPane anP_EventMap = gui_eventMap.showEventMap();
 
-        // *********************** Time Line **************************
+        // *********************** View **************************
 
-        GUI_TimeLine gui_timeLine = new GUI_TimeLine();
-        AnchorPane anP_TimeLine = gui_timeLine.showTimeLine();
+        GUI_View gui_view = new GUI_View();
+        AnchorPane anP_TimeLine = gui_view.showView();
 
 
         // *********************** Root *********************
@@ -136,8 +137,8 @@ public class main_OnePage extends Application {
         }));
 
 
-        // ****************** Event Title application ***********************
-
+        // ****************** View application ***********************
+        gui_view.getBu_Export().setOnAction(new App_Opr_View());
 
 
         // ***************** Event card application *************************

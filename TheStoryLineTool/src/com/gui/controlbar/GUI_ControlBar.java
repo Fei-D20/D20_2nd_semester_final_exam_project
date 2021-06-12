@@ -1,6 +1,6 @@
 package com.gui.controlbar;
 
-import com.gui.User.GUI_UserLogin;
+import com.gui.user.GUI_UserLogin;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;

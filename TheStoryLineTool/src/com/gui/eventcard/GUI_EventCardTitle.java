@@ -1,7 +1,7 @@
 package com.gui.eventcard;
 
 import com.application.control.mouse.Con_Editable_DoubleClick;
-import com.application.opreation.eventtitle.App_Opr_ModifyText;
+import com.application.opreation.eventcard.App_Opr_ModifyText;
 import com.domain.eventcard.Dom_EventCard;
 import com.function.eventCard.Func_EventCard;
 import javafx.beans.value.ObservableValue;
@@ -12,7 +12,6 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan

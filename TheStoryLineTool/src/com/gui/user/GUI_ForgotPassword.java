@@ -1,4 +1,4 @@
-package com.gui.User;
+package com.gui.user;
 
 import com.application.opreation.user.User.App_Opr_ForgotPassword;
 import javafx.event.ActionEvent;

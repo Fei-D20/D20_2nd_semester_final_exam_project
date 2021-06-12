@@ -2,11 +2,9 @@ package com.gui.eventcard;
 
 import com.application.control.edit.Con_Edit_InputLimit;
 import com.application.control.mouse.Con_Editable_DoubleClick;
-import com.application.opreation.eventtitle.App_Opr_ModifyText;
+import com.application.opreation.eventcard.App_Opr_ModifyText;
 import com.domain.eventcard.Dom_EventCard;
 import com.function.eventCard.Func_Comment;
-import com.function.eventCard.Func_Event;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;

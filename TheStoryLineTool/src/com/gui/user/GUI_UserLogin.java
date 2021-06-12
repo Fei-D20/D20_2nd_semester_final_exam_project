@@ -1,7 +1,6 @@
-package com.gui.User;
+package com.gui.user;
 
 import com.application.opreation.user.User.App_Opr_UserLogin;
-import com.gui.user.GUI_UserRegister;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
