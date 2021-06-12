@@ -2,12 +2,20 @@ package com.gui.eventcard;
 
 import com.application.control.edit.Con_Edit_InputLimit;
 import com.application.control.mouse.Con_Editable_DoubleClick;
+import com.application.opreation.eventtitle.App_Opr_ModifyText;
+import com.domain.eventcard.Dom_EventCard;
+import com.function.eventCard.Func_Event;
+import com.function.eventCard.Func_EventCard;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+
+import java.time.LocalDate;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -25,23 +33,68 @@ public class GUI_Event {
     public VBox showEvent(){
         Label lb_Event = new Label("Event : ");
         lb_Event.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;" + "-fx-background-color: darkgray");
-        lb_Event.setPrefHeight(1);
         lb_Event.setPadding(new Insets(1));
 
         Label lb_EventChapter = new Label("Chapter : ");
         tf_EventChapter = new TextField();
         tf_EventChapter.setOnMouseClicked(new Con_Editable_DoubleClick());
         tf_EventChapter.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
+        tf_EventChapter.textProperty().addListener(new App_Opr_ModifyText(){
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+                ListView<Dom_EventCard> lv_eventList = getLv_EventList();
+                Dom_EventCard selectedItem = lv_eventList.getSelectionModel().getSelectedItem();
+                selectedItem.getDom_event().setChapterNo(Integer.parseInt(newValue));
+
+                Func_Event func_event = new Func_Event();
+                func_event.modify(selectedItem.getDom_event());
+
+                lv_eventList.refresh();
+            }
+        });
 
         Label lb_EventRole = new Label("Role : ");
         tf_Role = new TextField();
         tf_Role.setOnMouseClicked(new Con_Editable_DoubleClick());
         tf_Role.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
+        tf_Role.textProperty().addListener(new App_Opr_ModifyText(){
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
-        Label lb_EventTime = new Label("Time : ");
+                ListView<Dom_EventCard> lv_eventList = getLv_EventList();
+                Dom_EventCard selectedItem = lv_eventList.getSelectionModel().getSelectedItem();
+                selectedItem.getDom_event().setRole(newValue);
+
+                Func_Event func_event = new Func_Event();
+                func_event.modify(selectedItem.getDom_event());
+
+                lv_eventList.refresh();
+            }
+        });
+
+        Label lb_EventTime = new Label("Event Time : ");
         tf_Time = new TextField();
         tf_Time.setOnMouseClicked(new Con_Editable_DoubleClick());
         tf_Time.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 10;");
+        tf_Time.textProperty().addListener(new App_Opr_ModifyText(){
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+                ListView<Dom_EventCard> lv_eventList = getLv_EventList();
+                Dom_EventCard selectedItem = lv_eventList.getSelectionModel().getSelectedItem();
+                try {
+                    selectedItem.getDom_event().setEventDate(LocalDate.parse(newValue));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                Func_Event func_event = new Func_Event();
+                func_event.modify(selectedItem.getDom_event());
+
+                lv_eventList.refresh();
+            }
+        });
 
 
         TilePane tp_Event = new TilePane();
@@ -58,7 +111,7 @@ public class GUI_Event {
         ta_EventValue.textProperty().addListener(new Con_Edit_InputLimit(120, ta_EventValue));
         ta_EventValue.setPromptText("Quick note :  max 120 words ");
 
-        VBox vb_Event = new VBox(10);
+        VBox vb_Event = new VBox(2);
         vb_Event.getChildren().addAll(lb_Event,tp_Event, ta_EventValue);
         vb_Event.setStyle("-fx-background-color: lightgray");
 

@@ -1,7 +1,6 @@
 package com.application.opreation.eventtitle;
 
 import com.domain.eventcard.Dom_EventCard;
-import com.function.eventCard.Func_EventCard;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ListView;
@@ -14,11 +13,11 @@ import javafx.scene.control.ListView;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class App_Opr_ModifyEventTitleEventName implements ChangeListener<String> {
+public class App_Opr_ModifyText implements ChangeListener<String> {
 
     private static ListView<Dom_EventCard> lv_EventList;
 
-    public App_Opr_ModifyEventTitleEventName() {
+    public App_Opr_ModifyText() {
     }
 
     @Override
@@ -30,6 +29,6 @@ public class App_Opr_ModifyEventTitleEventName implements ChangeListener<String>
     }
 
     public static void setLv_EventList(ListView<Dom_EventCard> lv_EventList) {
-        App_Opr_ModifyEventTitleEventName.lv_EventList = lv_EventList;
+        App_Opr_ModifyText.lv_EventList = lv_EventList;
     }
 }

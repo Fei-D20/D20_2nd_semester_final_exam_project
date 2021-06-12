@@ -40,8 +40,8 @@ public class Func_Comment implements IF_Func_Dao<Dom_Comment>{
         ResultSet instance = impl_commentDao.getInstance(dom_comment);
         try {
             dom_comment.setLocalDate(instance.getDate(1).toLocalDate());
-            dom_comment.setCommentAuthor(instance.getString(2));
-            dom_comment.setCommentText(instance.getString(3));
+            dom_comment.setCommentAuthor(instance.getString(3));
+            dom_comment.setCommentText(instance.getString(2));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {

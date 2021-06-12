@@ -3,7 +3,7 @@ package com.gui;
 
 import com.application.opreation.eventcard.App_Opr_CreateNewEventCard;
 import com.application.opreation.eventcard.App_Opr_DeleteEventCard;
-import com.application.opreation.eventtitle.App_Opr_ModifyEventTitleEventName;
+import com.application.opreation.eventtitle.App_Opr_ModifyText;
 import com.application.opreation.story.App_Opr_EventList;
 import com.domain.eventcard.Dom_EventCard;
 
@@ -54,8 +54,8 @@ public class main_OnePage extends Application {
         AnchorPane anP_EventList = gui_eventList.showEventList();
         ListView<Dom_EventCard> lv_EventList = gui_eventList.getLv_EventList();
 
-        App_Opr_ModifyEventTitleEventName app_opr_modifyEventTitleEventName = new App_Opr_ModifyEventTitleEventName();
-        app_opr_modifyEventTitleEventName.setLv_EventList(lv_EventList);
+        App_Opr_ModifyText app_opr_modifyText = new App_Opr_ModifyText();
+        app_opr_modifyText.setLv_EventList(lv_EventList);
 
         // ************************ Event Card ******************************
 
