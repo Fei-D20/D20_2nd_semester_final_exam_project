@@ -4,7 +4,7 @@ create table tbl_Comment
         constraint tbl_comment_pk
             primary key nonclustered,
     fld_CommentTime date,
-    fld_CommentText varchar(30),
+    fld_CommentText varchar(2000),
     fld_Author      varchar(30)
 )
     go
