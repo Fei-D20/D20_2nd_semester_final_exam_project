@@ -15,8 +15,12 @@ import com.gui.eventlist.GUI_EventList;
 import com.gui.eventmap.GUI_EventMap;
 import com.gui.eventmap.GUI_View;
 
+import com.sun.javafx.scene.control.behavior.ListViewBehavior;
 import javafx.application.Application;
+import javafx.collections.ListChangeListener;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
@@ -40,7 +44,8 @@ import javafx.scene.text.Text;
  */
 public class main_OnePage extends Application {
     private Dragboard dragboard;
-    private final DataFormat buttonFormat = new DataFormat("com.example.myapp.formats.button");
+    private Label lb_EventMapEvent;
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -166,20 +171,58 @@ public class main_OnePage extends Application {
                 dragboard.setContent(cc);
                 lv_EventList.startFullDrag();
             });
+
+
+
         anP_EventMap.setOnDragDropped(event ->{
             Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
             String eventName = selectedItem.getEventName();
-            Button button = new Button(eventName);
-            button.setLayoutX(event.getSceneX()- 220);
-            button.setLayoutY(event.getSceneY()- 100);
-            gui_eventMap.getPane_EventMap().getChildren().add(button);
+            lb_EventMapEvent = new Label();
+            lb_EventMapEvent.setText(eventName);
 
-            });
+            lb_EventMapEvent.setStyle("-fx-background-color: darkgreen;" +
+            "-fx-font-size: 14;" +
+            "-fx-text-fill: white");
+
+            lb_EventMapEvent.setLayoutX(event.getSceneX() - 220);
+            lb_EventMapEvent.setLayoutY(event.getSceneY() - 100);
+            gui_eventMap.getPane_EventMap().getChildren().add(lb_EventMapEvent);
+
+
+
+        });
+
+
+        anP_EventMap.setOnMouseDragged(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+
+                Node intersectedNode = event.getPickResult().getIntersectedNode();
+                intersectedNode.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        intersectedNode.setLayoutX(event.getSceneX() - 220);
+                        intersectedNode.setLayoutY(event.getSceneY() - 100);
+                    }
+                });
+
+            }
+        });
+
         anP_EventMap.setOnDragOver(event -> {
             event.acceptTransferModes(TransferMode.MOVE);
             System.out.println("over the Event Map!");
         });
 
 
+    }
+
+    public Label getLb_EventMapEvent() {
+        return lb_EventMapEvent;
+    }
+
+    public void setLb_EventMapEvent(Label lb_EventMapEvent) {
+        this.lb_EventMapEvent = lb_EventMapEvent;
     }
 }
