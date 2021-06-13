@@ -172,7 +172,10 @@ public class main_OnePage extends Application {
                 Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
                 String eventName = selectedItem.getEventName();
                 Button button = new Button(eventName);
-                gui_eventMap.getTp_EventMap().getChildren().add(button);
+//                gui_eventMap.getTp_EventMap().getChildren().add(button);
+            gui_eventMap.getGr_EventMap().getChildren().add(button);
+            button.setLayoutX(event.getSceneX());
+            button.setLayoutY(event.getSceneY());
 
             });
         anP_EventMap.setOnDragOver(event -> {
