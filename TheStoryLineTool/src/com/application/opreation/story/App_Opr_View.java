@@ -59,7 +59,7 @@ public class App_Opr_View implements EventHandler<ActionEvent> {
             String outputText = "Chapter " + selected.getDom_event().getChapterNo() + "\n" +
                     selected.getDom_event().getEventDate() + "\t" + selected.getDom_event().getEventName() + "\n" +
                     selected.getDom_event().getQuickNote() + "\n" +
-                    selected.getDom_note();
+                    selected.getDom_note().getNoteText();
             return outputText;
         }
         return null;

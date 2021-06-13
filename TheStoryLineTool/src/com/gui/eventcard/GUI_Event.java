@@ -109,6 +109,24 @@ public class GUI_Event {
         ta_EventValue.setOnMouseClicked(new Con_Editable_DoubleClick());
         ta_EventValue.textProperty().addListener(new Con_Edit_InputLimit(120, ta_EventValue));
         ta_EventValue.setPromptText("Quick note :  max 120 words ");
+        ta_EventValue.textProperty().addListener(new App_Opr_ModifyText(){
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+                ListView<Dom_EventCard> lv_eventList = getLv_EventList();
+                Dom_EventCard selectedItem = lv_eventList.getSelectionModel().getSelectedItem();
+                try {
+                    selectedItem.getDom_event().setQuickNote(newValue);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                Func_Event func_event = new Func_Event();
+                func_event.modify(selectedItem.getDom_event());
+
+                lv_eventList.refresh();
+            }
+        });
 
         VBox vb_Event = new VBox(2);
         vb_Event.getChildren().addAll(lb_Event,tp_Event, ta_EventValue);
