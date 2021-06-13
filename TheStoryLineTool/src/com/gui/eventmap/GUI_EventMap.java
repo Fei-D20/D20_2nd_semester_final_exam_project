@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
@@ -16,8 +17,8 @@ import javafx.scene.layout.VBox;
  * @ Version 0.1
  */
 public class GUI_EventMap {
-    private TilePane tp_EventMap;
-    private Group gr_EventMap;
+    private Pane pane_EventMap;
+
     public AnchorPane showEventMap(){
         Label lb_EventMap = new Label("Event Map : ");
         lb_EventMap.setStyle("-fx-font-weight: bold;" +
@@ -28,13 +29,13 @@ public class GUI_EventMap {
         lb_EventMap.setPadding(new Insets(1));
 
 
-        tp_EventMap = new TilePane();
-        gr_EventMap = new Group();
+
+        pane_EventMap = new Pane();
 
 
         VBox vb_EventMap = new VBox();
         vb_EventMap.setPrefWidth(800); // this is decide the event card weight
-        vb_EventMap.getChildren().addAll(lb_EventMap,gr_EventMap);
+        vb_EventMap.getChildren().addAll(lb_EventMap, pane_EventMap);
         vb_EventMap.setStyle("-fx-background-color: gray");
 
 
@@ -48,19 +49,11 @@ public class GUI_EventMap {
         return anP_EventMap;
     }
 
-    public TilePane getTp_EventMap() {
-        return tp_EventMap;
+    public Pane getPane_EventMap() {
+        return pane_EventMap;
     }
 
-    public void setTp_EventMap(TilePane tp_EventMap) {
-        this.tp_EventMap = tp_EventMap;
-    }
-
-    public Group getGr_EventMap() {
-        return gr_EventMap;
-    }
-
-    public void setGr_EventMap(Group gr_EventMap) {
-        this.gr_EventMap = gr_EventMap;
+    public void setPane_EventMap(Pane pane_EventMap) {
+        this.pane_EventMap = pane_EventMap;
     }
 }

@@ -16,8 +16,6 @@ import com.gui.eventmap.GUI_EventMap;
 import com.gui.eventmap.GUI_View;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -169,13 +167,12 @@ public class main_OnePage extends Application {
                 lv_EventList.startFullDrag();
             });
         anP_EventMap.setOnDragDropped(event ->{
-                Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
-                String eventName = selectedItem.getEventName();
-                Button button = new Button(eventName);
-//                gui_eventMap.getTp_EventMap().getChildren().add(button);
-            gui_eventMap.getGr_EventMap().getChildren().add(button);
-            button.setLayoutX(event.getSceneX());
-            button.setLayoutY(event.getSceneY());
+            Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
+            String eventName = selectedItem.getEventName();
+            Button button = new Button(eventName);
+            button.setLayoutX(event.getSceneX()- 220);
+            button.setLayoutY(event.getSceneY()- 100);
+            gui_eventMap.getPane_EventMap().getChildren().add(button);
 
             });
         anP_EventMap.setOnDragOver(event -> {
