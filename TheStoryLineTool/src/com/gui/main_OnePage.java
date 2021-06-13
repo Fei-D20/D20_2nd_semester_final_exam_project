@@ -194,11 +194,17 @@ public class main_OnePage extends Application {
 
 
         anP_EventMap.setOnMouseDragged(new EventHandler<MouseEvent>() {
-
             @Override
             public void handle(MouseEvent event) {
-
                 Node intersectedNode = event.getPickResult().getIntersectedNode();
+
+                intersectedNode.setOnDragDetected(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        intersectedNode.startFullDrag();
+                    }
+                });
+
                 intersectedNode.setOnMouseDragged(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
