@@ -21,6 +21,7 @@ import java.io.*;
 public class App_Opr_View implements EventHandler<ActionEvent> {
     private static Dom_EventCard selectedEvent;
 
+
     @Override
     public void handle(ActionEvent event) {
         Stage stage = new Stage();
@@ -36,14 +37,7 @@ public class App_Opr_View implements EventHandler<ActionEvent> {
         BufferedWriter bufferedWriter = null;
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(file));
-            System.out.println("export select" + selectedEvent.toString());
-
-            String data = "Chapter " + selectedEvent.getDom_event().getChapterNo() + "\n" +
-                    selectedEvent.getDom_event().getEventDate() + "\t" + selectedEvent.getDom_event().getEventName() + "\n" +
-                    selectedEvent.getDom_event().getQuickNote() + "\n" +
-                    selectedEvent.getDom_note();
-
-            bufferedWriter.write(data);
+            bufferedWriter.write(getOutputText(selectedEvent));
             bufferedWriter.newLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,6 +54,17 @@ public class App_Opr_View implements EventHandler<ActionEvent> {
 
     }
 
+    public static String getOutputText(Dom_EventCard selected){
+        if(selectedEvent != null) {
+            String outputText = "Chapter " + selected.getDom_event().getChapterNo() + "\n" +
+                    selected.getDom_event().getEventDate() + "\t" + selected.getDom_event().getEventName() + "\n" +
+                    selected.getDom_event().getQuickNote() + "\n" +
+                    selected.getDom_note();
+            return outputText;
+        }
+        return null;
+    }
+
     public static Dom_EventCard getSelectedEvent() {
         return selectedEvent;
     }
@@ -67,4 +72,5 @@ public class App_Opr_View implements EventHandler<ActionEvent> {
     public static void setSelectedEvent(Dom_EventCard selectedEvent) {
         App_Opr_View.selectedEvent = selectedEvent;
     }
+
 }

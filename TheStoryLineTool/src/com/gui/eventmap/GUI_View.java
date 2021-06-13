@@ -22,6 +22,7 @@ import javafx.scene.layout.VBox;
  */
 public class GUI_View {
     private Button bu_Export;
+    private TextArea ta_View;
 
     public AnchorPane showView(){
         Label lb_View = new Label("View : ");
@@ -30,7 +31,7 @@ public class GUI_View {
         lb_View.setPrefWidth(2000);
         lb_View.setPadding(new Insets(1));
 
-        TextArea ta_View = new TextArea();
+        ta_View = new TextArea();
 
         ButtonBar bb_View = new ButtonBar();
         bu_Export = new Button("Export to file");
@@ -60,5 +61,13 @@ public class GUI_View {
 
     public void setBu_Export(Button bu_Export) {
         this.bu_Export = bu_Export;
+    }
+
+    public TextArea getTa_View() {
+        return ta_View;
+    }
+
+    public void setTa_View(TextArea ta_View) {
+        this.ta_View = ta_View;
     }
 }

@@ -3,6 +3,7 @@ package com.application.opreation.story;
 import com.domain.eventcard.Dom_EventCard;
 import com.function.story.Func_EventList;
 import com.gui.eventcard.GUI_EventCard;
+import com.gui.eventmap.GUI_View;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
     private Dom_EventCard selectedEventCard;
     private ListView<Dom_EventCard> lv_EventList;
     private GUI_EventCard gui_eventCard;
+    private GUI_View gui_view;
 
 
     public static ObservableList<Dom_EventCard> getEventList(){
@@ -51,7 +53,9 @@ public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
             gui_eventCard.getGui_comment().getTf_CommentAuthor().setText(selectedEventCard.getDom_comment().getCommentAuthor());
             gui_eventCard.getGui_comment().getTa_CommentValue().setText(selectedEventCard.getDom_comment().getCommentText());
 
+
             App_Opr_View.setSelectedEvent(selectedEventCard);
+            gui_view.getTa_View().setText(App_Opr_View.getOutputText(selectedEventCard));
         }
         lv_EventList.refresh();
     }
@@ -78,5 +82,13 @@ public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
 
     public void setGui_eventCard(GUI_EventCard gui_eventCard) {
         this.gui_eventCard = gui_eventCard;
+    }
+
+    public GUI_View getGui_view() {
+        return gui_view;
+    }
+
+    public void setGui_view(GUI_View gui_view) {
+        this.gui_view = gui_view;
     }
 }

@@ -16,6 +16,8 @@ import com.gui.eventmap.GUI_EventMap;
 import com.gui.eventmap.GUI_View;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -115,6 +117,7 @@ public class main_OnePage extends Application {
         App_Opr_EventList app_opr_eventList = new App_Opr_EventList();
         app_opr_eventList.setLv_EventList(lv_EventList);
         app_opr_eventList.setGui_eventCard(gui_eventCard);
+        app_opr_eventList.setGui_view(gui_view);
 
         lv_EventList.getSelectionModel().selectedItemProperty().addListener(app_opr_eventList);
         lv_EventList.setCellFactory(TextFieldListCell.forListView(new StringConverter<Dom_EventCard>() {
@@ -138,9 +141,8 @@ public class main_OnePage extends Application {
 
 
         // ****************** View application ***********************
-
-
         gui_view.getBu_Export().setOnAction(new App_Opr_View());
+
 
 
         // ***************** Event card application *************************
