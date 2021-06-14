@@ -1,4 +1,4 @@
-package com.application.opreation.user.User;
+package com.application.opreation.user;
 
 import com.domain.user.Dom_User;
 import com.function.user.Func_User;

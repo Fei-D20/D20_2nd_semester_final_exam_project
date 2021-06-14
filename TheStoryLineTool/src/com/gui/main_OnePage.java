@@ -1,6 +1,9 @@
 package com.gui;
 
 
+import com.application.control.dragNdrop.App_Dra_EventListDragDetected;
+import com.application.control.dragNdrop.App_Dra_EventMapDragDropped;
+import com.application.control.dragNdrop.App_Dra_EventMapDragOver;
 import com.application.opreation.eventcard.App_Opr_CreateNewEventCard;
 import com.application.opreation.eventcard.App_Opr_DeleteEventCard;
 import com.application.opreation.eventcard.App_Opr_ModifyText;
@@ -15,23 +18,14 @@ import com.gui.eventlist.GUI_EventList;
 import com.gui.eventmap.GUI_EventMap;
 import com.gui.eventmap.GUI_View;
 
-import com.sun.javafx.scene.control.behavior.ListViewBehavior;
 import javafx.application.Application;
-import javafx.collections.ListChangeListener;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
-import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
-import javafx.scene.text.Text;
 
 
 /**
@@ -43,7 +37,6 @@ import javafx.scene.text.Text;
  * @ Version 0.1
  */
 public class main_OnePage extends Application {
-    private Dragboard dragboard;
     private Label lb_EventMapEvent;
 
 
@@ -117,12 +110,7 @@ public class main_OnePage extends Application {
 
 
         // ****************** Event List application ***********************
-        App_Opr_EventList app_opr_eventList = new App_Opr_EventList();
-        app_opr_eventList.setLv_EventList(lv_EventList);
-        app_opr_eventList.setGui_eventCard(gui_eventCard);
-        app_opr_eventList.setGui_view(gui_view);
-
-        lv_EventList.getSelectionModel().selectedItemProperty().addListener(app_opr_eventList);
+        lv_EventList.getSelectionModel().selectedItemProperty().addListener(new App_Opr_EventList(lv_EventList,gui_eventCard,gui_view));
         lv_EventList.setCellFactory(TextFieldListCell.forListView(new StringConverter<Dom_EventCard>() {
             @Override
             public String toString(Dom_EventCard object) {
@@ -146,80 +134,13 @@ public class main_OnePage extends Application {
         // ****************** View application ***********************
         gui_view.getBu_Export().setOnAction(new App_Opr_View());
 
-
-
-        // ***************** Event card application *************************
-
-
-
         // ********************* list view button **************************
-        App_Opr_CreateNewEventCard app_opr_createNewEventCard = new App_Opr_CreateNewEventCard();
-        app_opr_createNewEventCard.setLv_EventList(lv_EventList);
-        gui_eventList.getBu_EventList_Add().setOnAction(app_opr_createNewEventCard);
+        gui_eventList.getBu_EventList_Add().setOnAction(new App_Opr_CreateNewEventCard(lv_EventList));
+        gui_eventList.getBu_EventList_Delete().setOnAction(new App_Opr_DeleteEventCard(lv_EventList));
 
-        App_Opr_DeleteEventCard app_opr_deleteEventCard = new App_Opr_DeleteEventCard();
-        app_opr_deleteEventCard.setLv_EventList(lv_EventList);
-        gui_eventList.getBu_EventList_Delete().setOnAction(app_opr_deleteEventCard);
-
-        // ******************** listview drag *********************
-
-        lv_EventList.setOnDragDetected(event ->  {
-                dragboard = anP_EventMap.startDragAndDrop(TransferMode.ANY);
-                dragboard.setDragView(new Text(lv_EventList.getSelectionModel().getSelectedItem().getEventName()).snapshot(null, null), event.getX(), event.getY());
-                ClipboardContent cc = new ClipboardContent();
-                cc.putString(lv_EventList.getSelectionModel().getSelectedItem().getEventName());
-                dragboard.setContent(cc);
-                lv_EventList.startFullDrag();
-        });
-
-        anP_EventMap.setOnDragDropped(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(DragEvent event) {
-                Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
-
-                lb_EventMapEvent = new Label();
-                lb_EventMapEvent.setPrefWidth(150);
-                lb_EventMapEvent.setText(selectedItem.getEventName());
-                lb_EventMapEvent.setStyle("-fx-background-color: darkgreen;-fx-font-size: 14;-fx-text-fill: white;");
-
-                TextArea ta_EventMapEvent = new TextArea();
-                ta_EventMapEvent.setText(selectedItem.getDom_event().getQuickNote());
-                ta_EventMapEvent.setWrapText(true);
-                ta_EventMapEvent.setEditable(false);
-
-                VBox vb_EventMapEvent = new VBox();
-                vb_EventMapEvent.setPrefWidth(150);
-                vb_EventMapEvent.setPrefHeight(130);
-                vb_EventMapEvent.setStyle("-fx-background-color: lightgray;");
-                vb_EventMapEvent.setPadding(new Insets(2));
-                vb_EventMapEvent.getChildren().addAll(lb_EventMapEvent, ta_EventMapEvent);
-
-                vb_EventMapEvent.setLayoutX(event.getSceneX() - 225);
-                vb_EventMapEvent.setLayoutY(event.getSceneY() - 100);
-
-
-                vb_EventMapEvent.setOnDragDetected(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        vb_EventMapEvent.startFullDrag();
-                    }
-                });
-
-                vb_EventMapEvent.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        vb_EventMapEvent.setLayoutX(event.getSceneX() - 225);
-                        vb_EventMapEvent.setLayoutY(event.getSceneY() - 100);
-                    }
-                });
-
-                gui_eventMap.getPane_EventMap().getChildren().add(vb_EventMapEvent);
-            }
-        });
-
-        anP_EventMap.setOnDragOver(event -> {
-            event.acceptTransferModes(TransferMode.MOVE);
-            System.out.println("over the Event Map!");
-        });
+        // ******************** Drag and Drop *********************
+        lv_EventList.setOnDragDetected(new App_Dra_EventListDragDetected(anP_EventMap,lv_EventList));
+        anP_EventMap.setOnDragDropped(new App_Dra_EventMapDragDropped(lv_EventList,gui_eventMap));
+        anP_EventMap.setOnDragOver(new App_Dra_EventMapDragOver());
     }
 }

@@ -28,6 +28,10 @@ public class App_Opr_CreateNewEventCard implements EventHandler {
 
     private ListView<Dom_EventCard> lv_EventList;
 
+    public App_Opr_CreateNewEventCard(ListView<Dom_EventCard> lv_EventList) {
+        this.lv_EventList = lv_EventList;
+    }
+
     @Override
     public void handle(Event event){
 
@@ -71,13 +75,5 @@ public class App_Opr_CreateNewEventCard implements EventHandler {
         lv_EventList.getSelectionModel().select(newEventCard);
         lv_EventList.scrollTo(lv_EventList.getSelectionModel().getSelectedIndex());
         lv_EventList.requestFocus();
-    }
-
-    public ListView<Dom_EventCard> getLv_EventList() {
-        return lv_EventList;
-    }
-
-    public void setLv_EventList(ListView<Dom_EventCard> lv_EventList) {
-        this.lv_EventList = lv_EventList;
     }
 }

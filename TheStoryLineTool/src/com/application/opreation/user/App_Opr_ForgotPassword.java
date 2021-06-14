@@ -1,4 +1,4 @@
-package com.application.opreation.user.User;
+package com.application.opreation.user;
 
 
 import com.function.user.Func_ForgotPassword;

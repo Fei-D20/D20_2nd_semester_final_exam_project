@@ -1,7 +1,7 @@
 package com.gui.user;
 
 
-import com.application.opreation.user.User.App_Opr_UserRegister;
+import com.application.opreation.user.App_Opr_UserRegister;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;

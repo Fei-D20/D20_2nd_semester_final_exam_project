@@ -20,11 +20,15 @@ import javafx.scene.control.SelectionMode;
  * @ Version 0.1
  */
 public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
-    private Dom_EventCard selectedEventCard;
     private ListView<Dom_EventCard> lv_EventList;
     private GUI_EventCard gui_eventCard;
     private GUI_View gui_view;
 
+    public App_Opr_EventList(ListView<Dom_EventCard> lv_EventList, GUI_EventCard gui_eventCard, GUI_View gui_view) {
+        this.lv_EventList = lv_EventList;
+        this.gui_eventCard = gui_eventCard;
+        this.gui_view = gui_view;
+    }
 
     public static ObservableList<Dom_EventCard> getEventList(){
         return FXCollections.observableArrayList(Func_EventList.getEventList());
@@ -35,7 +39,7 @@ public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
     public void changed(ObservableValue<? extends Dom_EventCard> observable, Dom_EventCard oldValue, Dom_EventCard newValue) {
         lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        selectedEventCard = newValue;
+        Dom_EventCard selectedEventCard = newValue;
         if (selectedEventCard != null) {
             gui_eventCard.getGui_eventCardTitle().getLb_EventCardTitle().setText("Event Card : " + selectedEventCard.getEventCardID());
             gui_eventCard.getGui_eventCardTitle().getTf_EventTitleEventName().setText(selectedEventCard.getEventName());
@@ -58,37 +62,5 @@ public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
             gui_view.getTa_View().setText(App_Opr_View.getOutputText(selectedEventCard));
         }
         lv_EventList.refresh();
-    }
-
-    public Dom_EventCard getSelectedEventCard() {
-        return selectedEventCard;
-    }
-
-    public void setSelectedEventCard(Dom_EventCard selectedEventCard) {
-        this.selectedEventCard = selectedEventCard;
-    }
-
-    public ListView<Dom_EventCard> getLv_EventList() {
-        return lv_EventList;
-    }
-
-    public void setLv_EventList(ListView<Dom_EventCard> lv_EventList) {
-        this.lv_EventList = lv_EventList;
-    }
-
-    public GUI_EventCard getGui_eventCard() {
-        return gui_eventCard;
-    }
-
-    public void setGui_eventCard(GUI_EventCard gui_eventCard) {
-        this.gui_eventCard = gui_eventCard;
-    }
-
-    public GUI_View getGui_view() {
-        return gui_view;
-    }
-
-    public void setGui_view(GUI_View gui_view) {
-        this.gui_view = gui_view;
     }
 }

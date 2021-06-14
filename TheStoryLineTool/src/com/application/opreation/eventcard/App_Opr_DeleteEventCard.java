@@ -22,6 +22,10 @@ public class App_Opr_DeleteEventCard implements EventHandler {
 
     private ListView<Dom_EventCard> lv_EventList;
 
+    public App_Opr_DeleteEventCard(ListView<Dom_EventCard> lv_EventList) {
+        this.lv_EventList = lv_EventList;
+    }
+
     @Override
     public void handle(Event event) {
         Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
@@ -44,13 +48,5 @@ public class App_Opr_DeleteEventCard implements EventHandler {
 
         lv_EventList.getItems().remove(selectedItem);
 
-    }
-
-    public ListView<Dom_EventCard> getLv_EventList() {
-        return lv_EventList;
-    }
-
-    public void setLv_EventList(ListView<Dom_EventCard> lv_EventList) {
-        this.lv_EventList = lv_EventList;
     }
 }
