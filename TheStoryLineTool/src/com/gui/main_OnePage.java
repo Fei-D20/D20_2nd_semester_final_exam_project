@@ -170,49 +170,50 @@ public class main_OnePage extends Application {
                 cc.putString(lv_EventList.getSelectionModel().getSelectedItem().getEventName());
                 dragboard.setContent(cc);
                 lv_EventList.startFullDrag();
-            });
-
-
-
-        anP_EventMap.setOnDragDropped(event ->{
-            Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
-            String eventName = selectedItem.getEventName();
-            lb_EventMapEvent = new Label();
-            lb_EventMapEvent.setText(eventName);
-
-            lb_EventMapEvent.setStyle("-fx-background-color: darkgreen;" +
-            "-fx-font-size: 14;" +
-            "-fx-text-fill: white");
-
-            lb_EventMapEvent.setLayoutX(event.getSceneX() - 220);
-            lb_EventMapEvent.setLayoutY(event.getSceneY() - 100);
-            gui_eventMap.getPane_EventMap().getChildren().add(lb_EventMapEvent);
-
-
-
         });
 
-
-        anP_EventMap.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        anP_EventMap.setOnDragDropped(new EventHandler<DragEvent>() {
             @Override
-            public void handle(MouseEvent event) {
-                Node intersectedNode = event.getPickResult().getIntersectedNode();
+            public void handle(DragEvent event) {
+                Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
 
-                intersectedNode.setOnDragDetected(new EventHandler<MouseEvent>() {
+                lb_EventMapEvent = new Label();
+                lb_EventMapEvent.setPrefWidth(150);
+                lb_EventMapEvent.setText(selectedItem.getEventName());
+                lb_EventMapEvent.setStyle("-fx-background-color: darkgreen;-fx-font-size: 14;-fx-text-fill: white;");
+
+                TextArea ta_EventMapEvent = new TextArea();
+                ta_EventMapEvent.setText(selectedItem.getDom_event().getQuickNote());
+                ta_EventMapEvent.setWrapText(true);
+                ta_EventMapEvent.setEditable(false);
+
+                VBox vb_EventMapEvent = new VBox();
+                vb_EventMapEvent.setPrefWidth(150);
+                vb_EventMapEvent.setPrefHeight(130);
+                vb_EventMapEvent.setStyle("-fx-background-color: lightgray;");
+                vb_EventMapEvent.setPadding(new Insets(2));
+                vb_EventMapEvent.getChildren().addAll(lb_EventMapEvent, ta_EventMapEvent);
+
+                vb_EventMapEvent.setLayoutX(event.getSceneX() - 225);
+                vb_EventMapEvent.setLayoutY(event.getSceneY() - 100);
+
+
+                vb_EventMapEvent.setOnDragDetected(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        intersectedNode.startFullDrag();
+                        vb_EventMapEvent.startFullDrag();
                     }
                 });
 
-                intersectedNode.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                vb_EventMapEvent.setOnMouseDragged(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        intersectedNode.setLayoutX(event.getSceneX() - 220);
-                        intersectedNode.setLayoutY(event.getSceneY() - 100);
+                        vb_EventMapEvent.setLayoutX(event.getSceneX() - 225);
+                        vb_EventMapEvent.setLayoutY(event.getSceneY() - 100);
                     }
                 });
 
+                gui_eventMap.getPane_EventMap().getChildren().add(vb_EventMapEvent);
             }
         });
 
@@ -220,15 +221,5 @@ public class main_OnePage extends Application {
             event.acceptTransferModes(TransferMode.MOVE);
             System.out.println("over the Event Map!");
         });
-
-
-    }
-
-    public Label getLb_EventMapEvent() {
-        return lb_EventMapEvent;
-    }
-
-    public void setLb_EventMapEvent(Label lb_EventMapEvent) {
-        this.lb_EventMapEvent = lb_EventMapEvent;
     }
 }
