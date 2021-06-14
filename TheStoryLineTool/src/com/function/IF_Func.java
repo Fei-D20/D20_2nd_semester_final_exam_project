@@ -1,4 +1,4 @@
-package com.function.eventCard;
+package com.function;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public interface IF_Func_Dao<T> {
+public interface IF_Func<T> {
     void add(T t);
     void modify(T t);
     void delete(T t);

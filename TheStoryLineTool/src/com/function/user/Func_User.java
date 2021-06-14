@@ -17,6 +17,10 @@ import java.sql.SQLException;
  * @ Version 0.1
  */
 public class Func_User extends CRUD_Util{
+
+    /**
+     * this class is not the good way to get . need to be rewrite and just see app_opr_usrlogin comment.
+     */
     private static Impl_UserDao impl_userDao = new Impl_UserDao();
     public static void userRegister(Dom_User user){
         impl_userDao.add(user);

@@ -1,7 +1,8 @@
 package com.gui.user;
 
 
-import com.application.opreation.user.App_Opr_UserRegister;
+import com.application.opreation.user.event.App_Opr_UserRegister;
+import com.application.opreation.user.showPanal.App_Opr_ShowUserLogin;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -22,7 +23,12 @@ import javafx.stage.Stage;
  * @ Version 0.1
  */
 public class GUI_UserRegister {
-    public static void showRegisterStage(Stage stage,Scene scene){
+    /**
+     * this is the panel for user register
+     * @param stage_Login
+     * @param primaryStage
+     */
+    public void showRegisterStage(Stage stage_Login,Stage primaryStage){
         Label lb_Register_user = new Label("Your Name : ");
         TextField tf_RegisterUser = new TextField();
 
@@ -52,22 +58,17 @@ public class GUI_UserRegister {
 
 
         Scene scene_Register = new Scene(gp_Register);
-        stage.setScene(scene_Register);
-        stage.show();
+        stage_Login.setScene(scene_Register);
+        stage_Login.show();
 
         bu_Register.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 App_Opr_UserRegister.register(tf_RegisterUser,tf_RegisterPassword);
-                stage.close();
+                stage_Login.close();
             }
         });
 
-        bu_RegisterCancel.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                stage.setScene(scene);
-            }
-        });
+        bu_RegisterCancel.setOnAction(new App_Opr_ShowUserLogin(primaryStage));
     }
 }

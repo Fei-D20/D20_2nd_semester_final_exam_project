@@ -1,6 +1,10 @@
 package com.gui.user;
 
-import com.application.opreation.user.App_Opr_UserLogin;
+import com.application.opreation.user.showPanal.App_Opr_ShowForgotPassword;
+import com.application.opreation.user.showPanal.App_Opr_ShowRegister;
+import com.application.opreation.user.event.App_Opr_UserLogin;
+import com.application.opreation.user.event.App_Opr_UserLoginRegisterClose;
+import com.application.opreation.user.showPanal.App_Opr_ShowUserLogin;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,12 +25,14 @@ import javafx.stage.Stage;
  * @ Version 0.1
  */
 public class GUI_UserLogin {
+
     /**
      * this is the login stage. when the application start to running this window will show up and require the user
      * input the user name and pass word.
-     * @param stage
+     * @param primaryStage for setting the owner for this loginStage.
      */
-    public static void showLoginStage(Stage stage){
+
+    public void showLoginStage(Stage primaryStage){
 
         // The element of pane
         Label lb_Login_user = new Label("User Name : ");
@@ -37,7 +43,7 @@ public class GUI_UserLogin {
 
         Button bu_Register = new Button("New User Register");
 
-        Button bu_ForPassword= new Button("Forgot Password");
+        Button bu_ForgotPassword= new Button("Forgot Password");
 
         Button bu_Login = new Button(" Login ");
         Button bu_cancel = new Button("Cancel");
@@ -60,7 +66,7 @@ public class GUI_UserLogin {
         gp_Login.add(lb_Login_Password,0,1);
         gp_Login.add(tf_LoginPassword,1,1);
         gp_Login.add(bu_Register, 0,2);
-        gp_Login.add(bu_ForPassword, 0,3);
+        gp_Login.add(bu_ForgotPassword, 0,3);
         gp_Login.add(hBox_Login,1,2);
 
 
@@ -68,18 +74,20 @@ public class GUI_UserLogin {
         Scene scene_Login = new Scene(gp_Login);
         Stage stage_Login = new Stage();
         stage_Login.setTitle("Log in");
-        stage_Login.initOwner(stage);
+        stage_Login.initOwner(primaryStage);
         stage_Login.initModality(Modality.WINDOW_MODAL);
         stage_Login.setAlwaysOnTop(true);
         stage_Login.setResizable(false);
         stage_Login.setScene(scene_Login);
         stage_Login.show();
 
-        // the mouse click event about the buttons
-        bu_Register.setOnAction(event -> GUI_UserRegister.showRegisterStage(stage_Login,scene_Login));
-        bu_Login.setOnAction(event -> App_Opr_UserLogin.login(stage_Login,tf_LoginUser,tf_LoginPassword));
-        bu_cancel.setOnAction(event -> App_Opr_UserLogin.close(stage_Login));
-        bu_ForPassword.setOnAction(event -> GUI_ForgotPassword.showForPasswordStage(stage_Login,scene_Login));
+        /*
+         * here is the event about button action.
+         */
+        bu_Register.setOnAction(new App_Opr_ShowRegister(stage_Login,primaryStage));
+        bu_Login.setOnAction(new App_Opr_UserLogin(stage_Login, tf_LoginUser, tf_LoginPassword));
+        bu_cancel.setOnAction(new App_Opr_UserLoginRegisterClose(stage_Login));
+        bu_ForgotPassword.setOnAction(new App_Opr_ShowForgotPassword(stage_Login,primaryStage));
 
     }
 }

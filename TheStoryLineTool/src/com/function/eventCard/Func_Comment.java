@@ -4,6 +4,7 @@ import com.db.daoimplement.eventcard.Impl_CommentDao;
 import com.db.util.CRUD_Util;
 import com.db.util.ConnectionUtil;
 import com.domain.eventcard.Dom_Comment;
+import com.function.IF_Func;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,8 +18,8 @@ import java.util.ArrayList;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class Func_Comment implements IF_Func_Dao<Dom_Comment>{
-    Impl_CommentDao impl_commentDao = new Impl_CommentDao();
+public class Func_Comment implements IF_Func<Dom_Comment> {
+    private Impl_CommentDao impl_commentDao = new Impl_CommentDao();
 
     @Override
     public void add(Dom_Comment dom_comment) {

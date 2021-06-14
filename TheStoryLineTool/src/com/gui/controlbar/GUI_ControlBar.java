@@ -37,8 +37,8 @@ public class GUI_ControlBar {
         mi_newUserRegister.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                GUI_UserLogin.showLoginStage(primaryStage);
+                GUI_UserLogin gui_userLogin = new GUI_UserLogin();
+                gui_userLogin.showLoginStage(primaryStage);
             }
         });
 

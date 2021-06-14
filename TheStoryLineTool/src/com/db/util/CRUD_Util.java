@@ -14,9 +14,9 @@ import java.sql.ResultSetMetaData;
  */
 public class CRUD_Util {
 
-    static Connection connection = null;
-    static PreparedStatement preparedStatement = null;
-    static ResultSet resultSet = null;
+    private static Connection connection = null;
+    private static PreparedStatement preparedStatement = null;
+    private static ResultSet resultSet = null;
 
     public static void update(String sql, Object... args) {
 

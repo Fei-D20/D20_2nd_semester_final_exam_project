@@ -21,12 +21,18 @@ import static com.db.util.CRUD_Util.update;
 public class Impl_CommentDao implements IF_CommentDao {
     @Override
     public void add(Dom_Comment dom_comment) {
+        Date date;
         try {
             String sql = "INSERT INTO  tbl_Comment(fld_commentID, fld_commentTime, fld_commentText, fld_Author) values (?,?,?,?)";
+            if (dom_comment.getLocalDate() != null) {
+                date = Date.valueOf(dom_comment.getLocalDate());
+            } else {
+                date = Date.valueOf("2000-0-0");
+            }
             update(
                     sql,
                     dom_comment.getCommentID(),
-                    Date.valueOf(dom_comment.getLocalDate()),
+                    date,
                     dom_comment.getCommentText(),
                     dom_comment.getCommentAuthor()
             );
@@ -38,12 +44,20 @@ public class Impl_CommentDao implements IF_CommentDao {
 
     @Override
     public void modify(Dom_Comment dom_comment) {
+        Date date;
         try {
             String sql = "UPDATE tbl_Comment SET fld_Author = ?,fld_CommentTime = ? ,fld_CommentText = ? where fld_CommentId = ?";
+            if(dom_comment.getLocalDate() != null){
+                date = Date.valueOf(dom_comment.getLocalDate());
+
+            } else {
+                date = java.sql.Date.valueOf("2000-1-1");
+
+            }
             update(
                     sql,
                     dom_comment.getCommentAuthor(),
-                    Date.valueOf(dom_comment.getLocalDate()),
+                    date,
                     dom_comment.getCommentText(),
                     dom_comment.getCommentID()
             );
@@ -69,7 +83,7 @@ public class Impl_CommentDao implements IF_CommentDao {
     @Override
     public ResultSet getInstance(Dom_Comment dom_comment) {
 
-        ResultSet instance = null;
+        ResultSet instance;
 
         try {
             String sql = "SELECT fld_CommentTime,fld_commentText, fld_Author FROM Tbl_Comment where Fld_CommentID = ?";
@@ -85,8 +99,7 @@ public class Impl_CommentDao implements IF_CommentDao {
     public ResultSet getAll() {
         try {
             String sql = "SELECT * FROM tbl_Comment";
-            ResultSet table = getTable(sql);
-            return table;
+            return getTable(sql);
 
         } catch (Exception e) {
             e.printStackTrace();

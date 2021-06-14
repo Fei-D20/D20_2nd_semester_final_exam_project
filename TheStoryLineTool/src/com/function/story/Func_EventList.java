@@ -11,7 +11,7 @@ import com.domain.story.Dom_EventList;
 import com.function.eventCard.Func_Comment;
 import com.function.eventCard.Func_Event;
 import com.function.eventCard.Func_Note;
-import com.function.eventCard.IF_Func_Dao;
+import com.function.IF_Func;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class Func_EventList implements IF_Func_Dao<Dom_EventCard> {
+public class Func_EventList implements IF_Func<Dom_EventCard> {
 
     public static ArrayList<Dom_EventCard> getEventList() {
         try {

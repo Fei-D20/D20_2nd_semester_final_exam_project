@@ -1,7 +1,7 @@
 package com.application.opreation.eventcard;
 
 import com.domain.eventcard.Dom_EventCard;
-import com.domain.user.Dom_LoginedUser;
+import com.domain.user.Dom_LoginUser;
 import com.function.eventCard.Func_Comment;
 import com.function.eventCard.Func_Event;
 import com.function.eventCard.Func_EventCard;
@@ -38,7 +38,7 @@ public class App_Opr_CreateNewEventCard implements EventHandler {
         Dom_EventCard newEventCard = new Dom_EventCard();
 
         newEventCard.setEventCardID(new Random().nextInt(999999));
-        newEventCard.setAuthorName(Dom_LoginedUser.getInstance().getUserName());
+        newEventCard.setAuthorName(Dom_LoginUser.getInstance().getUserName());
         newEventCard.setEventName("new Event");
         newEventCard.setLocalDate(LocalDate.now());
 

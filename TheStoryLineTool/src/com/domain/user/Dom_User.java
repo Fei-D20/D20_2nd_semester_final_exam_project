@@ -12,10 +12,10 @@ import java.util.Random;
  * @ Version 0.1
  */
 public class Dom_User {
-    int userID;
-    String userName;
-    String passWord;
-    Boolean isAuthor;
+    private int userID;
+    private String userName;
+    private String passWord;
+    private Boolean isAuthor;
 
     public Dom_User() {
     }

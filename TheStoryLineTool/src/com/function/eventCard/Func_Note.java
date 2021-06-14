@@ -4,6 +4,7 @@ import com.db.daoimplement.eventcard.Impl_NoteDao;
 import com.db.util.CRUD_Util;
 import com.db.util.ConnectionUtil;
 import com.domain.eventcard.Dom_Note;
+import com.function.IF_Func;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,9 +18,9 @@ import java.util.ArrayList;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class Func_Note implements IF_Func_Dao<Dom_Note> {
+public class Func_Note implements IF_Func<Dom_Note> {
 
-    Impl_NoteDao impl_noteDao = new Impl_NoteDao();
+    private Impl_NoteDao impl_noteDao = new Impl_NoteDao();
 
     @Override
     public void add(Dom_Note dom_note) {

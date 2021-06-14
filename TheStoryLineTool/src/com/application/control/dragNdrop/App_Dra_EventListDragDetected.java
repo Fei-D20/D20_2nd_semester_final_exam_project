@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
  */
 public class App_Dra_EventListDragDetected implements EventHandler<MouseEvent> {
     private AnchorPane anP_EventMap;
-    ListView<Dom_EventCard> lv_EventList;
+    private ListView<Dom_EventCard> lv_EventList;
 
     public App_Dra_EventListDragDetected(AnchorPane anP_EventMap, ListView<Dom_EventCard> lv_EventList) {
         this.anP_EventMap = anP_EventMap;

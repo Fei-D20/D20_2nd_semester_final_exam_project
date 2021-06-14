@@ -5,6 +5,7 @@ import com.db.util.CRUD_Util;
 import com.db.util.ConnectionUtil;
 import com.domain.eventcard.Dom_Event;
 import com.domain.eventcard.Dom_EventCard;
+import com.function.IF_Func;
 import org.junit.Test;
 
 import java.sql.ResultSet;
@@ -19,8 +20,8 @@ import java.util.ArrayList;
  * @ Supervisors Karsten Skov, Tommy Haugaard, Frank Østergaard Hansen
  * @ Version 0.1
  */
-public class Func_Event implements IF_Func_Dao<Dom_Event> {
-    Impl_EventDao impl_eventDao = new Impl_EventDao();
+public class Func_Event implements IF_Func<Dom_Event> {
+    private Impl_EventDao impl_eventDao = new Impl_EventDao();
 
     @Override
     public void add(Dom_Event dom_event) {

@@ -1,8 +1,7 @@
 package com.gui.user;
 
-import com.application.opreation.user.App_Opr_ForgotPassword;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import com.application.opreation.user.event.App_Opr_SendPassword;
+import com.application.opreation.user.showPanal.App_Opr_ShowUserLogin;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,7 +12,13 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class GUI_ForgotPassword {
-    public static void showForPasswordStage(Stage stage, Scene scene){
+    /**
+     * this is show the user input the info for get the password which be forgot.
+     * @param stage_Login for cancel button return to login stage
+     * @param primaryStage for show user login panal if user can log in to primary stage
+     */
+
+    public void showForgotPasswordStage(Stage stage_Login,Stage primaryStage){
 
         //create objects for the scene
 
@@ -48,25 +53,12 @@ public class GUI_ForgotPassword {
 
         //scene code
         Scene scene_ForPassword = new Scene(gp_ForPassword);
-        stage.setScene(scene_ForPassword);
-        stage.show();
+        stage_Login.setScene(scene_ForPassword);
+        stage_Login.show();
 
 
-        bu_SendPassword.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                App_Opr_ForgotPassword.PasswordRequest(tf_Email,tf_UserName);
-                stage.close();
-            }
-        });
-
-        bu_PasswordCancel.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-                stage.setScene(scene);
-            }
-        });
+        bu_SendPassword.setOnAction(new App_Opr_SendPassword(tf_Email,tf_UserName));
+        bu_PasswordCancel.setOnAction(new App_Opr_ShowUserLogin(primaryStage));
     }
 }
 
