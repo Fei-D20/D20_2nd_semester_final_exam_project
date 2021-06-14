@@ -33,23 +33,23 @@ create table tbl_Note
 
 create table tbl_EventCard
 (
-    fld_EventCardID      int not null
+    fld_EventCardID int not null
         constraint tbl_EventCard_pk
             primary key nonclustered,
-    fld_EventName        varchar(30),
-    fld_AuthorName       varchar(30),
-    fld_EventID          int
+    fld_EventName   varchar(30),
+    fld_AuthorName  varchar(30),
+    fld_EventID     int
         constraint tbl_EventCard_tbl_Event_fld_EventID_fk
             references tbl_Event,
-    fld_NoteID           int
+    fld_NoteID      int
         constraint tbl_EventCard_tbl_Note_fld_NoteID_fk
             references tbl_Note,
-    fld_CommentID        int
+    fld_CommentID   int
         constraint tbl_EventCard_tbl_Comment_fld_CommentID_fk
             references tbl_Comment,
-    fld_PreEventCardID   int,
-    fld_AfterEventCardID int,
-    fld_EditDate         date
+    fld_localX      decimal,
+    fld_localY      decimal,
+    fld_EditDate    date
 )
     go
 

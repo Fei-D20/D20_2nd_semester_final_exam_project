@@ -2,10 +2,14 @@ package com.gui.eventlist;
 
 import com.application.opreation.story.App_Opr_EventList;
 import com.domain.eventcard.Dom_EventCard;
+import com.function.story.Func_EventList;
+import com.gui.eventmap.GUI_EventMapElement;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -31,8 +35,10 @@ public class GUI_EventList {
         lb_EventList.setPrefHeight(1);
         lb_EventList.setPadding(new Insets(1));
 
+        App_Opr_EventList app_opr_eventList = new App_Opr_EventList();
+        lv_EventList = new ListView<Dom_EventCard>(app_opr_eventList.getEventList());
 
-        lv_EventList = new ListView<Dom_EventCard>(App_Opr_EventList.getEventList());
+
 
         lv_EventList.setPlaceholder(new Label("Event Card List"));
         lv_EventList.setPrefHeight(700);

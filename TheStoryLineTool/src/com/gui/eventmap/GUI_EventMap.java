@@ -1,5 +1,7 @@
 package com.gui.eventmap;
 
+import com.domain.eventcard.Dom_EventCard;
+import com.function.story.Func_EventList;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -7,6 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -45,6 +49,7 @@ public class GUI_EventMap {
         AnchorPane.setTopAnchor(vb_EventMap, 1.0);
         AnchorPane.setBottomAnchor(vb_EventMap, 1.0);
         anP_EventMap.setStyle("-fx-background-color: lightgray");
+
 
         return anP_EventMap;
     }

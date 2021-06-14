@@ -3,6 +3,8 @@ package com.application.opreation.story;
 import com.domain.eventcard.Dom_EventCard;
 import com.function.story.Func_EventList;
 import com.gui.eventcard.GUI_EventCard;
+import com.gui.eventmap.GUI_EventMap;
+import com.gui.eventmap.GUI_EventMapElement;
 import com.gui.eventmap.GUI_View;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -10,6 +12,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
+import java.util.function.Consumer;
 
 /**
  * @ author Andrej Simionenko, Raheela Tasneem, Fei Gu, Ibraheem Swaidan
@@ -23,14 +29,19 @@ public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
     private ListView<Dom_EventCard> lv_EventList;
     private GUI_EventCard gui_eventCard;
     private GUI_View gui_view;
+    private GUI_EventMap gui_eventMap;
 
-    public App_Opr_EventList(ListView<Dom_EventCard> lv_EventList, GUI_EventCard gui_eventCard, GUI_View gui_view) {
+    public App_Opr_EventList(ListView<Dom_EventCard> lv_EventList, GUI_EventCard gui_eventCard, GUI_View gui_view, GUI_EventMap gui_eventMap) {
         this.lv_EventList = lv_EventList;
         this.gui_eventCard = gui_eventCard;
         this.gui_view = gui_view;
+        this.gui_eventMap = gui_eventMap;
     }
 
-    public static ObservableList<Dom_EventCard> getEventList(){
+    public App_Opr_EventList() {
+    }
+
+    public ObservableList<Dom_EventCard> getEventList(){
         return FXCollections.observableArrayList(Func_EventList.getEventList());
     }
 
@@ -60,6 +71,8 @@ public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
 
             App_Opr_View.setSelectedEvent(selectedEventCard);
             gui_view.getTa_View().setText(App_Opr_View.getOutputText(selectedEventCard));
+
+
         }
         lv_EventList.refresh();
     }

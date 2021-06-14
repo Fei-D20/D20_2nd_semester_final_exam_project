@@ -27,7 +27,7 @@ public class Impl_EventCardDao implements IF_EventCardDao {
 
     public void add(Dom_EventCard dom_eventCard) {
         try {
-            String sql = "INSERT INTO  tbl_EventCard(fld_EventCardID, fld_EventName, fld_AuthorName, fld_EventId,fld_NoteID,fld_CommentID,fld_PreEventCardId,fld_AfterEventCardID,fld_EditDate) values (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO  tbl_EventCard(fld_EventCardID, fld_EventName, fld_AuthorName, fld_EventId,fld_NoteID,fld_CommentID,fld_localX,fld_localY,fld_EditDate) values (?,?,?,?,?,?,?,?,?)";
 
             LocalDate localDate = dom_eventCard.getLocalDate();
             Date date = Date.valueOf(localDate);
@@ -39,8 +39,8 @@ public class Impl_EventCardDao implements IF_EventCardDao {
                     dom_eventCard.getDom_event().getEventID(),
                     dom_eventCard.getDom_note().getNoteID(),
                     dom_eventCard.getDom_comment().getCommentID(),
-                    dom_eventCard.getPreEventCardID(),
-                    dom_eventCard.getAfterEventCardID(),
+                    dom_eventCard.getLocalX(),
+                    dom_eventCard.getLocalY(),
                     date
             );
 
@@ -55,17 +55,17 @@ public class Impl_EventCardDao implements IF_EventCardDao {
         try {
             String sql = "UPDATE tbl_EventCard SET  " +
                     "fld_EventName = ?," +
-                    "fld_AuthorName= ?," +
-                    "fld_EditDate= ?," +
-                    "fld_PreEventCardID= ?," +
-                    "fld_AfterEventCardID= ? " +
-                    "WHERE fld_EventCardID= ?";
+                    "fld_AuthorName = ?," +
+                    "fld_EditDate = ?," +
+                    "fld_localX = ?," +
+                    "fld_localY = ? " +
+                    "WHERE fld_EventCardID = ?";
             CRUD_Util.update(sql,
                     dom_eventCard.getEventName(),
                     dom_eventCard.getAuthorName(),
                     java.sql.Date.valueOf(dom_eventCard.getLocalDate()),
-                    dom_eventCard.getPreEventCardID(),
-                    dom_eventCard.getAfterEventCardID(),
+                    dom_eventCard.getLocalX(),
+                    dom_eventCard.getLocalY(),
                     dom_eventCard.getEventCardID()
             );
             System.out.println("update finished");
@@ -90,7 +90,7 @@ public class Impl_EventCardDao implements IF_EventCardDao {
         ResultSet instance = null;
 
         try {
-            String sql = "SELECT fld_EventName, fld_AuthorName ,fld_EventID, fld_NoteID, fld_commentID,fld_PreEventCardId,fld_AfterEventCardID,fld_EditDate FROM Tbl_EventCard where fld_EventCardID = ?";
+            String sql = "SELECT fld_EventName, fld_AuthorName ,fld_EventID, fld_NoteID, fld_commentID,fld_localX,fld_localY,fld_EditDate FROM Tbl_EventCard where fld_EventCardID = ?";
             instance = CRUD_Util.getInstance(sql, dom_eventCard.getEventCardID());
             return instance;
         } catch (Exception var4) {

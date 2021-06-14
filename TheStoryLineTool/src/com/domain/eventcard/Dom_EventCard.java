@@ -15,8 +15,8 @@ public class Dom_EventCard  {
     private int eventCardID;
     private String eventName;
     private String authorName;
-    private int PreEventCardID;
-    private int AfterEventCardID;
+    private double localX;
+    private double localY;
     private LocalDate localDate = LocalDate.now();
     private Dom_Event dom_event = new Dom_Event();
     private Dom_Note dom_note = new Dom_Note();
@@ -66,20 +66,20 @@ public class Dom_EventCard  {
         this.authorName = authorName;
     }
 
-    public int getPreEventCardID() {
-        return PreEventCardID;
+    public double getLocalX() {
+        return localX;
     }
 
-    public void setPreEventCardID(int preEventCardID) {
-        PreEventCardID = preEventCardID;
+    public void setLocalX(double localX) {
+        this.localX = localX;
     }
 
-    public int getAfterEventCardID() {
-        return AfterEventCardID;
+    public double getLocalY() {
+        return localY;
     }
 
-    public void setAfterEventCardID(int afterEventCardID) {
-        AfterEventCardID = afterEventCardID;
+    public void setLocalY(double localY) {
+        this.localY = localY;
     }
 
     public LocalDate getLocalDate() {
@@ -119,12 +119,12 @@ public class Dom_EventCard  {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dom_EventCard that = (Dom_EventCard) o;
-        return eventCardID == that.eventCardID && PreEventCardID == that.PreEventCardID && AfterEventCardID == that.AfterEventCardID && Objects.equals(eventName, that.eventName) && Objects.equals(authorName, that.authorName) && Objects.equals(localDate, that.localDate) && Objects.equals(dom_event, that.dom_event) && Objects.equals(dom_note, that.dom_note) && Objects.equals(dom_comment, that.dom_comment);
+        return eventCardID == that.eventCardID && Double.compare(that.localX, localX) == 0 && Double.compare(that.localY, localY) == 0 && Objects.equals(eventName, that.eventName) && Objects.equals(authorName, that.authorName) && Objects.equals(localDate, that.localDate) && Objects.equals(dom_event, that.dom_event) && Objects.equals(dom_note, that.dom_note) && Objects.equals(dom_comment, that.dom_comment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventCardID, eventName, authorName, PreEventCardID, AfterEventCardID, localDate, dom_event, dom_note, dom_comment);
+        return Objects.hash(eventCardID, eventName, authorName, localX, localY, localDate, dom_event, dom_note, dom_comment);
     }
 
     @Override
@@ -133,8 +133,8 @@ public class Dom_EventCard  {
                 "eventCardID=" + eventCardID +
                 ", eventName='" + eventName + '\'' +
                 ", authorName='" + authorName + '\'' +
-                ", PreEventCardID=" + PreEventCardID +
-                ", AfterEventCardID=" + AfterEventCardID +
+                ", localX=" + localX +
+                ", localY=" + localY +
                 ", localDate=" + localDate +
                 ", dom_event=" + dom_event +
                 ", dom_note=" + dom_note +

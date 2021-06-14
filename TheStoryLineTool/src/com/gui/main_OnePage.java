@@ -7,6 +7,7 @@ import com.application.control.dragNdrop.App_Dra_EventMapDragOver;
 import com.application.opreation.eventcard.App_Opr_CreateNewEventCard;
 import com.application.opreation.eventcard.App_Opr_DeleteEventCard;
 import com.application.opreation.eventcard.App_Opr_ModifyText;
+import com.application.opreation.story.App_Converter_EventList;
 import com.application.opreation.story.App_Opr_EventList;
 import com.application.opreation.story.App_Opr_View;
 import com.domain.eventcard.Dom_EventCard;
@@ -25,7 +26,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 
 
 /**
@@ -37,42 +37,75 @@ import javafx.util.StringConverter;
  * @ Version 0.1
  */
 public class main_OnePage extends Application {
-    private Label lb_EventMapEvent;
 
-
+    /**
+     * this is the mean entry for this application.
+     * @param primaryStage this is the mean window.
+     */
     @Override
     public void start(Stage primaryStage) {
 
-        // *************** Controller Bar ******************
+        // ************************** Controller Bar *****************************
+        /*
+         * the controller bar showing the control buttons here.
+         */
+
         GUI_ControlBar GUIControlBar = new GUI_ControlBar();
         AnchorPane anP_ControlBar = GUIControlBar.showControlBar(primaryStage);
 
-        // ****************************** Event List *****************************
+        // *************************** Event List ********************************
+        /*
+         * this is the event list localed on left side of window
+         */
 
         GUI_EventList gui_eventList = new GUI_EventList();
         AnchorPane anP_EventList = gui_eventList.showEventList();
+
+        /*
+         * take the list from the gui list. so later can be use for operation.
+         */
+
         ListView<Dom_EventCard> lv_EventList = gui_eventList.getLv_EventList();
+
+        /*
+         * here set up the list into modify application. in case no nullPointerException.
+         */
 
         App_Opr_ModifyText app_opr_modifyText = new App_Opr_ModifyText();
         app_opr_modifyText.setLv_EventList(lv_EventList);
 
-        // ************************ Event Card ******************************
+
+        // ******************************* Event Card ******************************
+        /*
+         * here is the event edit panel at right side of the window
+         */
 
         GUI_EventCard gui_eventCard = new GUI_EventCard();
         AnchorPane anP_EventCard = gui_eventCard.showEventCard();
 
-        // ********************* Event Map **********************************
+        // ******************************** Event Map **********************************
+        /*
+         * here is the show the event on the middle of the window
+         */
 
         GUI_EventMap gui_eventMap = new GUI_EventMap();
         AnchorPane anP_EventMap = gui_eventMap.showEventMap();
 
-        // *********************** View **************************
+
+
+        // *********************************   View    **********************************
+        /*
+         * here is the output view under the window
+         */
 
         GUI_View gui_view = new GUI_View();
         AnchorPane anP_TimeLine = gui_view.showView();
 
 
-        // *********************** Root *********************
+        // *********************************    Root   *********************************
+        /*
+         * this is the setting about root and put every thing on the scene and stage.
+         */
 
         BorderPane bp_Root = new BorderPane();
         bp_Root.setTop(anP_ControlBar);
@@ -97,6 +130,10 @@ public class main_OnePage extends Application {
         AnchorPane.setBottomAnchor(bp_Root, 0.0);
         AnchorPane.setRightAnchor(bp_Root, 0.0);
 
+
+        /*
+         * here is the mean scene and primary stage setting.
+         */
         Scene scene = new Scene(anp_Root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("The Story Line Tool");
@@ -104,43 +141,36 @@ public class main_OnePage extends Application {
         primaryStage.setWidth(1000);
         primaryStage.show();
 
-        // show the login window
+        /*
+          * after the mean window showing up, the application will show the login window to let the user login.
+         */
         GUI_UserLogin.showLoginStage(primaryStage);
 
 
 
         // ****************** Event List application ***********************
-        lv_EventList.getSelectionModel().selectedItemProperty().addListener(new App_Opr_EventList(lv_EventList,gui_eventCard,gui_view));
-        lv_EventList.setCellFactory(TextFieldListCell.forListView(new StringConverter<Dom_EventCard>() {
-            @Override
-            public String toString(Dom_EventCard object) {
-                String s = object.getEventName();
-                return s;
-            }
+        /*
+         * here will let the event list get the selected and listen it change.
+         *
+         */
+        lv_EventList.getSelectionModel().selectedItemProperty().addListener(new App_Opr_EventList(lv_EventList,gui_eventCard,gui_view,gui_eventMap));
+        lv_EventList.setCellFactory(TextFieldListCell.forListView(new App_Converter_EventList(lv_EventList)));
 
-            @Override
-            public Dom_EventCard fromString(String string) {
-                Dom_EventCard selectedItem = lv_EventList.getSelectionModel().getSelectedItem();
-
-                int selectedIndex = lv_EventList.getSelectionModel().getSelectedIndex();
-                String eventNumber = String.valueOf(selectedIndex + 1);
-
-                selectedItem.setEventName("Event " + eventNumber + " : " + string);
-                return selectedItem;
-            }
-        }));
-
-
-        // ****************** View application ***********************
-        gui_view.getBu_Export().setOnAction(new App_Opr_View());
 
         // ********************* list view button **************************
         gui_eventList.getBu_EventList_Add().setOnAction(new App_Opr_CreateNewEventCard(lv_EventList));
         gui_eventList.getBu_EventList_Delete().setOnAction(new App_Opr_DeleteEventCard(lv_EventList));
 
+
         // ******************** Drag and Drop *********************
         lv_EventList.setOnDragDetected(new App_Dra_EventListDragDetected(anP_EventMap,lv_EventList));
         anP_EventMap.setOnDragDropped(new App_Dra_EventMapDragDropped(lv_EventList,gui_eventMap));
         anP_EventMap.setOnDragOver(new App_Dra_EventMapDragOver());
+
+        // ****************** View application ***********************
+        /*
+         * here is the button of export
+         */
+        gui_view.getBu_Export().setOnAction(new App_Opr_View());
     }
 }

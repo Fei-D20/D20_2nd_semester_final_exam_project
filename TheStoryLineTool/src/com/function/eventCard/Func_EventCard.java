@@ -46,8 +46,8 @@ public class Func_EventCard implements IF_Func_Dao<Dom_EventCard>{
                 dom_eventCard.getDom_event().setEventID(instance.getInt(3));
                 dom_eventCard.getDom_note().setNoteID(instance.getInt(4));
                 dom_eventCard.getDom_comment().setCommentID(instance.getInt(5));
-                dom_eventCard.setPreEventCardID(instance.getInt(6));
-                dom_eventCard.setAfterEventCardID(instance.getInt(7));
+                dom_eventCard.setLocalX(instance.getDouble(6));
+                dom_eventCard.setLocalY(instance.getDouble(7));
                 dom_eventCard.setLocalDate(instance.getDate(8).toLocalDate());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
