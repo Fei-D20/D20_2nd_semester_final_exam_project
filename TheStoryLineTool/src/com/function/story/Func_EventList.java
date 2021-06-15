@@ -27,6 +27,10 @@ import java.util.ArrayList;
  */
 public class Func_EventList implements IF_Func<Dom_EventCard> {
 
+    /**
+     * this method is working for get event list from database.
+     * @return arraylist from result set.
+     */
     public static ArrayList<Dom_EventCard> getEventList() {
         try {
             Impl_EventCardDao impl_eventCardDao = new Impl_EventCardDao();

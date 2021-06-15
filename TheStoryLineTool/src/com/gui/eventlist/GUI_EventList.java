@@ -27,26 +27,24 @@ public class GUI_EventList {
     private Button bu_EventList_Delete;
     private ButtonBar bb_EventList;
 
-
+    /**
+     * here is the panel for event list
+     * @return the event list be create
+     */
     public AnchorPane showEventList(){
-        lb_EventList = new Label("Event List : ");
 
+        lb_EventList = new Label("Event List : ");
         lb_EventList.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 16;");
         lb_EventList.setPrefHeight(1);
         lb_EventList.setPadding(new Insets(1));
 
         App_Opr_EventList app_opr_eventList = new App_Opr_EventList();
         lv_EventList = new ListView<Dom_EventCard>(app_opr_eventList.getEventList());
-
-
-
         lv_EventList.setPlaceholder(new Label("Event Card List"));
         lv_EventList.setPrefHeight(700);
         lv_EventList.setPrefWidth(200);
         lv_EventList.setStyle("-fx-font-size: 12;" + "-fx-font-weight: bold");
         lv_EventList.setEditable(true);
-
-
         lv_EventList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 

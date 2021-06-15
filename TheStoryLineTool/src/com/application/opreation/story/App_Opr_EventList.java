@@ -31,6 +31,14 @@ public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
     private GUI_View gui_view;
     private GUI_EventMap gui_eventMap;
 
+    /**
+     * this class is working for create and get the event list.
+     * @param lv_EventList
+     * @param gui_eventCard
+     * @param gui_view
+     * @param gui_eventMap
+     */
+
     public App_Opr_EventList(ListView<Dom_EventCard> lv_EventList, GUI_EventCard gui_eventCard, GUI_View gui_view, GUI_EventMap gui_eventMap) {
         this.lv_EventList = lv_EventList;
         this.gui_eventCard = gui_eventCard;
@@ -41,6 +49,10 @@ public class App_Opr_EventList implements ChangeListener<Dom_EventCard> {
     public App_Opr_EventList() {
     }
 
+    /**
+     * get the event list though function from database
+     * @return the observablelist for gui
+     */
     public ObservableList<Dom_EventCard> getEventList(){
         return FXCollections.observableArrayList(Func_EventList.getEventList());
     }

@@ -43,16 +43,16 @@ public class App_Opr_CreateNewEventCard implements EventHandler {
         newEventCard.setLocalDate(LocalDate.now());
 
         newEventCard.getDom_event().setEventID(newEventCard.getEventCardID());
-//        newEventCard.getDom_event().setQuickNote("some thing happening");
-//        newEventCard.getDom_event().setEventDate(LocalDate.now());
+        newEventCard.getDom_event().setQuickNote("some thing happening");
+        newEventCard.getDom_event().setEventDate(LocalDate.now());
 
         newEventCard.getDom_note().setNoteID(newEventCard.getEventCardID());
-//        newEventCard.getDom_note().setNoteText("What happened?");
+        newEventCard.getDom_note().setNoteText("What happened?");
 
         newEventCard.getDom_comment().setCommentID(newEventCard.getEventCardID());
-//        newEventCard.getDom_comment().setCommentAuthor("who are you");
-//        newEventCard.getDom_comment().setCommentText("what you want to say? ");
-//        newEventCard.getDom_comment().setLocalDate(LocalDate.now());
+        newEventCard.getDom_comment().setCommentAuthor("who are you");
+        newEventCard.getDom_comment().setCommentText("what you want to say? ");
+        newEventCard.getDom_comment().setLocalDate(LocalDate.now());
 
 
         Func_Event func_event = new Func_Event();
