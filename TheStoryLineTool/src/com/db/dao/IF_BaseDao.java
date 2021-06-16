@@ -33,14 +33,13 @@ public interface IF_BaseDao<T> {
     /**
      * select a instance form the database
      * @param t which instance be choose
-     * @return
+     * @return the result set from database
      */
     ResultSet getInstance(T t);
 
-
     /**
      * select all the instance from a table
-      * @return
+      * @return the result set from database
      */
     ResultSet getAll();
 }
